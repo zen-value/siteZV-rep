@@ -261,11 +261,11 @@
       <span class="admin-badge" id="admin-role-badge">Admin</span>
     </div>
     <div class="header-center">
-      <a href="https://llmdev-ops.github.io/" target="_blank" class="site-link" id="site-link" title="Voir le site en ligne">
+      <a href="" + SITE_URL + "" target="_blank" class="site-link" id="site-link" title="Voir le site en ligne">
         <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         zenvalue.fr
       </a>
-      <a href="https://llmdev-ops.github.io/" target="_blank" class="deploy-pill deploy-idle" id="deploy-status" title="Statut de publication">
+      <a href="#" target="_blank" class="deploy-pill deploy-idle" id="deploy-status" title="Statut de publication">
         <span class="deploy-dot"></span>
         <span id="deploy-label">Vérification…</span>
       </a>
@@ -299,8 +299,14 @@
 /* ══════════════════════════════════════════════════════
    CONFIG
 ══════════════════════════════════════════════════════ */
-const GH_USER = 'llmdev-ops';
-const GH_REPO = 'llmdev-ops.github.io';
+/* ═══════════════════════════════════════════════════
+   ⚙️  CONFIGURATION — Modifier ici pour la migration
+   ═══════════════════════════════════════════════════ */
+const GH_USER    = 'llmdev-ops';           // → 'zen-value' après migration GitHub
+const GH_REPO    = 'llmdev-ops.github.io'; // → 'zenvalue.github.io' après migration
+const SITE_URL   = 'https://llmdev-ops.github.io'; // → 'https://zenvalue.fr'
+const WEB3FORMS  = 'VOTRE_CLE_WEB3FORMS'; // → clé web3forms.com/contact@zenvalue.fr
+/* ═══════════════════════════════════════════════════ */
 const FILES = {
   theme:'content/settings/theme.json', global:'content/settings/global.json',
   resultats:'content/settings/resultats.json', users:'content/settings/users.json',
@@ -469,6 +475,13 @@ function startAdmin() {
   badge.textContent = session.role==='admin' ? 'Admin' : 'Redacteur';
   badge.style.background = session.role==='admin' ? '#aac335' : '#16a34a';
   buildSidebar();
+  /* Mettre à jour les liens site avec la config */
+  var siteLink = document.getElementById('site-link');
+  var deployPill = document.getElementById('deploy-status');
+  if (siteLink) siteLink.href = SITE_URL;
+  if (deployPill) deployPill.href = SITE_URL;
+  document.querySelectorAll('.dash-site-btn').forEach(function(el){ el.href = SITE_URL; });
+
   navTo('dashboard');
   checkDeployStatus();
   // Poll déploiement toutes les 2 min
@@ -565,7 +578,7 @@ function rDashboard() {
         +'<div class="dash-last-deploy" id="dash-deploy-txt">Vérification en cours…</div>'
       +'</div>'
       +'<div style="display:flex;gap:.7rem;align-items:center;">'
-        +'<a href="https://llmdev-ops.github.io/" target="_blank" class="btn btn-sm btn-outline">Voir le site →</a>'
+        +'<a href="'+SITE_URL+'" target="_blank" class="btn btn-sm btn-outline dash-site-btn">Voir le site →</a>'
         +'<button class="btn btn-sm btn-outline" onclick="checkDeployStatus();updateDashDeploy();">Actualiser</button>'
       +'</div>'
     +'</div>';
@@ -991,7 +1004,7 @@ function renderMediaGrid(key) {
   var files = mediaFiles[key]||[];
   if (!files.length){ grid.innerHTML='<div style="padding:2rem;color:#aaa;grid-column:1/-1;">Aucune image. Uploadez votre premiere image ci-dessus.</div>'; return; }
   grid.innerHTML = files.map(function(f){
-    var url = 'https://llmdev-ops.github.io/'+f.path;
+    var url = SITE_URL+'/'+f.path;
     var ext = f.name.split('.').pop().toLowerCase();
     var thumb = ext==='svg'
       ? '<div class="media-thumb-svg">SVG</div>'
