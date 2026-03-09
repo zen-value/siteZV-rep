@@ -752,44 +752,33 @@ function showInviteModal(name, email, pwd, role) {
     +'<div class="invite-chip"><span>Email</span>'+email+'</div>';
 
   // Message email pré-rédigé
-  var msg = 'Bonjour '+name.split(' ')[0]+',
-
-'
-    +'Tu as été invité(e) à rejoindre l'espace d'administration du site Zen Value '
-    +'en tant que '+roleLabel+'.
-
-'
-    +'━━━ Tes identifiants de connexion ━━━
-'
-    +'🔗 Accès : '+adminUrl+'
-'
-    +'📧 Email : '+email+'
-'
-    +'🔑 Mot de passe : '+pwd+'
-
-'
-    +'━━━ Code d'accès (première connexion uniquement) ━━━
-'
-    +code+'
-
-'
-    +'Pour te connecter la première fois :
-'
-    +'1. Ouvre le lien ci-dessus
-'
-    +'2. Saisis ton email et ton mot de passe
-'
-    +'3. Clique sur "Première connexion" et colle le code d'accès
-'
-    +'4. Le code ne sera demandé qu'une seule fois sur cet appareil
-
-'
-    +'N'hésite pas à me contacter si tu as la moindre question.
-
-'
-    +'Bonne journée,
-'
-    +session.name;
+  var prenom = name.split(' ')[0];
+  var lines = [
+    'Bonjour ' + prenom + ',',
+    '',
+    'Tu as ete invite(e) a rejoindre l\'espace d\'administration du site Zen Value',
+    'en tant que ' + roleLabel + '.',
+    '',
+    '--- Tes identifiants de connexion ---',
+    'Acces  : ' + adminUrl,
+    'Email  : ' + email,
+    'Mot de passe : ' + pwd,
+    '',
+    '--- Code d\'acces (premiere connexion uniquement) ---',
+    code,
+    '',
+    'Pour te connecter la premiere fois :',
+    '1. Ouvre le lien ci-dessus',
+    '2. Saisis ton email et ton mot de passe',
+    '3. Clique sur "Premiere connexion" et colle le code d\'acces',
+    '4. Le code ne sera demande qu\'une seule fois sur cet appareil',
+    '',
+    'N\'hesite pas a me contacter si tu as la moindre question.',
+    '',
+    'Bonne journee,',
+    session.name
+  ];
+  var msg = lines.join('\n');
 
   document.getElementById('invite-email-preview').textContent = msg;
   document.getElementById('invite-modal-bg').classList.add('open');
