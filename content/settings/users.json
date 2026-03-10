@@ -6,6 +6,16 @@
       "role": "admin",
       "passwordHash": "af1a63aac57224e33f0f719c09118c68b7f6a3f5a539a2f63794074265553cc3",
       "createdAt": "2026-03-10T13:10:19.652Z"
+    },
+    {
+      "email": "mdodin@zenvalue.fr",
+      "name": "Mael  Dodin",
+      "role": "admin",
+      "passwordHash": null,
+      "firstLogin": true,
+      "inviteTokenHash": "cce49da13b257d1551a051c117f4c96677ad5a1eef1aa0363f37fa0c051d6747",
+      "inviteExpiry": "2026-03-12T13:34:15.153Z",
+      "createdAt": "2026-03-10T13:34:15.153Z"
     }
   ]
 }
