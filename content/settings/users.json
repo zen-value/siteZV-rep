@@ -53,11 +53,12 @@
       "email": "vcossac@zenvalue.fr",
       "name": "Vincent Cossac",
       "role": "redacteur",
-      "passwordHash": null,
-      "firstLogin": true,
-      "inviteTokenHash": "9c47d2f622d5ced7e84654b6ab40bc35e0911124dc82d559516a70bb358bc1d7",
-      "inviteExpiry": "2026-03-12T16:29:13.537Z",
-      "createdAt": "2026-03-10T16:29:13.537Z"
+      "passwordHash": "92499ca293ce42b5c90aa1fde6ddf00158057c22deece6c43a752f7012b98541",
+      "firstLogin": false,
+      "inviteTokenHash": null,
+      "inviteExpiry": null,
+      "createdAt": "2026-03-10T16:29:13.537Z",
+      "activatedAt": "2026-03-10T16:40:11.656Z"
     }
   ]
 }
