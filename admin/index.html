@@ -97,10 +97,12 @@
     .preview-overlay.visible { opacity:1; }
     .preview-toggle-btn {
       display:flex; align-items:center; gap:.4rem;
-      background:none; border:1.5px solid var(--border); border-radius:6px;
-      padding:.4rem .8rem; font-size:.75rem; font-weight:600; color:var(--gray);
-      cursor:pointer; transition:all .15s; white-space:nowrap;
+      background:var(--green,#AAC335); border:1.5px solid var(--green,#AAC335); border-radius:6px;
+      padding:.45rem 1rem; font-size:.78rem; font-weight:700; color:white;
+      cursor:pointer; transition:all .15s; white-space:nowrap; box-shadow:0 1px 4px rgba(0,0,0,.12);
     }
+    .preview-toggle-btn:hover { opacity:.88; }
+    .preview-toggle-btn.active { background:var(--dark,#404041); border-color:var(--dark,#404041); }
     .preview-toggle-btn:hover, .preview-toggle-btn.active {
       border-color:var(--green); color:var(--green); background:#f3f7e0;
     }
@@ -326,7 +328,7 @@
 <!-- LOGIN -->
 <div id="login-screen" class="auth-screen">
   <div class="auth-box">
-    <img src="/assets/images/logo/logo_zen-value_H.avif" alt="Zen Value" class="auth-logo" />
+    <img src="../assets/images/logo/logo_zen-value_H.avif" alt="Zen Value" class="auth-logo" />
     <h1>Administration</h1>
     <p>Connectez-vous avec votre email et mot de passe Zen Value.</p>
     <label class="auth-label">Email</label>
@@ -342,7 +344,7 @@
 <!-- SETUP -->
 <div id="setup-screen" class="auth-screen" style="display:none;">
   <div class="auth-box">
-    <img src="/assets/images/logo/logo_zen-value_H.avif" alt="Zen Value" class="auth-logo" />
+    <img src="../assets/images/logo/logo_zen-value_H.avif" alt="Zen Value" class="auth-logo" />
     <h1>Créer le compte administrateur</h1>
     <p style="font-size:.85rem;color:#6b6b6d;">Aucun compte n'existe encore sur ce site. Créez le premier compte administrateur pour démarrer.</p>
     <label class="auth-label">Nom complet</label>
@@ -365,7 +367,7 @@
 <!-- ÉCRAN : PREMIÈRE CONNEXION -->
 <div id="first-login-screen" class="first-login-screen" style="display:none;">
   <div class="auth-box">
-    <img src="/assets/images/logo/logo_zen-value_H.avif" alt="Zen Value" class="auth-logo" />
+    <img src="../assets/images/logo/logo_zen-value_H.avif" alt="Zen Value" class="auth-logo" />
     <div class="setup-steps">
       <div class="setup-step done" id="fl-step1"></div>
       <div class="setup-step active" id="fl-step2"></div>
@@ -387,7 +389,7 @@
 <!-- ÉCRAN : CHOISIR MOT DE PASSE -->
 <div id="set-pwd-screen" class="first-login-screen" style="display:none;">
   <div class="auth-box">
-    <img src="/assets/images/logo/logo_zen-value_H.avif" alt="Zen Value" class="auth-logo" />
+    <img src="../assets/images/logo/logo_zen-value_H.avif" alt="Zen Value" class="auth-logo" />
     <div class="setup-steps">
       <div class="setup-step done"></div>
       <div class="setup-step done"></div>
@@ -437,7 +439,7 @@
 <div id="admin-screen">
   <header class="admin-header">
     <div style="display:flex;align-items:center;gap:.8rem;">
-      <img src="/assets/images/logo/logo_zen-value_H.avif" alt="Zen Value" class="admin-logo" />
+      <img src="../assets/images/logo/logo_zen-value_H.avif" alt="Zen Value" class="admin-logo" />
       <span class="admin-badge" id="admin-role-badge">Admin</span>
     </div>
     <div class="header-center">
@@ -452,8 +454,8 @@
     </div>
     <div style="display:flex;align-items:center;gap:.8rem;">
       <div style="display:flex;align-items:center;gap:.8rem;">
-        <button class="preview-toggle-btn" id="preview-toggle-btn" onclick="togglePreview()" title="Apercu live">
-          👁 Aperçu
+        <button class="preview-toggle-btn" id="preview-toggle-btn" onclick="togglePreview()" title="Afficher / masquer la previsualisation live">
+          👁&nbsp;Aperçu live
         </button>
         <span class="admin-user" id="admin-user-lbl"></span>
       </div>
@@ -791,6 +793,10 @@ function startAdmin() {
   badge.textContent = session.role==='admin' ? 'Admin' : 'Redacteur';
   badge.style.background = session.role==='admin' ? '#aac335' : '#16a34a';
   buildSidebar();
+  // Ouvrir la preview automatiquement sur les grands ecrans
+  if (window.innerWidth >= 1200 && !previewOpen) {
+    setTimeout(function() { togglePreview(); }, 300);
+  }
   /* Mettre à jour les liens site avec la config */
   var siteLink = document.getElementById('site-link');
   var deployPill = document.getElementById('deploy-status');
