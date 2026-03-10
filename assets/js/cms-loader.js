@@ -324,3 +324,112 @@ async function initCMS() {
 }
 
 document.addEventListener('DOMContentLoaded', initCMS);
+
+/* ══ PREVIEW MODE (postMessage depuis admin) ══ */
+(function initPreviewListener() {
+  // Prévenir la page parente que le site est pret
+  if (window.parent !== window) {
+    window.addEventListener('load', function() {
+      window.parent.postMessage({ type: 'zv-preview-ready' }, '*');
+    });
+  }
+
+  // Mapping section admin -> fonction de re-rendu rapide
+  var PREVIEW_RENDERERS = {
+    accueil:    previewAccueil,
+    offres:     previewOffres,
+    cas:        previewOffres,   // les cas s'affichent sur la page offres
+    qsn:        previewQSN,
+    formation:  previewFormation,
+    recrutement:previewRecrutement,
+    rse:        previewRSE,
+    theme:      previewTheme,
+    global:     previewGlobal,
+    resultats:  previewResultats,
+    principes:  previewQSN,
+  };
+
+  window.addEventListener('message', function(e) {
+    var msg = e.data;
+    if (!msg || typeof msg.type !== 'string') return;
+
+    if (msg.type === 'zv-preview-nav') {
+      if (typeof showPage === 'function') {
+        showPage(msg.page);
+        window.scrollTo({top:0, behavior:'instant'});
+      }
+    }
+
+    if (msg.type === 'zv-preview-data') {
+      var renderer = PREVIEW_RENDERERS[msg.section];
+      if (renderer) {
+        try { renderer(msg.data); } catch(ex) { console.warn('[ZV preview]', ex); }
+      }
+    }
+  });
+
+  /* Renderers légers : réinjection directe sans fetch */
+  function inj(k, v) {
+    document.querySelectorAll('[data-cms="'+k+'"]').forEach(function(el){
+      if (v !== undefined && v !== null) el.innerHTML = String(v);
+    });
+  }
+
+  function previewGlobal(d) {
+    ['copyright','phone','email','adresse'].forEach(function(k){ inj('global.'+k, d[k]); });
+  }
+  function previewResultats(d) {
+    (d.items||[]).forEach(function(r,i){
+      inj('resultats.items.'+i+'.chiffre', r.chiffre);
+      inj('resultats.items.'+i+'.label',   r.label);
+    });
+  }
+  function previewAccueil(d) {
+    var keys=['hero_tag','hero_h1','hero_desc','cta1','cta2','piliers_tag','piliers_h2',
+      'section2_tag','section2_h2','section2_p1','section2_p2','piliers_cta',
+      'coco_tag','coco_h2','coco_desc','coco_cta','rse_tag','rse_h2','rse_desc','rse_cta',
+      'cta_titre','cta_desc','cta_btn'];
+    keys.forEach(function(k){ inj('accueil.'+k, d[k]); });
+  }
+  function previewOffres(d) {
+    var keys=['section_tag','h2','lead','resultats_tag','cas_tag','cas_h2','cta_h2','cta_desc','cta_btn'];
+    keys.forEach(function(k){ inj('offres.'+k, d[k]); });
+    // Reconstruire les cartes offres si present
+    var c = document.getElementById('offres-container');
+    if (c && d.items) {
+      window._offresData = d.items;
+      c.innerHTML = d.items.map(function(o,i){
+        return '<div class="offre-card">'
+          +'<div class="offre-num">0'+(i+1)+' -- '+(o.categorie||'')+'</div>'
+          +'<h3>'+(o.titre||'')+'</h3>'
+          +'<p>'+(o.description||'')+'</p>'
+          +'<a href="#" class="offre-link" data-offre-id="'+(o.id||i)+'">'+(o.cta_label||'En savoir plus')+' -></a>'
+        +'</div>';
+      }).join('');
+    }
+  }
+  function previewQSN(d) {
+    var keys=['section_tag','h2','intro','valeurs_tag','valeurs_h2','equipe_tag','equipe_h2',
+      'approche_tag','approche_h2','approche_texte','cta_h2','cta_desc','cta_btn'];
+    keys.forEach(function(k){ inj('qsn.'+k, d[k]); });
+  }
+  function previewFormation(d) {
+    var keys=['section_tag','titre','soustitre','qualiopi_tag','qualiopi_h2','texte1','texte2',
+      'catalogue_tag','catalogue_h2','catalogue_desc','catalogue_btn'];
+    keys.forEach(function(k){ inj('formation.'+k, d[k]); });
+  }
+  function previewRecrutement(d) {
+    var keys=['section_tag','titre','soustitre','intro','tagline','engagements_tag',
+      'engagements_h2','profils_tag','profils_h2','processus_tag','processus_h2','cta_h2','cta_desc','cta_btn'];
+    keys.forEach(function(k){ inj('recrutement.'+k, d[k]); });
+  }
+  function previewRSE(d) {
+    var keys=['section_tag','titre','intro','axe1_titre','axe1_texte','axe2_titre','axe2_texte',
+      'mesures_tag','mesures_h2','cta_h2','cta_desc','cta_btn'];
+    keys.forEach(function(k){ inj('rse.'+k, d[k]); });
+  }
+  function previewTheme(d) {
+    // Repasser par theme-loader si disponible
+    if (typeof window.applyTheme === 'function') window.applyTheme(d);
+  }
+}());
