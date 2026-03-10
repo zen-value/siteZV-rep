@@ -313,8 +313,9 @@ async function loadLogosClients() {
     var exts = ['jpg','jpeg','png','webp','svg','avif','gif'];
     var logos = files.filter(function(f){ return exts.includes(f.name.split('.').pop().toLowerCase()); });
     if (!logos.length) return;
+    var siteUrl = (window.ZV_CONFIG && window.ZV_CONFIG.SITE_URL) || '';
     container.innerHTML = logos.map(function(f){
-      var url = 'https://'+GH_USER+'.github.io/'+f.path;
+      var url = siteUrl + '/' + f.path;
       var name = f.name.replace(/\.[^.]+$/,'').replace(/[-_]/g,' ');
       return '<img class="client-logo" src="'+url+'" alt="'+name+'" loading="lazy" />';
     }).join('');
