@@ -1,31 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <!-- ⚠️ <base> EN PREMIER — doit précéder tout asset
+       Valeur lue depuis GH_SUBPATH dans site-config.js.
+       Changer GH_SUBPATH à '' lors de la migration vers zenvalue.fr -->
+  <base href="/siteZV-rep/" id="zv-base" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- site-config.js chargé en premier, chemin détecté depuis l'URL courante -->
-  <script>
-    (function() {
-      /* Détecte le sous-chemin depuis window.location avant tout chargement */
-      var parts = window.location.pathname.split('/');
-      /* Sur GitHub Pages : /siteZV-rep/  → parts = ['','siteZV-rep','']  */
-      /* Sur domaine custom : /            → parts = ['','']               */
-      var base = (parts.length > 2 && parts[1] !== '') ? '/' + parts[1] + '/' : '/';
-      /* Charger site-config.js de façon synchrone */
-      document.write('<scr'+'ipt src="' + base + 'assets/js/site-config.js"></scr'+'ipt>');
-    })();
-  </script>
-  <script>
-    /* Poser le <base href> dès que ZV_CONFIG est disponible */
-    (function() {
-      var sub = window.ZV_CONFIG && window.ZV_CONFIG.GH_SUBPATH;
-      if (sub) {
-        var base = document.createElement('base');
-        base.href = sub;
-        document.head.appendChild(base);
-      }
-    })();
-  </script>
 
   <!-- ── SEO PRIMAIRE ── -->
   <title>Zen Value — Cabinet de conseil & formation en performance opérationnelle</title>
@@ -883,7 +864,8 @@
 <!-- ══════ SCRIPTS ══════ -->
 <!-- Theme loader en premier : surcharge les variables CSS avant le rendu --><!-- Plausible Analytics — RGPD friendly, sans cookie -->
 <script defer data-domain="zenvalue.fr" src="https://plausible.io/js/script.js"></script>
-<script>/* site-config.js chargé dynamiquement dans le <head> */</script>
+<script>/* site-config.js chargé ici — met à jour <base href> via GH_SUBPATH */</script>
+<script src="assets/js/site-config.js"></script>
 <script src="assets/js/theme-loader.js?v=11"></script>
 <!-- Ordre important : animations en premier (observeReveals doit exister avant cms-loader) -->
 <script src="assets/js/animations.js?v=14"></script>
