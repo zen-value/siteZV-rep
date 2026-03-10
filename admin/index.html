@@ -507,18 +507,16 @@
   </div>
 </div>
 
+<script src="../assets/js/site-config.js"></script>
 <script>
 /* ══════════════════════════════════════════════════════
-   CONFIG
+   CONFIG — lue depuis assets/js/site-config.js
+   (seul fichier à modifier pour changer d'environnement)
 ══════════════════════════════════════════════════════ */
-/* ═══════════════════════════════════════════════════
-   ⚙️  CONFIGURATION — Modifier ici pour la migration
-   ═══════════════════════════════════════════════════ */
-const GH_USER    = 'llmdev-ops';           // → 'zen-value' après migration GitHub
-const GH_REPO    = 'llmdev-ops.github.io'; // → 'zenvalue.github.io' après migration
-const SITE_URL   = 'https://llmdev-ops.github.io'; // → 'https://zenvalue.fr'
-const WEB3FORMS  = 'VOTRE_CLE_WEB3FORMS'; // → clé web3forms.com/contact@zenvalue.fr
-/* ═══════════════════════════════════════════════════ */
+const GH_USER   = (window.ZV_CONFIG && window.ZV_CONFIG.GH_USER)       || 'zen-value';
+const GH_REPO   = (window.ZV_CONFIG && window.ZV_CONFIG.GH_REPO)       || 'siteZV-rep';
+const SITE_URL  = (window.ZV_CONFIG && window.ZV_CONFIG.SITE_URL)      || 'https://zenvalue.fr';
+const WEB3FORMS = (window.ZV_CONFIG && window.ZV_CONFIG.WEB3FORMS_KEY) || '';
 const FILES = {
   theme:'content/settings/theme.json', global:'content/settings/global.json',
   resultats:'content/settings/resultats.json', users:'content/settings/users.json',
