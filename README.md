@@ -125,7 +125,7 @@ Sécurités : SHA-256, sessions 8h, anti brute-force 5 tentatives / 15 min.
 1. Connecté sur le compte GitHub personnel de Mael, aller sur https://github.com/organizations/new
 2. Nom de l'organisation : **`zen-value`** *(exactement, en minuscules avec tiret)*
 3. Plan : **Free** suffit pour GitHub Pages
-4. Inviter Loïc (`lloizel`) comme **Owner** dans les paramètres de l'organisation
+4. Inviter Loïc (`llmdev-ops`) comme **Owner** dans les paramètres de l'organisation
 
 ---
 
