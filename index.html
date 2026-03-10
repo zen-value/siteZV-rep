@@ -132,7 +132,7 @@
     }
 
     .hero-eyebrow {
-      font-size: 0.65rem;
+      font-size: 0.85rem;
       font-weight: 500;
       letter-spacing: 0.2em;
       text-transform: uppercase;
@@ -149,9 +149,10 @@
       margin-bottom: 2.8rem;
     }
     .hero-h1 .g { color: var(--green); }
+    .hero-h1 .r { color: var(--rose); }
 
     .hero-sub {
-      font-size: clamp(0.9rem, 1.2vw, 1.05rem);
+      font-size: clamp(1.1rem, 1.6vw, 1.3rem);
       font-weight: 400;
       color: rgba(255,255,255,0.38);
       line-height: 1.8;
@@ -569,13 +570,13 @@
 
     <div class="hero-body">
       <div class="hero-content">
-        <p class="hero-eyebrow reveal">Cabinet de conseil &amp; organisme de formation certifié Qualiopi — Paris</p>
+        <p class="hero-eyebrow reveal" data-cms="accueil.eyebrow">Cabinet de conseil &amp; organisme de formation certifié Qualiopi — Paris</p>
         <h1 class="hero-h1 reveal" data-delay="1">
-          Let's find a<br>
+          <span data-cms="accueil.tagline1">Let's find a</span><br>
           <span class="g">Zen</span> Way<br>
-          to Value.
+          to <span class="r">Value.</span>
         </h1>
-        <p class="hero-sub reveal" data-delay="2">
+        <p class="hero-sub reveal" data-delay="2" data-cms="accueil.soustitre">
           Performance opérationnelle,<br>pérenne et responsable.
         </p>
         <a href="#manifeste" class="hero-scroll reveal" data-delay="3">
@@ -588,16 +589,16 @@
     <div class="hero-meta">
       <div class="hero-meta-grid">
         <div class="meta-item reveal">
-          <span class="meta-num">+15</span>
-          <span class="meta-label">Ans d'expertise</span>
+          <span class="meta-num" data-cms="accueil.stat1_num">+15</span>
+          <span class="meta-label" data-cms="accueil.stat1_label">Ans d'expertise</span>
         </div>
         <div class="meta-item reveal" data-delay="1">
-          <span class="meta-num">50+</span>
-          <span class="meta-label">Organisations accompagnées</span>
+          <span class="meta-num" data-cms="accueil.stat2_num">50+</span>
+          <span class="meta-label" data-cms="accueil.stat2_label">Organisations accompagnées</span>
         </div>
         <div class="meta-item reveal" data-delay="2">
-          <span class="meta-num">Qualiopi</span>
-          <span class="meta-label">Certifié formation</span>
+          <span class="meta-num" data-cms="accueil.stat3_num">Qualiopi</span>
+          <span class="meta-label" data-cms="accueil.stat3_label">Certifié formation</span>
         </div>
       </div>
     </div>
@@ -610,14 +611,14 @@
 <section id="manifeste" aria-label="Notre conviction">
   <div class="manifeste">
     <div class="manifeste-inner">
-      <p class="manifeste-text reveal">
-        Nous croyons que la <span class="g">performance</span> ne se décrète pas.
-        Elle se construit, se mesure, et se pérennise — avec les équipes
-        qui la vivent au quotidien. Lean, Agile, Théorie des Contraintes&nbsp;:
-        des méthodes éprouvées au service d'un seul objectif,
-        créer de la <span class="g">valeur réelle et durable.</span>
+      <p class="manifeste-text reveal" data-cms="accueil.manifeste_texte">
+        La <span class="g">performance</span> ne se décrète pas.
+        Elle se construit là où la valeur se crée réellement,
+        avec les équipes qui la font vivre. Lean, Agile, Théorie des Contraintes...
+        nous mobilisons l'état de l'art sans dogmatisme, au service d'un seul objectif&nbsp;:
+        délivrer plus de valeur, de manière <span class="g">pérenne et responsable.</span>
       </p>
-      <a href="#contact" class="btn-rose reveal" data-delay="1">Parler de vos enjeux →</a>
+      <a href="#contact" class="btn-rose reveal" data-delay="1" data-cms="accueil.manifeste_cta">Parler de vos enjeux →</a>
     </div>
   </div>
 </section>
@@ -628,26 +629,26 @@
   <div class="piliers-inner">
 
     <div class="reveal">
-      <div class="section-tag">— Notre approche</div>
-      <h2 class="piliers-h2">Ce que nous faisons</h2>
+      <div class="section-tag" data-cms="accueil.piliers_tag">— Notre approche</div>
+      <h2 class="piliers-h2" data-cms="accueil.piliers_h2">Ce que nous faisons</h2>
     </div>
 
     <div class="pilier-row reveal" data-delay="1">
       <div class="pilier-num">01</div>
-      <div class="pilier-titre">Excellence Opérationnelle</div>
-      <p class="pilier-texte">Nous agissons concrètement sur le delivery — fiabilisation des engagements, accélération des cycles, amélioration de la qualité. Chaque intervention produit des résultats mesurables dès les premières semaines.</p>
+      <div class="pilier-titre" data-cms="accueil.card1_titre">Excellence Opérationnelle</div>
+      <p class="pilier-texte" data-cms="accueil.card1_texte">Nous agissons concrètement sur le delivery — fiabilisation des engagements, accélération des cycles, amélioration de la qualité. Chaque intervention produit des résultats mesurables dès les premières semaines.</p>
     </div>
 
     <div class="pilier-row reveal" data-delay="2">
       <div class="pilier-num">02</div>
-      <div class="pilier-titre">Pérennisation de la valeur</div>
-      <p class="pilier-texte">Nous accompagnons le changement continu pour rendre les organisations autonomes dans leur création de valeur sur le long terme. L'objectif n'est pas la dépendance au consultant, mais l'indépendance de vos équipes.</p>
+      <div class="pilier-titre" data-cms="accueil.card2_titre">Pérennisation de la valeur</div>
+      <p class="pilier-texte" data-cms="accueil.card2_texte">Nous accompagnons le changement continu pour rendre les organisations autonomes dans leur création de valeur sur le long terme. L'objectif n'est pas la dépendance au consultant, mais l'indépendance de vos équipes.</p>
     </div>
 
     <div class="pilier-row reveal" data-delay="3">
       <div class="pilier-num">03</div>
-      <div class="pilier-titre">Responsabilité</div>
-      <p class="pilier-texte">Parce que la performance ne peut pas être uniquement économique — nous intégrons les enjeux écologiques, éthiques et sociétaux dans chaque mission. La RSE n'est pas un supplément, c'est une exigence.</p>
+      <div class="pilier-titre" data-cms="accueil.card3_titre">Responsabilité</div>
+      <p class="pilier-texte" data-cms="accueil.card3_texte">Parce que la performance ne peut pas être uniquement économique — nous intégrons les enjeux écologiques, éthiques et sociétaux dans chaque mission. La RSE n'est pas un supplément, c'est une exigence.</p>
     </div>
 
   </div>
@@ -659,8 +660,8 @@
   <div class="resultats-inner">
 
     <div class="reveal">
-      <div class="section-tag">— Résultats mesurés chez nos clients</div>
-      <h2 class="resultats-h2">
+      <div class="section-tag" data-cms="accueil.resultats_tag">— Résultats mesurés chez nos clients</div>
+      <h2 class="resultats-h2" data-cms="accueil.resultats_h2">
         Des chiffres qui<br><span class="g">parlent d'eux-mêmes</span>
       </h2>
     </div>
@@ -668,23 +669,23 @@
     <div class="stats-grid">
       <div class="stat-item reveal" data-delay="1">
         <div class="stat-bar"></div>
-        <div class="stat-num">−60 %</div>
-        <div class="stat-label">Time to market réduit</div>
+        <div class="stat-num" data-cms="resultats.r1_chiffre">−60 %</div>
+        <div class="stat-label" data-cms="resultats.r1_label">Time to market réduit</div>
       </div>
       <div class="stat-item reveal" data-delay="2">
         <div class="stat-bar"></div>
-        <div class="stat-num">+40 %</div>
-        <div class="stat-label">Vélocité Scrum</div>
+        <div class="stat-num" data-cms="resultats.r2_chiffre">+40 %</div>
+        <div class="stat-label" data-cms="resultats.r2_label">Vélocité Scrum</div>
       </div>
       <div class="stat-item reveal" data-delay="3">
         <div class="stat-bar"></div>
-        <div class="stat-num">+50 %</div>
-        <div class="stat-label">Efficacité opérationnelle</div>
+        <div class="stat-num" data-cms="resultats.r3_chiffre">+50 %</div>
+        <div class="stat-label" data-cms="resultats.r3_label">Efficacité opérationnelle</div>
       </div>
       <div class="stat-item reveal" data-delay="4">
         <div class="stat-bar"></div>
-        <div class="stat-num">+56</div>
-        <div class="stat-label">NPS client moyen</div>
+        <div class="stat-num" data-cms="resultats.r4_chiffre">+56</div>
+        <div class="stat-label" data-cms="resultats.r4_label">NPS client moyen</div>
       </div>
     </div>
 
@@ -695,7 +696,7 @@
 <!-- ════ CLIENTS — fond clair ════ -->
 <section class="clients" aria-label="Clients">
   <div class="clients-inner">
-    <p class="clients-label reveal">Ils nous font confiance</p>
+    <p class="clients-label reveal" data-cms="accueil.clients_label">Ils nous font confiance</p>
     <div class="clients-logos reveal" data-delay="1">
       <img class="client-logo" src="assets/images/logos-clients/logo_BNP-Paribas.png"  alt="BNP Paribas" loading="lazy" />
       <img class="client-logo" src="assets/images/logos-clients/logo_Groupama.png"     alt="Groupama" loading="lazy" />
@@ -710,11 +711,11 @@
 <section class="contact-section" id="contact" aria-label="Contact">
   <div class="contact-inner">
     <div class="reveal">
-      <h2 class="contact-h2">On construit<br>quelque chose<br>ensemble&nbsp;?</h2>
-      <p class="contact-sub">Premier échange sans engagement.</p>
+      <h2 class="contact-h2" data-cms="accueil.cta_h2">On construit<br>quelque chose<br>ensemble&nbsp;?</h2>
+      <p class="contact-sub" data-cms="accueil.cta_desc">Premier échange sans engagement.</p>
     </div>
-    <a href="mailto:contact@zenvalue.fr" class="btn-ink reveal" data-delay="1">
-      contact@zenvalue.fr →
+    <a href="mailto:contact@zenvalue.fr" class="btn-ink reveal" data-cms-href="global.email" data-delay="1">
+      <span data-cms="global.email">contact@zenvalue.fr</span> →
     </a>
   </div>
 </section>
@@ -731,12 +732,27 @@
       <li><a href="#">Politique de confidentialité</a></li>
       <li><a href="#">CGV</a></li>
     </ul>
-    <span class="footer-copy">© Zen Value 2025</span>
+    <span class="footer-copy" data-cms="global.copyright">© Zen Value 2025</span>
   </div>
 </footer>
 
 
+<script src="assets/js/site-config.js" defer></script>
+<script src="assets/js/cms-loader.js" defer></script>
+
 <script>
+  /* ── Manifeste — chargement depuis accueil.json ── */
+  fetch('content/pages/accueil.json?v=' + Date.now())
+    .then(function(r) { return r.ok ? r.json() : null; })
+    .then(function(d) {
+      if (!d) return;
+      var mt = document.querySelector('.manifeste-text');
+      if (mt && d.manifeste_texte) mt.innerHTML = d.manifeste_texte;
+      var mc = document.querySelector('.btn-rose');
+      if (mc && d.manifeste_cta) mc.innerHTML = d.manifeste_cta;
+    })
+    .catch(function() {});
+
   /* ── Nav scroll ── */
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {

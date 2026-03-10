@@ -52,7 +52,8 @@ async function loadAccueil() {
    'card1_icon','card1_titre','card1_texte','card2_icon','card2_titre','card2_texte','card3_icon','card3_titre','card3_texte',
    'coco_tag','coco_h2','coco_lead','coco_cta',
    'rse_tag','rse_h2','rse_lead','rse_cta',
-   'cta_tag','cta_h2','cta_desc','cta_btn'
+   'cta_tag','cta_h2','cta_desc','cta_btn',
+   'manifeste_texte','manifeste_cta','clients_label','resultats_tag','resultats_h2'
   ].forEach(function(k){ inject('accueil.'+k, d[k]); });
 
   // Image hero : injection dans hero-img-wrap
@@ -394,10 +395,14 @@ document.addEventListener('DOMContentLoaded', initCMS);
     });
   }
   function previewAccueil(d) {
-    var keys=['hero_tag','hero_h1','hero_desc','cta1','cta2','piliers_tag','piliers_h2',
-      'section2_tag','section2_h2','section2_p1','section2_p2','piliers_cta',
-      'coco_tag','coco_h2','coco_desc','coco_cta','rse_tag','rse_h2','rse_desc','rse_cta',
-      'cta_titre','cta_desc','cta_btn'];
+    var keys=['eyebrow','tagline1','tagline2','soustitre','cta1','cta2','badge','quote',
+      'stat1_num','stat1_label','stat2_num','stat2_label','stat3_num','stat3_label',
+      'piliers_tag','piliers_h2','piliers_lead','piliers_cta',
+      'card1_icon','card1_titre','card1_texte','card2_icon','card2_titre','card2_texte','card3_icon','card3_titre','card3_texte',
+      'coco_tag','coco_h2','coco_lead','coco_cta',
+      'rse_tag','rse_h2','rse_lead','rse_cta',
+      'cta_tag','cta_h2','cta_desc','cta_btn',
+      'manifeste_texte','manifeste_cta','clients_label','resultats_tag','resultats_h2'];
     keys.forEach(function(k){ inj('accueil.'+k, d[k]); });
   }
   function previewOffres(d) {
