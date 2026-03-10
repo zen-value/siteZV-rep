@@ -1,0 +1,11 @@
+{
+  "users": [
+    {
+      "email": "llemolgat@zenvalue.fr",
+      "name": "Loïc Le Molgat",
+      "role": "admin",
+      "passwordHash": "af1a63aac57224e33f0f719c09118c68b7f6a3f5a539a2f63794074265553cc3",
+      "createdAt": "2026-03-10T13:10:19.652Z"
+    }
+  ]
+}
