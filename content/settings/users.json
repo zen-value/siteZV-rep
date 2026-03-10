@@ -22,11 +22,12 @@
       "email": "aabdelnour@zenvalue.fr",
       "name": "Angela Abdel Nour",
       "role": "redacteur",
-      "passwordHash": null,
-      "firstLogin": true,
-      "inviteTokenHash": "1dbaeff0bb01eeb3601290e18487a8bb0db61801685b5b89f28c699d12daf2ae",
-      "inviteExpiry": "2026-03-12T13:35:41.586Z",
-      "createdAt": "2026-03-10T13:35:41.586Z"
+      "passwordHash": "63fc0efa12c5b7d3bfb4ecb6b170428df68eace4cf963598e256d90f50c69bbb",
+      "firstLogin": false,
+      "inviteTokenHash": null,
+      "inviteExpiry": null,
+      "createdAt": "2026-03-10T13:35:41.586Z",
+      "activatedAt": "2026-03-10T14:24:19.880Z"
     }
   ]
 }
