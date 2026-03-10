@@ -48,6 +48,11 @@ siteZV-rep/
 │       └── og-image.jpg              # Image Open Graph 1200×630 (à créer)
 │
 └── content/
+    ├── settings/
+    │   ├── global.json               # Infos contact, copyright, LinkedIn
+    │   ├── resultats.json            # Chiffres clés (accueil)
+    │   ├── theme.json                # Thème graphique actif
+    │   └── users.json                # Utilisateurs admin (mots de passe hashés SHA-256)
     └── pages/
         ├── accueil.json              # Contenu page Accueil
         ├── offres.json               # 4 offres avec page détail complète (problèmes, démarche, livrables…)
@@ -56,9 +61,7 @@ siteZV-rep/
         ├── formation.json            # Page Formation
         ├── recrutement.json          # Page Recrutement
         ├── rse.json                  # Page Engagements RSE
-        ├── principes.json            # Nos Principes
-        ├── theme.json                # Thème graphique actif
-        └── users.json                # Utilisateurs admin (mots de passe hashés SHA-256)
+        └── principes.json            # Nos Principes
 ```
 
 ---
@@ -74,6 +77,7 @@ siteZV-rep/
 | `formation` | Formation | Catalogue formations certifiantes Qualiopi |
 | `recrutement` | Recrutement | Engagements, profils, processus |
 | `rse` | Engagements RSE | Mesures et engagements RSE |
+| `principes` | Principes | Les 6 principes fondateurs |
 | `contact` | Contact | Formulaire Web3Forms |
 | `cas-detail` | Détail cas client *(dynamique)* | Contexte, enjeu, approche, résultats, bénéfices |
 
@@ -84,6 +88,10 @@ siteZV-rep/
 Tout le contenu est versionné dans des fichiers JSON dans le repo Git.
 Le fichier `cms-loader.js` les charge au démarrage et injecte les valeurs dans le DOM via `data-cms="section.clé"`.
 
+**Structure :** deux dossiers distincts :
+- `content/settings/` → configuration transverse (global, résultats, thème, utilisateurs)
+- `content/pages/` → contenu éditorial de chaque page
+
 **Modifier le contenu :** interface admin `/admin/` — les modifications sont sauvegardées directement sur GitHub via l'API.
 
 **Lier offre ↔ cas client :** champ `cas_ids` dans `offres.json` — tableau des index des cas (ex: `[0, 2]`).
@@ -92,7 +100,7 @@ Le fichier `cms-loader.js` les charge au démarrage et injecte les valeurs dans 
 
 ## Système de thème
 
-Géré par `theme-loader.js` à partir de `content/pages/theme.json`.
+Géré par `theme-loader.js` à partir de `content/settings/theme.json`.
 
 | Preset | Primaire | Structurel | Accent |
 |---|---|---|---|
@@ -125,7 +133,7 @@ Sécurités : SHA-256, sessions 8h, anti brute-force 5 tentatives / 15 min.
 1. Connecté sur le compte GitHub personnel de Mael, aller sur https://github.com/organizations/new
 2. Nom de l'organisation : **`zen-value`** *(exactement, en minuscules avec tiret)*
 3. Plan : **Free** suffit pour GitHub Pages
-4. Inviter Loïc (`llmdev-ops`) comme **Owner** dans les paramètres de l'organisation
+4. Inviter Loïc (`lloizel`) comme **Owner** dans les paramètres de l'organisation
 
 ---
 

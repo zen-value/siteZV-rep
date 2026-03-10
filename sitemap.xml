@@ -4,7 +4,7 @@
   <!-- Accueil -->
   <url>
     <loc>https://zenvalue.fr/</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -12,7 +12,7 @@
   <!-- Nos Offres -->
   <url>
     <loc>https://zenvalue.fr/#offres</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -20,7 +20,7 @@
   <!-- Détail offre (page dynamique SPA) -->
   <url>
     <loc>https://zenvalue.fr/#offre-detail</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -28,7 +28,7 @@
   <!-- Qui sommes-nous -->
   <url>
     <loc>https://zenvalue.fr/#qsn</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -36,15 +36,23 @@
   <!-- Cas clients -->
   <url>
     <loc>https://zenvalue.fr/#cas-detail</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+
+  <!-- Principes -->
+  <url>
+    <loc>https://zenvalue.fr/#principes</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
 
   <!-- Formation -->
   <url>
     <loc>https://zenvalue.fr/#formation</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -52,7 +60,7 @@
   <!-- Recrutement -->
   <url>
     <loc>https://zenvalue.fr/#recrutement</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -60,7 +68,7 @@
   <!-- Engagements RSE -->
   <url>
     <loc>https://zenvalue.fr/#rse</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-10</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -68,7 +76,7 @@
   <!-- Contact -->
   <url>
     <loc>https://zenvalue.fr/#contact</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-10</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
