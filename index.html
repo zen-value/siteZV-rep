@@ -1,900 +1,769 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <!-- ⚠️ <base> EN PREMIER — doit précéder tout asset
-       Valeur lue depuis GH_SUBPATH dans site-config.js.
-       Changer GH_SUBPATH à '' lors de la migration vers zenvalue.fr -->
   <base href="/siteZV-rep/" id="zv-base" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- ── SEO PRIMAIRE ── -->
-  <title>Zen Value — Cabinet de conseil & formation en performance opérationnelle</title>
-  <meta name="description" content="Zen Value est un cabinet de conseil et organisme de formation certifié Qualiopi, spécialisé dans la performance opérationnelle, Lean, Agile et Théorie des Contraintes. Paris." />
-  <meta name="keywords" content="cabinet conseil performance, organisme formation Qualiopi, Lean, Agile, Théorie des Contraintes, performance opérationnelle, transformation entreprise, Paris" />
-  <meta name="author" content="Zen Value" />
-  <meta name="robots" content="index, follow" />
+  <title>Zen Value — Performance opérationnelle</title>
+  <meta name="description" content="Cabinet de conseil et organisme de formation certifié Qualiopi, spécialisé dans la performance opérationnelle. Lean, Agile, Théorie des Contraintes." />
   <link rel="canonical" href="https://zenvalue.fr/" />
 
-  <!-- ── OPEN GRAPH (LinkedIn, Facebook, WhatsApp) ── -->
-  <meta property="og:type"        content="website" />
-  <meta property="og:site_name"   content="Zen Value" />
-  <meta property="og:url"         content="https://zenvalue.fr/" />
-  <meta property="og:title"       content="Zen Value — Cabinet de conseil & formation en performance opérationnelle" />
-  <meta property="og:description" content="Lean, Agile, Théorie des Contraintes — Zen Value accompagne les entreprises vers une performance mesurable, pérenne et responsable. Certifié Qualiopi." />
-  <meta property="og:image"       content="https://zenvalue.fr/assets/images/og-image.jpg" />
-  <meta property="og:image:width"  content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:locale"      content="fr_FR" />
-
-  <!-- ── TWITTER / X ── -->
-  <meta name="twitter:card"        content="summary_large_image" />
-  <meta name="twitter:title"       content="Zen Value — Cabinet de conseil & formation en performance opérationnelle" />
-  <meta name="twitter:description" content="Lean, Agile, Théorie des Contraintes — Zen Value accompagne les entreprises vers une performance mesurable, pérenne et responsable." />
-  <meta name="twitter:image"       content="https://zenvalue.fr/assets/images/og-image.jpg" />
-
-  <!-- ── STRUCTURED DATA (Google) ── -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "Zen Value",
-    "description": "Cabinet de conseil et organisme de formation spécialisé dans la performance opérationnelle, pérenne et responsable.",
-    "url": "https://zenvalue.fr",
-    "logo": "https://zenvalue.fr/assets/images/logo/logo_zen-value_H.avif",
-    "email": "contact@zenvalue.fr",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Paris",
-      "addressCountry": "FR"
-    },
-    "sameAs": [
-      "https://www.linkedin.com/company/zen-value"
-    ],
-    "knowsAbout": ["Lean", "Agile", "Théorie des Contraintes", "Performance opérationnelle", "Formation professionnelle"],
-    "hasCredential": {
-      "@type": "EducationalOccupationalCredential",
-      "name": "Certification Qualiopi"
+  <style>
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #ffffff;
+      color: #404041;
+      line-height: 1.65;
+      overflow-x: hidden;
     }
-  }
-  </script>
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet" />
+    /* ── Tokens ── */
+    :root {
+      --ink:      #14191e;
+      --dark:     #404041;
+      --gray:     #9ca3af;
+      --light:    #f3f3f1;
+      --white:    #ffffff;
+      --green:    #AAC335;
+      --rose:     #FF467C;
+      --rose-dk:  #c0325d;
+      --gutter:   5vw;
+      --max:      1120px;
+      --sv:       9rem;   /* section vertical padding */
+    }
 
-  <!-- CSS — dans l'ordre de dépendance -->
-  <link rel="stylesheet" href="assets/css/tokens.css" />
-  <link rel="stylesheet" href="assets/css/layout.css" />
-  <link rel="stylesheet" href="assets/css/components.css" />
-  <link rel="stylesheet" href="assets/css/navigation.css" />
-  <link rel="stylesheet" href="assets/css/animations.css" />
-  <link rel="stylesheet" href="assets/css/forms.css" />
+    /* ════════════════════════════════════════
+       NAV
+    ════════════════════════════════════════ */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 300;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2rem var(--gutter);
+      transition: background 0.45s, padding 0.45s;
+    }
+    .nav.solid {
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 1.1rem var(--gutter);
+    }
 
+    /* Logo */
+    .nav-logo img {
+      height: 28px;
+      width: auto;
+      display: block;
+      filter: brightness(0) invert(1);
+      transition: filter 0.45s;
+    }
+    .nav.solid .nav-logo img { filter: none; }
 
-<style id="hero-image-styles">
-/* ── HERO IMAGE ── */
-.hero-img-wrap { position: relative; width: 100%; height: 100%; }
-.hero-img-wrap.has-image .hero-circle,
-.hero-img-wrap.has-image .hero-right-inner { display: none; }
-.hero-photo {
-  width: 100%; height: 100%; min-height: 420px;
-  object-fit: cover; border-radius: 16px;
-  box-shadow: 0 24px 64px rgba(0,0,0,.18);
-  display: block;
-}
-@media (max-width: 768px) {
-  .hero-photo { min-height: 260px; border-radius: 10px; }
-}
-</style>
+    /* Links */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.8rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: rgba(255,255,255,0.55);
+      transition: color 0.25s;
+    }
+    .nav-links a:hover { color: #ffffff; }
+    .nav.solid .nav-links a { color: rgba(64,64,65,0.5); }
+    .nav.solid .nav-links a:hover { color: #404041; }
+    .nav-links .nav-cta,
+    .nav.solid .nav-links .nav-cta { color: var(--rose); }
+    .nav-links .nav-cta:hover,
+    .nav.solid .nav-links .nav-cta:hover { color: var(--rose-dk); }
 
-<style id="cas-detail-styles">
-/* ── CAS DETAIL PAGE ── */
-.cas-detail-hero {
-  background: linear-gradient(135deg, var(--c2d) 0%, var(--c2) 100%);
-  padding: calc(var(--nav-h) + 4rem) var(--gutter) 4rem;
-  position: relative; overflow: hidden;
-}
-.cas-detail-hero::before {
-  content: ''; position: absolute; top: -80px; right: -80px;
-  width: 360px; height: 360px; border-radius: 50%;
-  background: var(--c3); opacity: .05; pointer-events: none;
-}
-.cas-detail-hero::after {
-  content: ''; position: absolute; bottom: -60px; left: 10%;
-  width: 240px; height: 240px; border-radius: 50%;
-  background: var(--c1); opacity: .06; pointer-events: none;
-}
-.cas-detail-hero-inner { max-width: 760px; }
-.cas-back-btn {
-  background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
-  color: rgba(255,255,255,.7); font-family: var(--ff);
-  font-size: .75rem; font-weight: 600; letter-spacing: .06em;
-  padding: .45rem 1rem; border-radius: var(--radius); cursor: pointer;
-  margin-bottom: 1.8rem; display: inline-block; transition: all .2s;
-}
-.cas-back-btn:hover { background: rgba(255,255,255,.18); color: white; }
-.cas-detail-titre {
-  font-size: clamp(1.7rem, 3vw, 2.8rem); font-weight: 800;
-  color: white; line-height: 1.15; margin: .8rem 0 1.4rem;
-}
-.cas-detail-citation {
-  border-left: 3px solid var(--c3); padding-left: 1.2rem;
-  font-size: 1rem; font-style: italic; font-weight: 300;
-  color: rgba(255,255,255,.7); line-height: 1.7; max-width: 640px;
-}
-.cas-detail-body { max-width: 820px; margin: 0 auto; padding: 0 var(--gutter); }
-.cas-detail-section { padding: 3.5rem 0; border-bottom: 1px solid var(--zv-border); }
-.cas-detail-section:last-of-type { border-bottom: none; }
-.cas-detail-section-tag {
-  font-size: .68rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
-  color: var(--c1); margin-bottom: 1.2rem;
-  display: flex; align-items: center; gap: .6rem;
-}
-.cas-detail-section-tag::before { content: ''; display: block; width: 20px; height: 2px; background: var(--c1); }
-.cas-detail-text { font-size: .95rem; font-weight: 300; color: var(--c2l); line-height: 1.85; }
-.cas-detail-text p { margin-bottom: .9rem; }
-.cas-detail-mission { font-size: .86rem; font-weight: 700; color: var(--c2); margin: 1.4rem 0 .7rem; }
-.cas-detail-list { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: .6rem; }
-.cas-detail-list li {
-  font-size: .9rem; font-weight: 300; color: var(--c2); line-height: 1.6;
-  padding-left: 1.4rem; position: relative;
-}
-.cas-detail-list li::before {
-  content: '→'; position: absolute; left: 0;
-  color: var(--c1); font-weight: 700;
-}
-.cas-detail-section-accent { background: var(--c1l); border-radius: 8px; padding: 2.5rem; margin: 1rem -2.5rem; border-bottom: none; }
-.cas-detail-section-light  { background: var(--zv-light); border-radius: 8px; padding: 2.5rem; margin: 1rem -2.5rem; border-bottom: none; }
-.cas-resultats-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; }
-.cas-resultat-item {
-  background: white; border-radius: var(--radius); padding: 1.4rem 1.2rem;
-  border-top: 3px solid var(--c1); text-align: center;
-}
-.cas-resultat-chiffre { font-size: 1.8rem; font-weight: 800; color: var(--c3); line-height: 1; margin-bottom: .4rem; }
-.cas-resultat-texte { font-size: .78rem; font-weight: 400; color: var(--c2l); line-height: 1.4; }
-.cas-benefices-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; margin-top: .5rem; }
-.cas-benefice-item { background: white; border-radius: var(--radius); padding: 1.4rem; border-left: 3px solid var(--c1); }
-.cas-benefice-titre { font-size: .88rem; font-weight: 700; color: var(--c2); margin-bottom: .4rem; }
-.cas-benefice-texte { font-size: .83rem; font-weight: 300; color: var(--c2l); line-height: 1.65; }
-.cas-detail-conclusion {
-  padding: 3rem 0 2rem;
-}
-.cas-detail-conclusion-inner {
-  background: var(--c2d); border-radius: 8px; padding: 2rem 2.5rem;
-  border-left: 4px solid var(--c1);
-  font-size: .95rem; font-style: italic; font-weight: 300;
-  color: rgba(255,255,255,.8); line-height: 1.8;
-}
-@media (max-width: 768px) {
-  .cas-detail-section-accent, .cas-detail-section-light { margin: 1rem 0; }
-  .cas-resultats-grid { grid-template-columns: repeat(2, 1fr); }
-}
-</style>
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: rgba(255,255,255,0.7);
+      transition: background 0.3s;
+    }
+    .nav.solid .hamburger span { background: var(--dark); }
 
-<style id="offre-detail-styles">
-/* ── OFFRE DETAIL PAGE ── */
-.od-hero {
-  background: linear-gradient(135deg, var(--c1d) 0%, var(--c1) 60%, var(--c1l) 100%);
-  padding: calc(var(--nav-h) + 4rem) var(--gutter) 4rem;
-  position: relative; overflow: hidden;
-}
-.od-hero::before {
-  content: ''; position: absolute; top: -60px; right: -60px;
-  width: 320px; height: 320px; border-radius: 50%;
-  background: white; opacity: .04; pointer-events: none;
-}
-.od-hero-inner { max-width: 800px; }
-.od-back-btn {
-  background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
-  color: rgba(255,255,255,.8); font-family: var(--ff);
-  font-size: .75rem; font-weight: 600; letter-spacing: .06em;
-  padding: .45rem 1rem; border-radius: var(--radius); cursor: pointer;
-  margin-bottom: 1.8rem; display: inline-block; transition: all .2s;
-}
-.od-back-btn:hover { background: rgba(255,255,255,.22); color: white; }
-.od-categorie {
-  font-size: .68rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
-  color: rgba(255,255,255,.6); margin-bottom: .8rem;
-}
-.od-titre {
-  font-size: clamp(1.7rem, 3vw, 2.8rem); font-weight: 800;
-  color: white; line-height: 1.15; margin: 0 0 1.6rem;
-}
-.od-meta-bar {
-  display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.6rem;
-}
-.od-meta-pill {
-  background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.18);
-  border-radius: 40px; padding: .4rem 1rem;
-  font-size: .78rem; font-weight: 600; color: rgba(255,255,255,.85);
-  display: flex; align-items: center; gap: .4rem;
-}
-.od-meta-pill span { opacity: .65; font-weight: 400; }
+    /* ════════════════════════════════════════
+       HERO — fond sombre
+    ════════════════════════════════════════ */
+    .hero {
+      background: var(--ink);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding-top: 7rem;
+    }
 
-/* ── Body ── */
-.od-body { max-width: 820px; margin: 0 auto; padding: 0 var(--gutter); }
-.od-section { padding: 3.5rem 0; border-bottom: 1px solid var(--zv-border); }
-.od-section:last-of-type { border-bottom: none; }
-.od-section-tag {
-  font-size: .68rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
-  color: var(--c1); margin-bottom: 1.2rem;
-  display: flex; align-items: center; gap: .6rem;
-}
-.od-section-tag::before { content: ''; display: block; width: 20px; height: 2px; background: var(--c1); }
-.od-text { font-size: .95rem; font-weight: 300; color: var(--c2l); line-height: 1.85; }
+    .hero-body {
+      flex: 1;
+      display: flex;
+      align-items: flex-end;
+      padding: 3rem var(--gutter) 4.5rem;
+    }
+    .hero-content {
+      max-width: var(--max);
+      margin: 0 auto;
+      width: 100%;
+    }
 
-/* Cible */
-.od-cible-box {
-  background: var(--zv-light); border-radius: 8px; padding: 1.4rem 1.6rem;
-  border-left: 4px solid var(--c1); font-size: .9rem; font-weight: 300;
-  color: var(--c2); line-height: 1.7;
-}
+    .hero-eyebrow {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.28);
+      margin-bottom: 2.8rem;
+    }
 
-/* Problèmes */
-.od-problemes { display: flex; flex-direction: column; gap: .7rem; margin-top: .5rem; }
-.od-probleme-item {
-  display: flex; align-items: flex-start; gap: .9rem;
-  font-size: .9rem; font-weight: 300; color: var(--c2); line-height: 1.65;
-}
-.od-probleme-item::before {
-  content: '✗'; color: var(--c3); font-weight: 700; font-size: .95rem;
-  flex-shrink: 0; margin-top: .05rem;
-}
+    .hero-h1 {
+      font-size: clamp(3.8rem, 8vw, 8.8rem);
+      font-weight: 300;
+      line-height: 0.93;
+      letter-spacing: -0.035em;
+      color: #ffffff;
+      margin-bottom: 2.8rem;
+    }
+    .hero-h1 .g { color: var(--green); }
 
-/* Démarche */
-.od-demarche { display: flex; flex-direction: column; gap: 0; margin-top: .5rem; position: relative; }
-.od-demarche::before {
-  content: ''; position: absolute; left: 16px; top: 28px;
-  width: 2px; bottom: 28px; background: var(--zv-border);
-}
-.od-etape {
-  display: flex; gap: 1.4rem; align-items: flex-start;
-  padding: 1.2rem 0;
-}
-.od-etape-num {
-  width: 34px; height: 34px; border-radius: 50%;
-  background: var(--c1); color: white;
-  font-size: .75rem; font-weight: 800;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0; position: relative; z-index: 1;
-}
-.od-etape-content { flex: 1; padding-top: .3rem; }
-.od-etape-titre { font-size: .9rem; font-weight: 700; color: var(--c2); margin-bottom: .3rem; }
-.od-etape-desc { font-size: .85rem; font-weight: 300; color: var(--c2l); line-height: 1.7; }
+    .hero-sub {
+      font-size: clamp(0.9rem, 1.2vw, 1.05rem);
+      font-weight: 400;
+      color: rgba(255,255,255,0.38);
+      line-height: 1.8;
+      max-width: 380px;
+      margin-bottom: 3rem;
+    }
 
-/* Livrables & prérequis */
-.od-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: .6rem; margin-top: .5rem; }
-.od-list li {
-  font-size: .9rem; font-weight: 300; color: var(--c2); line-height: 1.6;
-  padding-left: 1.5rem; position: relative;
-}
-.od-list.livrables li::before { content: '✓'; position: absolute; left: 0; color: var(--c1); font-weight: 700; }
-.od-list.prerequis li::before  { content: '·'; position: absolute; left: .2rem; color: var(--c2l); font-weight: 700; font-size: 1.2rem; line-height: 1; }
+    .hero-scroll {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .hero-scroll:hover { color: rgba(255,255,255,0.7); }
+    .hero-scroll-arrow {
+      width: 32px;
+      height: 1px;
+      background: rgba(255,255,255,0.2);
+      position: relative;
+      transition: width 0.3s;
+    }
+    .hero-scroll:hover .hero-scroll-arrow { width: 48px; }
+    .hero-scroll-arrow::after {
+      content: '';
+      position: absolute;
+      right: 0; top: -3px;
+      width: 7px; height: 7px;
+      border-right: 1px solid rgba(255,255,255,0.35);
+      border-bottom: 1px solid rgba(255,255,255,0.35);
+      transform: rotate(-45deg);
+    }
 
-/* Résultat attendu */
-.od-resultat-box {
-  background: var(--c2d); border-radius: 8px; padding: 1.8rem 2rem;
-  border-left: 4px solid var(--c1);
-}
-.od-resultat-label { font-size: .68rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--c1); margin-bottom: .7rem; }
-.od-resultat-text { font-size: 1.05rem; font-weight: 300; color: rgba(255,255,255,.85); line-height: 1.7; }
+    /* Barre meta */
+    .hero-meta {
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding: 2.2rem var(--gutter);
+    }
+    .hero-meta-grid {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .meta-item { display: flex; flex-direction: column; gap: 0.4rem; }
+    .meta-num {
+      font-size: 1.4rem;
+      font-weight: 300;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .meta-label {
+      font-size: 0.65rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.28);
+      letter-spacing: 0.05em;
+    }
 
-/* Cas clients liés */
-.od-cas-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; margin-top: .5rem; }
-.od-cas-card {
-  background: var(--zv-light); border-radius: 8px; padding: 1.4rem;
-  border-top: 3px solid var(--c1); cursor: pointer;
-  transition: box-shadow .2s, transform .2s;
-  display: flex; flex-direction: column; gap: .7rem;
-}
-.od-cas-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,.09); transform: translateY(-2px); }
-.od-cas-card-titre { font-size: .9rem; font-weight: 700; color: var(--c2); line-height: 1.4; }
-.od-cas-card-resultats { display: flex; flex-wrap: wrap; gap: .4rem; }
-.od-cas-chip {
-  background: white; border: 1px solid var(--zv-border);
-  border-radius: 4px; padding: .2rem .6rem;
-  font-size: .72rem; font-weight: 700; color: var(--c3);
-}
-.od-cas-cta { font-size: .78rem; font-weight: 600; color: var(--c1); margin-top: auto; }
+    /* ════════════════════════════════════════
+       MANIFESTE — blanc
+    ════════════════════════════════════════ */
+    .manifeste {
+      padding: var(--sv) var(--gutter);
+    }
+    .manifeste-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+    .manifeste-text {
+      font-size: clamp(1.45rem, 2.4vw, 2.35rem);
+      font-weight: 300;
+      line-height: 1.5;
+      letter-spacing: -0.01em;
+      color: var(--dark);
+      max-width: 860px;
+      margin-bottom: 4rem;
+    }
+    .manifeste-text .g { color: var(--green); font-style: italic; }
 
-/* CTA final */
-.od-cta-section {
-  background: var(--c2d); padding: 4rem var(--gutter);
-  text-align: center; margin-top: 2rem;
-}
-.od-cta-titre { font-size: clamp(1.3rem, 2.5vw, 2rem); font-weight: 800; color: white; margin-bottom: .8rem; }
-.od-cta-desc { font-size: .95rem; font-weight: 300; color: rgba(255,255,255,.7); margin-bottom: 2rem; }
+    /* ── CTA rose (unique) ── */
+    .btn-rose {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      background: var(--rose);
+      color: #ffffff;
+      font-size: 0.73rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 1rem 2.2rem;
+      border: none;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-rose:hover { background: var(--rose-dk); }
 
-@media (max-width: 768px) {
-  .od-meta-bar { gap: .6rem; }
-  .od-demarche::before { display: none; }
-  .od-cas-grid { grid-template-columns: 1fr; }
-}
-</style>
+    /* ════════════════════════════════════════
+       PILIERS — fond sombre
+    ════════════════════════════════════════ */
+    .piliers {
+      background: var(--ink);
+      padding: var(--sv) var(--gutter);
+    }
+    .piliers-inner { max-width: var(--max); margin: 0 auto; }
 
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 1.5rem;
+    }
 
-  <!-- Accessibilite & PWA -->
-  <meta name="theme-color" content="#AAC335" />
-  <meta name="color-scheme" content="light" />
-  <link rel="manifest" href="./manifest.json" />
+    .piliers-h2 {
+      font-size: clamp(2rem, 3.5vw, 3.8rem);
+      font-weight: 300;
+      color: #ffffff;
+      line-height: 1.12;
+      letter-spacing: -0.025em;
+      margin-bottom: 5rem;
+    }
+
+    .pilier-row {
+      display: grid;
+      grid-template-columns: 72px 1fr 1.8fr;
+      gap: 3rem 4rem;
+      align-items: start;
+      padding: 2.8rem 0;
+      border-top: 1px solid rgba(255,255,255,0.065);
+    }
+    .pilier-row:last-child { border-bottom: 1px solid rgba(255,255,255,0.065); }
+
+    .pilier-num {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: var(--green);
+      padding-top: 0.45rem;
+    }
+    .pilier-titre {
+      font-size: clamp(1.2rem, 1.8vw, 1.65rem);
+      font-weight: 300;
+      color: #ffffff;
+      line-height: 1.25;
+      letter-spacing: -0.015em;
+    }
+    .pilier-texte {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.42);
+      line-height: 1.9;
+    }
+
+    /* ════════════════════════════════════════
+       RÉSULTATS — blanc
+    ════════════════════════════════════════ */
+    .resultats {
+      padding: var(--sv) var(--gutter);
+    }
+    .resultats-inner { max-width: var(--max); margin: 0 auto; }
+
+    .resultats-h2 {
+      font-size: clamp(2rem, 3vw, 3.2rem);
+      font-weight: 300;
+      color: var(--dark);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 5rem;
+    }
+    .resultats-h2 .g { color: var(--green); font-style: italic; }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .stat-item {
+      padding: 0 3rem 0 0;
+    }
+    .stat-item + .stat-item {
+      padding-left: 3rem;
+      border-left: 1px solid rgba(65,65,66,0.1);
+    }
+    .stat-bar {
+      width: 24px;
+      height: 2px;
+      background: var(--green);
+      margin-bottom: 1.8rem;
+    }
+    .stat-num {
+      font-size: clamp(2.5rem, 3.8vw, 4.2rem);
+      font-weight: 300;
+      color: var(--dark);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.9rem;
+    }
+    .stat-label {
+      font-size: 0.78rem;
+      font-weight: 400;
+      color: var(--gray);
+      line-height: 1.55;
+    }
+
+    /* ════════════════════════════════════════
+       CLIENTS — fond clair
+    ════════════════════════════════════════ */
+    .clients {
+      background: var(--light);
+      padding: 6rem var(--gutter);
+    }
+    .clients-inner { max-width: var(--max); margin: 0 auto; }
+    .clients-label {
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gray);
+      opacity: 0.45;
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+    .clients-logos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem 5rem;
+    }
+    .client-logo {
+      height: 24px;
+      width: auto;
+      opacity: 0.28;
+      filter: grayscale(1);
+      transition: opacity 0.25s;
+    }
+    .client-logo:hover { opacity: 0.4; }
+
+    /* ════════════════════════════════════════
+       CONTACT — fond vert
+    ════════════════════════════════════════ */
+    .contact-section {
+      background: var(--ink);
+      padding: var(--sv) var(--gutter);
+    }
+    .contact-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 4rem;
+      align-items: center;
+    }
+    .contact-h2 {
+      font-size: clamp(2rem, 3.8vw, 4.2rem);
+      font-weight: 300;
+      color: #ffffff;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.2rem;
+    }
+    .contact-sub {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.65);
+    }
+    .btn-ink {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      background: var(--ink);
+      color: #ffffff;
+      font-size: 0.73rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 1rem 2.2rem;
+      border: none;
+      border-radius: 2px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .btn-ink:hover { background: #000000; }
+
+    /* ════════════════════════════════════════
+       FOOTER — fond sombre
+    ════════════════════════════════════════ */
+    footer {
+      background: var(--ink);
+      padding: 2.2rem var(--gutter);
+    }
+    .footer-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-logo img {
+      height: 20px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.35;
+    }
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .footer-links a {
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.22);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: rgba(255,255,255,0.55); }
+    .footer-copy {
+      font-size: 0.62rem;
+      color: rgba(255,255,255,0.18);
+    }
+
+    /* ════════════════════════════════════════
+       REVEAL
+    ════════════════════════════════════════ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.85s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.85s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal[data-delay="1"] { transition-delay: 0.1s; }
+    .reveal[data-delay="2"] { transition-delay: 0.2s; }
+    .reveal[data-delay="3"] { transition-delay: 0.3s; }
+    .reveal[data-delay="4"] { transition-delay: 0.4s; }
+
+    /* ════════════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════════════ */
+    @media (max-width: 960px) {
+      :root { --sv: 6.5rem; }
+
+      .pilier-row { grid-template-columns: 52px 1fr; gap: 1.5rem 2rem; }
+      .pilier-texte { grid-column: 2 / 3; margin-top: 0.5rem; }
+
+      .stats-grid { grid-template-columns: 1fr 1fr; gap: 3rem 0; }
+      .stat-item + .stat-item { border-left: none; padding-left: 0; }
+      .stat-item:nth-child(2) { padding-left: 3rem; border-left: 1px solid rgba(65,65,66,0.1); }
+      .stat-item:nth-child(4) { padding-left: 3rem; border-left: 1px solid rgba(65,65,66,0.1); }
+
+      .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+    }
+
+    @media (max-width: 640px) {
+      :root { --sv: 5rem; --gutter: 6vw; }
+
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      .pilier-row { grid-template-columns: 1fr; gap: 1rem; }
+      .pilier-num { padding-top: 0; }
+      .pilier-texte { grid-column: 1; }
+
+      .hero-meta-grid { grid-template-columns: 1fr 1fr; }
+      .meta-item:last-child { display: none; }
+
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .stat-item:nth-child(2) { padding-left: 2rem; }
+      .stat-item:nth-child(4) { padding-left: 2rem; }
+      .stat-item { padding-right: 1.5rem; }
+    }
+  </style>
 </head>
 <body>
-<a href="#page-accueil" class="skip-link">Aller au contenu principal</a>
 
-<!-- ══════ NAVIGATION ══════ -->
-<nav id="navbar">
-  <a href="#" class="logo" onclick="showPage('accueil');return false;" aria-label="Zen Value — Accueil">
-    <img src="assets/images/logo/logo_zen-value_H.avif" alt="Zen Value" class="nav-logo-img" />
+<!-- ════ NAV ════ -->
+<nav class="nav" id="navbar" aria-label="Navigation">
+  <a href="#" class="nav-logo" aria-label="Zen Value — Accueil">
+    <img src="assets/images/logo/logo_zen-value_H.avif" alt="Zen Value" />
   </a>
-  <ul class="nav-links" id="navLinks" aria-label="Navigation principale">
-    <li><a href="#" onclick="showPage('offres');return false;"       data-page="offres">Nos Offres</a></li>
-    <li><a href="#" onclick="showPage('qsn');return false;"          data-page="qsn">Qui sommes-nous</a></li>
-    <li><a href="#" onclick="showPage('formation');return false;"    data-page="formation">Formation</a></li>
-    <li><a href="#" onclick="showPage('recrutement');return false;"  data-page="recrutement">Recrutement</a></li>
-    <li><a href="#" onclick="showPage('rse');return false;"          data-page="rse">Engagements RSE</a></li>
-    <li><a href="#" onclick="showPage('contact');return false;"      data-page="contact" class="nav-cta">Contact</a></li>
+  <ul class="nav-links">
+    <li><a href="#piliers">Nos offres</a></li>
+    <li><a href="#resultats">Résultats</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
   </ul>
-  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 
-<!-- ═══════════════════════════════════════
-     PAGE ACCUEIL
-═══════════════════════════════════════ -->
-<div class="page active" id="page-accueil" role="main">
-
+<!-- ════ HERO — sombre ════ -->
+<section aria-label="Accueil">
   <div class="hero">
-    <div class="hero-left">
-      <div class="eyebrow" data-cms="accueil.eyebrow">Cabinet de conseil & organisme de formation</div>
-      <h1 class="hero-tagline">
-        <span data-cms="accueil.tagline1">Let's find a</span><br/>
-        <em data-cms="accueil.tagline2">Zen Way to Value.</em>
-      </h1>
-      <p class="hero-sub" data-cms="accueil.soustitre">Performance opérationnelle, pérenne et responsable.</p>
-      <div class="hero-btns">
-        <a href="#" onclick="showPage('qsn');return false;" class="btn btn-primary" data-cms="accueil.cta1">Découvrez-nous</a>
-        <a href="#" onclick="showPage('offres');return false;" class="btn btn-outline" data-cms="accueil.cta2">Nos offres</a>
-      </div>
-      <div class="hero-stats">
-        <div><div class="stat-num" data-cms="accueil.stat1_num">+15</div><div class="stat-label" data-cms="accueil.stat1_label">Ans d'expertise</div></div>
-        <div><div class="stat-num" data-cms="accueil.stat2_num">50+</div><div class="stat-label" data-cms="accueil.stat2_label">Organisations accompagnées</div></div>
-        <div><div class="stat-num" data-cms="accueil.stat3_num">Qualiopi</div><div class="stat-label" data-cms="accueil.stat3_label">Certifié formation</div></div>
+
+    <div class="hero-body">
+      <div class="hero-content">
+        <p class="hero-eyebrow reveal">Cabinet de conseil &amp; organisme de formation certifié Qualiopi — Paris</p>
+        <h1 class="hero-h1 reveal" data-delay="1">
+          Let's find a<br>
+          <span class="g">Zen</span> Way<br>
+          to Value.
+        </h1>
+        <p class="hero-sub reveal" data-delay="2">
+          Performance opérationnelle,<br>pérenne et responsable.
+        </p>
+        <a href="#manifeste" class="hero-scroll reveal" data-delay="3">
+          <span class="hero-scroll-arrow"></span>
+          Notre approche
+        </a>
       </div>
     </div>
-    <div class="hero-right">
-      <div class="hero-img-wrap" id="hero-img-wrap">
-        <!-- Image injectée par cms-loader si hero_image défini, sinon fallback décoratif -->
-        <div class="hero-circle"></div>
-        <div class="hero-right-inner">
-          <div class="hero-badge" data-cms="accueil.badge">Lean · Agile · TLS · DevOps</div>
-          <div class="hero-quote-area">
-            <div class="hero-quote-line"></div>
-            <p class="hero-quote" data-cms="accueil.quote">"Être performant et générer de la valeur n'a jamais été aussi <strong>Zen.</strong>"</p>
-            <div class="hero-quote-author">La philosophie Zen Value</div>
-          </div>
+
+    <div class="hero-meta">
+      <div class="hero-meta-grid">
+        <div class="meta-item reveal">
+          <span class="meta-num">+15</span>
+          <span class="meta-label">Ans d'expertise</span>
+        </div>
+        <div class="meta-item reveal" data-delay="1">
+          <span class="meta-num">50+</span>
+          <span class="meta-label">Organisations accompagnées</span>
+        </div>
+        <div class="meta-item reveal" data-delay="2">
+          <span class="meta-num">Qualiopi</span>
+          <span class="meta-label">Certifié formation</span>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Logos clients -->
-  <div class="clients-band">
-    <p>Ils nous font confiance</p>
-    <div class="clients-logos" id="clients-logos">
-      <!-- Chargé dynamiquement depuis assets/images/logos-clients/ -->
-      <div class="client-ph" style="width:80px"></div>
-      <div class="client-ph" style="width:60px"></div>
-      <div class="client-ph" style="width:100px"></div>
+  </div>
+</section>
+
+
+<!-- ════ MANIFESTE — blanc ════ -->
+<section id="manifeste" aria-label="Notre conviction">
+  <div class="manifeste">
+    <div class="manifeste-inner">
+      <p class="manifeste-text reveal">
+        Nous croyons que la <span class="g">performance</span> ne se décrète pas.
+        Elle se construit, se mesure, et se pérennise — avec les équipes
+        qui la vivent au quotidien. Lean, Agile, Théorie des Contraintes&nbsp;:
+        des méthodes éprouvées au service d'un seul objectif,
+        créer de la <span class="g">valeur réelle et durable.</span>
+      </p>
+      <a href="#contact" class="btn-rose reveal" data-delay="1">Parler de vos enjeux →</a>
     </div>
   </div>
+</section>
 
-  <!-- 3 Piliers -->
-  <div class="section bg-white">
-    <div class="section-tag reveal" data-cms="accueil.piliers_tag">Notre promesse</div>
-    <h2 class="reveal" data-cms="accueil.piliers_h2">Maîtrisez votre <em>performance</em></h2>
-    <p class="lead reveal" data-cms="accueil.piliers_lead">Une performance maîtrisée grâce à la mesure, pérenne et vous permettant d'adresser les grands enjeux sociétaux et environnementaux de demain.</p>
-    <div class="cards-3">
-      <div class="card reveal"><div class="card-icon" data-cms="accueil.card1_icon">📐</div><h3 data-cms="accueil.card1_titre">Excellence Opérationnelle</h3><p data-cms="accueil.card1_texte">Nous agissons concrètement sur le delivery — fiabilisation des engagements, accélération des cycles, amélioration de la qualité.</p></div>
-      <div class="card reveal"><div class="card-icon" data-cms="accueil.card2_icon">♻️</div><h3 data-cms="accueil.card2_titre">Pérennisation de la valeur</h3><p data-cms="accueil.card2_texte">Nous accompagnons le changement continu pour rendre les organisations autonomes dans leur création de valeur sur le long terme.</p></div>
-      <div class="card reveal"><div class="card-icon" data-cms="accueil.card3_icon">🌱</div><h3 data-cms="accueil.card3_titre">Responsabilité</h3><p data-cms="accueil.card3_texte">Parce que la performance ne peut pas être uniquement économique — nous intégrons les enjeux écologiques, éthiques et sociétaux.</p></div>
-    </div>
-    <div style="text-align:center;margin-top:2.8rem;">
-      <a href="#" onclick="showPage('offres');return false;" class="btn btn-primary reveal" data-cms="accueil.piliers_cta">Découvrez nos offres conseil et formation</a>
-    </div>
-  </div>
 
-  <!-- Co-construction + RSE -->
-  <div class="section bg-c1l">
-    <div class="two-col-center">
-      <div class="reveal">
-        <div class="section-tag" data-cms="accueil.coco_tag">Rejoignez l'aventure</div>
-        <h2 data-cms="accueil.coco_h2">Construisons <em>Zen Value</em> avec vous.</h2>
-        <p class="lead" style="margin-top:.7rem;" data-cms="accueil.coco_lead">Soyez acteur de votre performance et venez découvrir notre modèle basé sur la transparence, la co-construction et le bien-être.</p>
-        <a href="#" onclick="showPage('recrutement');return false;" class="btn btn-dark" style="margin-top:1.6rem;" data-cms="accueil.coco_cta">Rejoignez-nous</a>
-      </div>
-      <div class="reveal">
-        <div class="section-tag" data-cms="accueil.rse_tag">RSE</div>
-        <h2 data-cms="accueil.rse_h2">Vers une performance <em>toujours plus responsable</em></h2>
-        <p class="lead" style="margin-top:.7rem;" data-cms="accueil.rse_lead">Parce que la performance ne peut pas être uniquement économique — elle doit également être sociétale et environnementale.</p>
-        <a href="#" onclick="showPage('rse');return false;" class="btn btn-outline" style="margin-top:1.6rem;" data-cms="accueil.rse_cta">Nos engagements RSE</a>
-      </div>
-    </div>
-  </div>
+<!-- ════ PILIERS — sombre ════ -->
+<section class="piliers" id="piliers" aria-label="Notre approche">
+  <div class="piliers-inner">
 
-  <!-- CTA -->
-  <div class="cta-band">
     <div class="reveal">
-      <div class="section-tag muted" data-cms="accueil.cta_tag">Passons à l'action</div>
-      <h2 data-cms="accueil.cta_h2">Prêt à construire <em>votre réussite ?</em></h2>
-      <p class="cta-desc" data-cms="accueil.cta_desc">Discutons de vos enjeux lors d'un premier échange sans engagement.</p>
+      <div class="section-tag">— Notre approche</div>
+      <h2 class="piliers-h2">Ce que nous faisons</h2>
     </div>
-    <a href="#" onclick="showPage('contact');return false;" class="btn btn-dark reveal" data-cms="accueil.cta_btn">Prendre contact</a>
-  </div>
 
-  <footer>
-    <a href="#" class="footer-logo" onclick="showPage('accueil');return false;">
-      <img src="assets/images/logo/logo_zen-value_H.avif" alt="Zen Value" class="footer-logo-img" />
-    </a>
-    <div class="footer-links">
-      <a href="#">Politique de confidentialité</a>
-      <a href="#">CGV</a>
-      <a href="#">Mentions légales</a>
+    <div class="pilier-row reveal" data-delay="1">
+      <div class="pilier-num">01</div>
+      <div class="pilier-titre">Excellence Opérationnelle</div>
+      <p class="pilier-texte">Nous agissons concrètement sur le delivery — fiabilisation des engagements, accélération des cycles, amélioration de la qualité. Chaque intervention produit des résultats mesurables dès les premières semaines.</p>
     </div>
-    <div class="footer-copy" data-cms="global.copyright">© Zen Value 2025</div>
-  </footer>
-</div>
 
-
-<!-- ═══════════════════════════════════════
-     PAGE NOS OFFRES
-═══════════════════════════════════════ -->
-<div class="page" id="page-offres">
-  <div class="section bg-white">
-    <div class="section-tag reveal" data-cms="offres.section_tag">Nos offres de service</div>
-    <h2 class="reveal" data-cms="offres.h2">Plus que des promesses,<br/><em>des preuves concrètes.</em></h2>
-    <p class="lead reveal" data-cms="offres.lead">Nos clients sont notre priorité, et leurs succès sont notre fierté.</p>
-    <!-- Injecté par cms-loader.js -->
-    <div class="offres-grid" id="offres-container"></div>
-  </div>
-
-  <div class="results-band">
-    <div class="section-tag on-dark center reveal" data-cms="offres.resultats_tag">Résultats mesurés chez nos clients</div>
-    <div class="results-grid">
-      <div class="result-item reveal"><div class="result-num" data-cms="resultats.r1_chiffre">-60%</div><div class="result-label" data-cms="resultats.r1_label">Time to market</div></div>
-      <div class="result-item reveal"><div class="result-num" data-cms="resultats.r2_chiffre">+40%</div><div class="result-label" data-cms="resultats.r2_label">Vélocité Scrum</div></div>
-      <div class="result-item reveal"><div class="result-num" data-cms="resultats.r3_chiffre">+50%</div><div class="result-label" data-cms="resultats.r3_label">Efficacité opérationnelle</div></div>
-      <div class="result-item reveal"><div class="result-num" data-cms="resultats.r4_chiffre">+56</div><div class="result-label" data-cms="resultats.r4_label">NPS client</div></div>
+    <div class="pilier-row reveal" data-delay="2">
+      <div class="pilier-num">02</div>
+      <div class="pilier-titre">Pérennisation de la valeur</div>
+      <p class="pilier-texte">Nous accompagnons le changement continu pour rendre les organisations autonomes dans leur création de valeur sur le long terme. L'objectif n'est pas la dépendance au consultant, mais l'indépendance de vos équipes.</p>
     </div>
-  </div>
 
-  <div class="section bg-light">
-    <div class="section-tag reveal" data-cms="offres.cas_tag">Études de cas</div>
-    <h2 class="reveal" data-cms="offres.cas_h2">Ils ont transformé leur <em>organisation avec nous</em></h2>
-    <!-- Injecté par cms-loader.js -->
-    <div class="cas-grid" id="cas-container"></div>
-  </div>
-
-  <div class="cta-band">
-    <div class="reveal"><h2 data-cms="offres.cta_h2">Ces résultats pourraient <em>être les vôtres.</em></h2><p class="cta-desc" data-cms="offres.cta_desc">Parlons de vos enjeux sans engagement.</p></div>
-    <a href="#" onclick="showPage('contact');return false;" class="btn btn-dark reveal" data-cms="offres.cta_btn">Démarrer l'échange</a>
-  </div>
-  <footer><a href="#" class="footer-logo" onclick="showPage('accueil');return false;"><img src="assets/images/logo/logo_zen-value_H.avif" alt="Zen Value" class="footer-logo-img" /></a><div class="footer-links"><a href="#">Politique de confidentialité</a><a href="#">CGV</a><a href="#">Mentions légales</a></div><div class="footer-copy" data-cms="global.copyright">© Zen Value 2025</div></footer>
-</div>
-
-
-<!-- ═══════════════════════════════════════
-     PAGE QUI SOMMES-NOUS
-═══════════════════════════════════════ -->
-<div class="page" id="page-qsn">
-  <div class="discours-box">
-    <div class="discours-inner">
-      <div class="section-tag on-dark reveal" data-cms="qsn.mission_tag">Notre mission</div>
-      <h2 class="on-dark reveal" data-cms="qsn.mission_h2">Le <em>Zen Way to Value</em></h2>
-      <p class="discours-p reveal" data-cms="qsn.discours1"></p>
-      <p class="discours-p reveal" data-cms="qsn.discours2"></p>
-      <div class="dim-row reveal">
-        <div class="dim-pill">📐 Excellence Opérationnelle</div>
-        <div class="dim-pill">♻️ Pérennisation de la valeur</div>
-        <div class="dim-pill">🌱 Responsabilité</div>
-      </div>
-      <p class="discours-p reveal" data-cms="qsn.discours3"></p>
+    <div class="pilier-row reveal" data-delay="3">
+      <div class="pilier-num">03</div>
+      <div class="pilier-titre">Responsabilité</div>
+      <p class="pilier-texte">Parce que la performance ne peut pas être uniquement économique — nous intégrons les enjeux écologiques, éthiques et sociétaux dans chaque mission. La RSE n'est pas un supplément, c'est une exigence.</p>
     </div>
-  </div>
 
-  <div class="section bg-white">
-    <div class="two-col">
-      <div>
-        <div class="section-tag reveal" data-cms="qsn.vision_tag">Notre vision</div>
-        <h2 class="reveal" style="font-size:clamp(1.5rem,2.1vw,2.1rem);">"<span data-cms="qsn.vision">Construire un avenir où les entreprises atteignent une performance mesurable et pérenne</span>"</h2>
-        <p class="body-text reveal" data-cms="qsn.mission" style="margin-top:1rem;"></p>
-        <p style="font-size:1rem;font-weight:700;color:var(--c1);margin-top:1.4rem;" class="reveal" data-cms="qsn.vision_baseline">Let's find a Zen Way to Value.</p>
-      </div>
-      <div>
-        <div class="section-tag reveal" data-cms="qsn.outils_tag">Nos outils</div>
-        <h2 style="font-size:clamp(1.45rem,1.9vw,1.9rem);" class="reveal" data-cms="qsn.outils_h2">Des frameworks reconnus,<br/><em>sans dogmatisme</em></h2>
-        <div style="margin-top:1.4rem;" class="reveal">
-          <span class="tag-pill">Agile / Scrum</span><span class="tag-accent">Lean</span>
-          <span class="tag-pill">TLS</span><span class="tag-accent">DevOps</span>
-          <span class="tag-pill">Théorie des Contraintes</span><span class="tag-accent">Six Sigma</span>
-        </div>
-      </div>
-    </div>
   </div>
-
-  <div class="section bg-light">
-    <div class="section-tag reveal" data-cms="qsn.principes_tag">Ce qui nous guide</div>
-    <h2 class="reveal" data-cms="qsn.principes_h2">Nos principes <em>fondateurs</em></h2>
-    <!-- Injecté par cms-loader.js -->
-    <div class="principes-grid" id="principes-container"></div>
-  </div>
-
-  <div class="section bg-white">
-    <div style="max-width:740px;">
-      <div class="section-tag reveal" data-cms="qsn.histoire_tag">Notre histoire</div>
-      <h2 class="reveal" data-cms="qsn.histoire_h2">Une organisation <em>apprenante</em>, depuis le premier jour</h2>
-      <p class="body-text reveal" data-cms="qsn.histoire1"></p>
-      <p class="body-text reveal" data-cms="qsn.histoire2"></p>
-      <p class="body-text reveal" data-cms="qsn.histoire3"></p>
-    </div>
-  </div>
-
-  <div class="cta-band">
-    <div class="reveal"><h2 data-cms="qsn.cta_h2">Envie de <em>construire avec nous ?</em></h2><p class="cta-desc" data-cms="qsn.cta_desc">Découvrez nos offres ou rejoignez l'équipe Zen Value.</p></div>
-    <div class="cta-btns reveal">
-      <a href="#" onclick="showPage('offres');return false;" class="btn btn-dark">Nos offres</a>
-      <a href="#" onclick="showPage('recrutement');return false;" class="btn btn-ghost-dark">Nous rejoindre</a>
-    </div>
-  </div>
-  <footer><a href="#" class="footer-logo" onclick="showPage('accueil');return false;"><img src="assets/images/logo/logo_zen-value_H.avif" alt="Zen Value" class="footer-logo-img" /></a><div class="footer-links"><a href="#">Politique de confidentialité</a><a href="#">CGV</a><a href="#">Mentions légales</a></div><div class="footer-copy" data-cms="global.copyright">© Zen Value 2025</div></footer>
-</div>
+</section>
 
 
-<!-- ═══════════════════════════════════════
-     PAGE FORMATION
-═══════════════════════════════════════ -->
-<div class="page" id="page-formation">
-  <div class="section bg-dark-dk">
-    <div class="section-tag muted reveal" data-cms="formation.section_tag">Organisme de formation certifié</div>
-    <h2 class="on-dark reveal" data-cms="formation.titre">Développez vos compétences avec Zen Value</h2>
-    <p class="lead on-dark reveal" data-cms="formation.soustitre" style="margin-top:.7rem;"></p>
-    <div class="qualiopi-badge reveal">
-      <div class="qualiopi-badge-icon">🏅</div>
-      <div class="qualiopi-badge-text">
-        <strong>Certifié Qualiopi</strong>
-        <span style="color:rgba(255,255,255,.55);">Certification française de qualité des organismes de formation</span>
-      </div>
-    </div>
-  </div>
-  <div class="section bg-white">
-    <div style="max-width:700px;">
-      <div class="section-tag reveal" data-cms="formation.qualiopi_tag">Pourquoi Qualiopi ?</div>
-      <h2 class="reveal" style="font-size:clamp(1.55rem,2.2vw,2.2rem);" data-cms="formation.qualiopi_h2">Un gage de <em>qualité reconnu</em></h2>
-      <p class="body-text reveal" data-cms="formation.texte1" style="margin-top:1rem;"></p>
-      <p class="body-text reveal" data-cms="formation.texte2"></p>
-    </div>
-  </div>
-  <div class="cta-band" style="grid-template-columns:1fr;text-align:center;">
+<!-- ════ RÉSULTATS — blanc ════ -->
+<section class="resultats" id="resultats" aria-label="Résultats">
+  <div class="resultats-inner">
+
     <div class="reveal">
-      <div class="section-tag muted center" data-cms="formation.catalogue_tag">Notre catalogue complet</div>
-      <h2 data-cms="formation.catalogue_h2">Découvrez toutes <em>nos formations</em></h2>
-      <p class="cta-desc" style="max-width:480px;margin:0 auto 2rem;" data-cms="formation.catalogue_desc">Retrouvez l'ensemble de notre catalogue — Agile, Lean, Leadership, TLS et bien plus.</p>
-      <a href="https://zenvalue.catalogueformpro.com/" target="_blank" data-cms-href="formation.catalogue" class="btn btn-dark" data-cms="formation.catalogue_btn">Accéder au catalogue →</a>
+      <div class="section-tag">— Résultats mesurés chez nos clients</div>
+      <h2 class="resultats-h2">
+        Des chiffres qui<br><span class="g">parlent d'eux-mêmes</span>
+      </h2>
     </div>
-  </div>
-  <footer><a href="#" class="footer-logo" onclick="showPage('accueil');return false;"><img src="assets/images/logo/logo_zen-value_H.avif" alt="Zen Value" class="footer-logo-img" /></a><div class="footer-links"><a href="#">Politique de confidentialité</a><a href="#">CGV</a><a href="#">Mentions légales</a></div><div class="footer-copy" data-cms="global.copyright">© Zen Value 2025</div></footer>
-</div>
 
-
-<!-- ═══════════════════════════════════════
-     PAGE RECRUTEMENT
-═══════════════════════════════════════ -->
-<div class="page" id="page-recrutement">
-  <div class="section bg-dark-dk">
-    <div class="section-tag muted reveal" data-cms="recrutement.section_tag">Nous rejoindre</div>
-    <h2 class="on-dark reveal" data-cms="recrutement.titre">Grandir, s'épanouir et innover ensemble.</h2>
-    <p class="lead on-dark reveal" data-cms="recrutement.soustitre" style="margin-top:.7rem;"></p>
-    <p style="color:var(--c1);font-size:1rem;font-weight:700;margin-top:1.6rem;font-style:italic;" class="reveal" data-cms="recrutement.tagline"></p>
-  </div>
-
-  <div class="section bg-white">
-    <div class="section-tag reveal" data-cms="recrutement.engagements_tag">Nos engagements pour vous</div>
-    <h2 class="reveal" data-cms="recrutement.engagements_h2">Ce qui nous rend <em>différents</em></h2>
-    <div class="engagements-grid" id="engagements-container"></div>
-  </div>
-
-  <div class="section bg-c3l">
-    <div class="section-tag reveal" data-cms="recrutement.profils_tag">Nos convictions</div>
-    <h2 class="reveal" data-cms="recrutement.profils_h2">Nous croyons en <em>l'inclusion et la diversité</em></h2>
-    <div class="profils-grid" id="profils-container"></div>
-  </div>
-
-  <div class="section bg-light">
-    <div class="section-tag reveal" data-cms="recrutement.processus_tag">Un processus humain et inclusif</div>
-    <h2 class="reveal" data-cms="recrutement.processus_h2">Notre processus de <em>recrutement</em></h2>
-    <div class="processus-steps" id="processus-container"></div>
-  </div>
-
-  <div class="cta-band">
-    <div class="reveal"><h2 data-cms="recrutement.cta_h2">Prêt·e à grandir <em>avec nous ?</em></h2><p class="cta-desc" data-cms="recrutement.cta_desc">Rejoignez une communauté engagée.</p></div>
-    <a href="#" onclick="showPage('contact');return false;" class="btn btn-dark reveal" data-cms="recrutement.cta_btn">Postuler</a>
-  </div>
-  <footer><a href="#" class="footer-logo" onclick="showPage('accueil');return false;"><img src="assets/images/logo/logo_zen-value_H.avif" alt="Zen Value" class="footer-logo-img" /></a><div class="footer-links"><a href="#">Politique de confidentialité</a><a href="#">CGV</a><a href="#">Mentions légales</a></div><div class="footer-copy" data-cms="global.copyright">© Zen Value 2025</div></footer>
-</div>
-
-
-<!-- ═══════════════════════════════════════
-     PAGE RSE
-═══════════════════════════════════════ -->
-<div class="page" id="page-rse">
-  <div class="section bg-c3l">
-    <div class="section-tag reveal" data-cms="rse.section_tag">RSE</div>
-    <h2 class="reveal" data-cms="rse.titre">Une performance durable va bien au-delà des chiffres.</h2>
-    <p class="lead reveal" data-cms="rse.intro" style="margin-top:.7rem;"></p>
-    <div class="rse-cards">
-      <div class="rse-card reveal"><h3 data-cms="rse.axe1_titre"></h3><p data-cms="rse.axe1_texte"></p></div>
-      <div class="rse-card reveal"><h3 data-cms="rse.axe2_titre"></h3><p data-cms="rse.axe2_texte"></p></div>
-    </div>
-  </div>
-
-  <div class="section bg-white">
-    <div class="section-tag reveal" data-cms="rse.mesures_tag">Nos actions concrètes depuis 2024</div>
-    <h2 class="reveal" data-cms="rse.mesures_h2">Des mesures <em>tangibles</em> pour le bien-être</h2>
-    <div class="rse-mesures-grid" id="mesures-container"></div>
-  </div>
-
-  <div class="cta-band">
-    <div class="reveal"><h2 data-cms="rse.cta_h2">La performance responsable,<br/><em>c'est notre engagement.</em></h2><p class="cta-desc" data-cms="rse.cta_desc">En travaillant avec nous, vous accompagnez une organisation qui intègre ces valeurs au quotidien.</p></div>
-    <a href="#" onclick="showPage('contact');return false;" class="btn btn-dark reveal" data-cms="rse.cta_btn">Discutons-en</a>
-  </div>
-  <footer><a href="#" class="footer-logo" onclick="showPage('accueil');return false;"><img src="assets/images/logo/logo_zen-value_H.avif" alt="Zen Value" class="footer-logo-img" /></a><div class="footer-links"><a href="#">Politique de confidentialité</a><a href="#">CGV</a><a href="#">Mentions légales</a></div><div class="footer-copy" data-cms="global.copyright">© Zen Value 2025</div></footer>
-</div>
-
-
-<!-- ═══════════════════════════════════════
-     PAGE CONTACT
-═══════════════════════════════════════ -->
-<div class="page" id="page-contact">
-  <div class="section bg-white">
-    <div class="contact-inner">
-      <div>
-        <div class="section-tag reveal">Parlons de votre projet</div>
-        <h2 class="reveal">Construisons ensemble <em>votre réussite</em></h2>
-        <p class="lead reveal" style="margin-top:.7rem;">Discutons de vos enjeux lors d'un premier échange sans engagement.</p>
-        <div class="contact-details">
-          <div class="contact-detail reveal">
-            <div class="detail-icon">📍</div>
-            <div><div class="detail-label">Bureaux</div><div class="detail-value" data-cms="global.adresse">Paris, XXème arrondissement</div></div>
-          </div>
-          <div class="contact-detail reveal">
-            <div class="detail-icon">✉️</div>
-            <div><div class="detail-label">Email</div><div class="detail-value"><a data-cms-href="global.email" data-cms="global.email" href="#"></a></div></div>
-          </div>
-          <div class="contact-detail reveal">
-            <div class="detail-icon" style="font-size:.62rem;font-weight:800;">in</div>
-            <div><div class="detail-label">LinkedIn</div><div class="detail-value"><a data-cms-href="global.linkedin" data-cms="global.linkedin" href="#">Zen Value</a></div></div>
-          </div>
-        </div>
+    <div class="stats-grid">
+      <div class="stat-item reveal" data-delay="1">
+        <div class="stat-bar"></div>
+        <div class="stat-num">−60 %</div>
+        <div class="stat-label">Time to market réduit</div>
       </div>
-
-      <!-- Formulaire Web3Forms -->
-      <div class="reveal">
-        <form id="contact-form">
-          <input type="hidden" name="access_key" id="w3f-key" value="" />
-          <input type="hidden" name="subject" value="Nouveau message — Zen Value" />
-          <input type="hidden" name="from_name" value="Site Zen Value" />
-          <input type="checkbox" name="botcheck" style="display:none;" />
-
-          <div class="form-row">
-            <div class="form-group"><label for="prenom">Prénom *</label><input id="prenom" type="text" name="prenom" placeholder="Marie" required /></div>
-            <div class="form-group"><label for="nom">Nom *</label><input id="nom" type="text" name="nom" placeholder="Martin" required /></div>
-          </div>
-          <div class="form-row">
-            <div class="form-group"><label for="email">Email *</label><input id="email" type="email" name="email" placeholder="marie@entreprise.fr" required /></div>
-            <div class="form-group"><label for="telephone">Téléphone</label><input id="telephone" type="tel" name="telephone" placeholder="+33 6 00 00 00 00" /></div>
-          </div>
-          <div class="form-group">
-            <label for="sujet">Sujet *</label>
-            <select id="sujet" name="sujet" required>
-              <option value="">Choisir un sujet…</option>
-              <option>Accompagnement / Conseil</option>
-              <option>Formation</option>
-              <option>Recrutement</option>
-              <option>Partenariat</option>
-              <option>Autre</option>
-            </select>
-          </div>
-          <div class="form-group"><label for="message">Message *</label><textarea id="message" name="message" placeholder="Décrivez brièvement votre contexte et vos enjeux…" required></textarea></div>
-
-          <div id="form-success" class="form-success" style="display:none;">✓ Message envoyé ! Nous vous répondrons sous 48h.</div>
-          <div id="form-error" class="form-error" style="display:none;">Une erreur est survenue. Écrivez-nous directement à <a href="#"></a></div>
-
-          <button type="submit" id="form-btn" class="btn btn-primary btn-full" style="margin-top:.4rem;">Envoyer le message</button>
-        </form>
+      <div class="stat-item reveal" data-delay="2">
+        <div class="stat-bar"></div>
+        <div class="stat-num">+40 %</div>
+        <div class="stat-label">Vélocité Scrum</div>
       </div>
-    </div>
-  </div>
-  <footer><a href="#" class="footer-logo" onclick="showPage('accueil');return false;"><img src="assets/images/logo/logo_zen-value_H.avif" alt="Zen Value" class="footer-logo-img" /></a><div class="footer-links"><a href="#">Politique de confidentialité</a><a href="#">CGV</a><a href="#">Mentions légales</a><a href="#">Cookies</a></div><div class="footer-copy" data-cms="global.copyright">© Zen Value 2025</div></footer>
-</div>
-
-
-<!-- ═══════════════════════════════════════
-     PAGE CAS CLIENT DETAIL
-═══════════════════════════════════════ -->
-<div class="page" id="page-offre-detail">
-  <!-- Hero -->
-  <div class="od-hero">
-    <div class="od-hero-inner">
-      <button class="od-back-btn" onclick="showPage('offres');return false;">← Retour aux offres</button>
-      <div class="od-categorie" id="od-categorie">Conseil</div>
-      <h1 class="od-titre" id="od-titre"></h1>
-      <div class="od-meta-bar">
-        <div class="od-meta-pill">🎯 <span>Cible :</span> <span id="od-cible-pill"></span></div>
-        <div class="od-meta-pill">⏱ <span>Durée :</span> <span id="od-duree-pill"></span></div>
+      <div class="stat-item reveal" data-delay="3">
+        <div class="stat-bar"></div>
+        <div class="stat-num">+50 %</div>
+        <div class="stat-label">Efficacité opérationnelle</div>
       </div>
-    </div>
-  </div>
-
-  <div class="od-body">
-
-    <!-- Description + cible -->
-    <div class="od-section reveal">
-      <div class="od-section-tag">L'offre</div>
-      <p class="od-text" id="od-description"></p>
-      <div class="od-cible-box" id="od-cible"></div>
-    </div>
-
-    <!-- Résultat attendu -->
-    <div class="od-section reveal">
-      <div class="od-section-tag">Ce que vous obtiendrez</div>
-      <div class="od-resultat-box">
-        <div class="od-resultat-label">Résultat attendu</div>
-        <div class="od-resultat-text" id="od-resultat"></div>
+      <div class="stat-item reveal" data-delay="4">
+        <div class="stat-bar"></div>
+        <div class="stat-num">+56</div>
+        <div class="stat-label">NPS client moyen</div>
       </div>
     </div>
 
-    <!-- Problèmes résolus -->
-    <div class="od-section reveal">
-      <div class="od-section-tag">Problèmes que nous résolvons</div>
-      <div class="od-problemes" id="od-problemes"></div>
-    </div>
-
-    <!-- Notre démarche -->
-    <div class="od-section reveal">
-      <div class="od-section-tag">Notre démarche</div>
-      <div class="od-demarche" id="od-demarche"></div>
-    </div>
-
-    <!-- Livrables & prérequis côte à côte -->
-    <div class="od-section reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;">
-      <div>
-        <div class="od-section-tag">Livrables</div>
-        <ul class="od-list livrables" id="od-livrables"></ul>
-      </div>
-      <div>
-        <div class="od-section-tag">Prérequis</div>
-        <ul class="od-list prerequis" id="od-prerequis"></ul>
-      </div>
-    </div>
-
-    <!-- Cas clients liés -->
-    <div class="od-section reveal" id="od-cas-section">
-      <div class="od-section-tag">Cas clients associés</div>
-      <div class="od-cas-grid" id="od-cas-grid"></div>
-    </div>
-
   </div>
+</section>
 
-  <!-- CTA final -->
-  <div class="od-cta-section">
-    <div class="od-cta-titre">Prêt à transformer votre organisation ?</div>
-    <div class="od-cta-desc">Parlons de vos enjeux, sans engagement.</div>
-    <a href="#" onclick="showPage('contact');return false;" class="btn btn-primary">Démarrer l'échange →</a>
+
+<!-- ════ CLIENTS — fond clair ════ -->
+<section class="clients" aria-label="Clients">
+  <div class="clients-inner">
+    <p class="clients-label reveal">Ils nous font confiance</p>
+    <div class="clients-logos reveal" data-delay="1">
+      <img class="client-logo" src="assets/images/logos-clients/logo_BNP-Paribas.png"  alt="BNP Paribas" loading="lazy" />
+      <img class="client-logo" src="assets/images/logos-clients/logo_Groupama.png"     alt="Groupama" loading="lazy" />
+      <img class="client-logo" src="assets/images/logos-clients/logo_Leroy_Merlin.png" alt="Leroy Merlin" loading="lazy" />
+      <img class="client-logo" src="assets/images/logos-clients/logo_generali.png"     alt="Generali" loading="lazy" />
+    </div>
   </div>
+</section>
 
-  <footer>
-    <a href="#" class="footer-logo" onclick="showPage('accueil');return false;">
-      <img src="assets/images/logo/logo_zen-value_H.avif" alt="Zen Value" class="footer-logo-img" />
+
+<!-- ════ CONTACT — fond vert ════ -->
+<section class="contact-section" id="contact" aria-label="Contact">
+  <div class="contact-inner">
+    <div class="reveal">
+      <h2 class="contact-h2">On construit<br>quelque chose<br>ensemble&nbsp;?</h2>
+      <p class="contact-sub">Premier échange sans engagement.</p>
+    </div>
+    <a href="mailto:contact@zenvalue.fr" class="btn-ink reveal" data-delay="1">
+      contact@zenvalue.fr →
     </a>
-    <div class="footer-links">
-      <a href="#">Politique de confidentialité</a>
-      <a href="#">CGV</a>
-      <a href="#">Mentions légales</a>
-    </div>
-    <div class="footer-copy" data-cms="global.copyright">© Zen Value 2025</div>
-  </footer>
-</div>
-
-<div class="page" id="page-cas-detail">
-  <div class="cas-detail-hero">
-    <div class="cas-detail-hero-inner">
-      <button class="cas-back-btn" onclick="showPage('offres');return false;">← Retour aux cas clients</button>
-      <div class="section-tag muted reveal" id="cd-categorie">Cas client</div>
-      <h1 class="cas-detail-titre reveal" id="cd-titre"></h1>
-      <blockquote class="cas-detail-citation reveal" id="cd-citation"></blockquote>
-    </div>
   </div>
+</section>
 
-  <div class="cas-detail-body">
 
-    <div class="cas-detail-section reveal" id="cd-contexte-block">
-      <div class="cas-detail-section-tag">Contexte</div>
-      <div class="cas-detail-text" id="cd-contexte"></div>
-    </div>
-
-    <div class="cas-detail-section reveal" id="cd-enjeu-block">
-      <div class="cas-detail-section-tag">Enjeu</div>
-      <div class="cas-detail-text" id="cd-enjeu"></div>
-      <div class="cas-detail-mission" id="cd-mission-label">Notre mission :</div>
-      <ul class="cas-detail-list" id="cd-enjeu-mission"></ul>
-    </div>
-
-    <div class="cas-detail-section cas-detail-section-accent reveal" id="cd-approche-block">
-      <div class="cas-detail-section-tag">Notre approche</div>
-      <div class="cas-detail-text" id="cd-approche"></div>
-      <ul class="cas-detail-list" id="cd-approche-points"></ul>
-    </div>
-
-    <div class="cas-detail-section reveal" id="cd-resultats-block">
-      <div class="cas-detail-section-tag">Résultats obtenus</div>
-      <p class="cas-detail-text" style="margin-bottom:1.5rem;">Les premiers cycles ont permis d'obtenir des améliorations significatives :</p>
-      <div class="cas-resultats-grid" id="cd-resultats"></div>
-    </div>
-
-    <div class="cas-detail-section cas-detail-section-light reveal" id="cd-benefices-block">
-      <div class="cas-detail-section-tag">Bénéfices durables</div>
-      <div class="cas-benefices-grid" id="cd-benefices"></div>
-    </div>
-
-    <div class="cas-detail-conclusion reveal" id="cd-conclusion-block">
-      <div class="cas-detail-conclusion-inner" id="cd-conclusion"></div>
-    </div>
-
+<!-- ════ FOOTER ════ -->
+<footer>
+  <div class="footer-inner">
+    <a href="#" class="footer-logo" aria-label="Zen Value">
+      <img src="assets/images/logo/logo_zen-value_H.avif" alt="Zen Value" />
+    </a>
+    <ul class="footer-links">
+      <li><a href="#">Mentions légales</a></li>
+      <li><a href="#">Politique de confidentialité</a></li>
+      <li><a href="#">CGV</a></li>
+    </ul>
+    <span class="footer-copy">© Zen Value 2025</span>
   </div>
-
-  <div class="cta-band">
-    <div class="reveal"><h2>Ces résultats pourraient <em>être les vôtres.</em></h2><p class="cta-desc">Discutons de votre transformation.</p></div>
-    <a href="#" onclick="showPage('contact');return false;" class="btn btn-dark reveal">Prendre contact</a>
-  </div>
-  <footer><a href="#" class="footer-logo" onclick="showPage('accueil');return false;"><img src="assets/images/logo/logo_zen-value_H.avif" alt="Zen Value" class="footer-logo-img" /></a><div class="footer-links"><a href="#">Politique de confidentialité</a><a href="#">CGV</a><a href="#">Mentions légales</a></div><div class="footer-copy" data-cms="global.copyright">© Zen Value 2025</div></footer>
-</div>
-
-
-<!-- ══════ SCRIPTS ══════ -->
-<!-- Theme loader en premier : surcharge les variables CSS avant le rendu --><!-- Plausible Analytics — RGPD friendly, sans cookie -->
-<script defer data-domain="zenvalue.fr" src="https://plausible.io/js/script.js"></script>
-<script>/* site-config.js chargé ici — met à jour <base href> via GH_SUBPATH */</script>
-<script src="assets/js/site-config.js"></script>
-<script src="assets/js/theme-loader.js?v=11"></script>
-<!-- Ordre important : animations en premier (observeReveals doit exister avant cms-loader) -->
-<script src="assets/js/animations.js?v=14"></script>
-<script src="assets/js/router.js?v=14"></script>
-<script src="assets/js/cms-loader.js?v=15"></script>
-<script src="assets/js/nav.js"></script>
+</footer>
 
 
 <script>
-/* ── FORMULAIRE WEB3FORMS ── */
-/* Injecter la clé Web3Forms depuis la config */
-document.addEventListener('DOMContentLoaded', function() {
-  var cfg = window.ZV_CONFIG;
-  var keyInput = document.getElementById('w3f-key');
-  if (cfg && cfg.WEB3FORMS_KEY && keyInput) keyInput.value = cfg.WEB3FORMS_KEY;
-});
+  /* ── Nav scroll ── */
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('solid', window.scrollY > 60);
+  }, { passive: true });
 
-document.getElementById('contact-form').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  const btn     = document.getElementById('form-btn');
-  const success = document.getElementById('form-success');
-  const error   = document.getElementById('form-error');
+  /* ── Hamburger ── */
+  document.getElementById('hamburger').addEventListener('click', () => {
+    const links = document.querySelector('.nav-links');
+    const isOpen = links.style.display === 'flex';
+    links.style.cssText = isOpen
+      ? ''
+      : 'display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(20,25,30,0.97);padding:2rem 6vw;gap:1.5rem;';
+  });
 
-  success.style.display = 'none';
-  error.style.display   = 'none';
-  btn.disabled = true;
-  btn.textContent = 'Envoi en cours…';
+  /* ── Scroll reveal (staggeré par data-delay) ── */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
 
-  try {
-    const data = new FormData(this);
-    const res  = await fetch('https://api.web3forms.com/submit', {
-      method: '
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>

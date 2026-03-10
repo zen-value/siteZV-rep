@@ -68,31 +68,7 @@ body {
 .hero-right.hero-bg-green  { background: var(--c1); }
 .hero-right.hero-bg-accent { background: var(--c3d); }
 
-/* Dégradé subtil hero gauche */
-.hero-left::after {
-  content: '';
-  position: absolute;
-  top: 0; right: 0;
-  width: 30%;
-  height: 100%;
-  background: linear-gradient(to right, transparent, var(--c1l));
-  opacity: .35;
-  pointer-events: none;
-}
 .hero { position: relative; }
-
-.hero-circle {
-  position: absolute; top: -55px; right: -55px;
-  width: 250px; height: 250px;
-  border-radius: 50%;
-  border: 1px solid var(--hero-circle-color, rgba(170,195,53,.16));
-}
-.hero-circle::after {
-  content: '';
-  position: absolute; inset: 35px;
-  border-radius: 50%;
-  border: 1px solid var(--hero-circle-color-inner, rgba(170,195,53,.08));
-}
 
 /* ── Grilles ── */
 .two-col             { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
@@ -109,56 +85,24 @@ body {
 
 /* ── CTA band ── */
 .cta-band {
-  background: linear-gradient(135deg, var(--c1) 0%, var(--c1d) 100%);
-  padding: 4.5rem var(--gutter);
+  background: var(--c2);
+  padding: 5rem var(--gutter);
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 4rem;
   align-items: center;
-  position: relative;
-  overflow: hidden;
-}
-.cta-band::after {
-  content: '';
-  position: absolute; top: -60px; right: -60px;
-  width: 280px; height: 280px;
-  border-radius: 50%;
-  background: rgba(255,255,255,.06);
-  pointer-events: none;
 }
 
 /* ── Results band ── */
 .results-band {
-  background: linear-gradient(135deg, var(--c2) 0%, var(--c2d) 100%);
-  padding: 4.5rem var(--gutter);
-  position: relative;
-  overflow: hidden;
-}
-.results-band::before {
-  content: '';
-  position: absolute; bottom: -80px; left: -80px;
-  width: 320px; height: 320px;
-  border-radius: 50%;
-  background: var(--c1);
-  opacity: .06;
-  pointer-events: none;
+  background: var(--c2d);
+  padding: 5rem var(--gutter);
 }
 
 /* ── Discours ── */
 .discours-box {
-  background: linear-gradient(135deg, var(--c2d) 0%, var(--c2) 100%);
+  background: var(--c2d);
   padding: var(--space-xl) var(--gutter);
-  position: relative;
-  overflow: hidden;
-}
-.discours-box::after {
-  content: '';
-  position: absolute; top: -40px; right: 5%;
-  width: 200px; height: 200px;
-  border-radius: 50%;
-  background: var(--c3);
-  opacity: .05;
-  pointer-events: none;
 }
 .discours-inner { max-width: 720px; margin: 0 auto; }
 
