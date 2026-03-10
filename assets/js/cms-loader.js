@@ -321,7 +321,7 @@ async function loadLogosClients() {
     var logos = files.filter(function(f){ return exts.includes(f.name.split('.').pop().toLowerCase()); });
     if (!logos.length) return;
     container.innerHTML = logos.map(function(f){
-      var url = 'https://'+GH_USER+'.github.io/'+f.path;
+      var url = 'https://'+GH_USER+'.github.io/'+GH_REPO+'/'+f.path;
       var name = f.name.replace(/\.[^.]+$/,'').replace(/[-_]/g,' ');
       return '<img class="client-logo" src="'+url+'" alt="'+name+'" loading="lazy" />';
     }).join('');
