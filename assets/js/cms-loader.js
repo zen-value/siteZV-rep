@@ -84,13 +84,6 @@ async function loadOffres() {
   if (!d.items) return;
   var c = document.getElementById('offres-container'); if (!c) return;
   window._offresData = d.items;
-    return '<div class="offre-card reveal">'
-      +'<div class="offre-num">0'+(i+1)+' -- '+(o.categorie||'')+'</div>'
-      +'<h3>'+(o.titre||'')+'</h3>'
-      +'<p>'+(o.description||'')+'</p>'
-      +'<a href="#" class="offre-link" data-offre-id="'+(o.id||i)+'">'+(o.cta_label||'En savoir plus')+' -></a>'
-    +'</div>';
-    window._offresData = d.items;
   c.innerHTML = d.items.map(function(o,i){
     return '<div class="offre-card reveal">'
       +'<div class="offre-num">0'+(i+1)+' -- '+(o.categorie||'')+'</div>'
