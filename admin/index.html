@@ -48,7 +48,62 @@
     .admin-logo { height:28px; }
     .admin-badge { font-size:.65rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; background:var(--green); color:white; padding:.25rem .65rem; border-radius:40px; margin-left:.8rem; }
     .admin-user { font-size:.78rem; color:var(--gray); }
-    .admin-layout { display:grid; grid-template-columns:230px 1fr; min-height:calc(100vh - 60px); }
+    .admin-layout { display:grid; grid-template-columns:230px 1fr; min-height:calc(100vh - 60px); transition: grid-template-columns .25s; }
+    .admin-layout.preview-open { grid-template-columns:230px 1fr 480px; }
+
+    /* PREVIEW PANEL */
+    .preview-panel {
+      display:none; position:sticky; top:60px; height:calc(100vh - 60px);
+      border-left:1px solid var(--border); background:#f0f2f5;
+      flex-direction:column;
+    }
+    .preview-panel.open { display:flex; }
+    .preview-bar {
+      background:white; border-bottom:1px solid var(--border);
+      padding:.55rem 1rem; display:flex; align-items:center; gap:.6rem;
+      font-size:.72rem; font-weight:600; color:var(--dark); flex-shrink:0;
+    }
+    .preview-bar-title { flex:1; }
+    .preview-device-btns { display:flex; gap:.3rem; }
+    .preview-device-btn {
+      background:none; border:1.5px solid var(--border); border-radius:4px;
+      padding:.2rem .5rem; font-size:.68rem; cursor:pointer; color:var(--gray);
+      transition:all .15s;
+    }
+    .preview-device-btn.active { border-color:var(--green); color:var(--green); background:#f3f7e0; }
+    .preview-close-btn {
+      background:none; border:none; font-size:1rem; cursor:pointer;
+      color:var(--gray); line-height:1; padding:.2rem .4rem;
+    }
+    .preview-close-btn:hover { color:var(--dark); }
+    .preview-frame-wrap {
+      flex:1; overflow:auto; display:flex; align-items:flex-start;
+      justify-content:center; padding:1rem; background:#e8eaed;
+    }
+    .preview-frame-wrap.mobile { align-items:flex-start; }
+    #preview-iframe {
+      border:none; background:white; border-radius:6px;
+      box-shadow:0 4px 24px rgba(0,0,0,.12);
+      width:100%; height:calc(100vh - 120px);
+      transition: width .2s, height .2s;
+    }
+    #preview-iframe.mobile { width:390px; height:780px; border-radius:32px; }
+    .preview-overlay {
+      position:absolute; top:0; left:0; right:0; bottom:0;
+      display:flex; align-items:center; justify-content:center;
+      background:rgba(240,242,245,.8); font-size:.82rem; color:var(--gray);
+      pointer-events:none; opacity:0; transition:opacity .2s;
+    }
+    .preview-overlay.visible { opacity:1; }
+    .preview-toggle-btn {
+      display:flex; align-items:center; gap:.4rem;
+      background:none; border:1.5px solid var(--border); border-radius:6px;
+      padding:.4rem .8rem; font-size:.75rem; font-weight:600; color:var(--gray);
+      cursor:pointer; transition:all .15s; white-space:nowrap;
+    }
+    .preview-toggle-btn:hover, .preview-toggle-btn.active {
+      border-color:var(--green); color:var(--green); background:#f3f7e0;
+    }
 
     /* SIDEBAR */
     .sidebar { background:white; border-right:1px solid var(--border); padding:1.5rem 0; position:sticky; top:60px; height:calc(100vh - 60px); overflow-y:auto; }
@@ -380,7 +435,12 @@
       </a>
     </div>
     <div style="display:flex;align-items:center;gap:.8rem;">
-      <span class="admin-user" id="admin-user-lbl"></span>
+      <div style="display:flex;align-items:center;gap:.8rem;">
+        <button class="preview-toggle-btn" id="preview-toggle-btn" onclick="togglePreview()" title="Apercu live">
+          👁 Aperçu
+        </button>
+        <span class="admin-user" id="admin-user-lbl"></span>
+      </div>
       <button class="btn btn-sm btn-outline" id="btn-logout">Déconnexion</button>
     </div>
   </header>
@@ -399,6 +459,19 @@
             Enregistrer
           </button>
         </div>
+      </div>
+    </div>
+    <div class="preview-panel" id="preview-panel">
+      <div class="preview-bar">
+        <span class="preview-bar-title">👁 Apercu — <span id="preview-page-label">Accueil</span></span>
+        <div class="preview-device-btns">
+          <button class="preview-device-btn active" id="btn-desktop" onclick="setPreviewDevice('desktop')">🖥 Bureau</button>
+          <button class="preview-device-btn" id="btn-mobile" onclick="setPreviewDevice('mobile')">📱 Mobile</button>
+        </div>
+        <button class="preview-close-btn" onclick="togglePreview()" title="Fermer">✕</button>
+      </div>
+      <div class="preview-frame-wrap" id="preview-frame-wrap">
+        <iframe id="preview-iframe" src="../index.html" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
       </div>
     </div>
   </div>
@@ -793,6 +866,7 @@ function updateDashDeploy() {
 ══════════════════════════════════════════════════════ */
 async function loadSection(sec) {
   state.section = sec;
+  if (previewOpen) { sendPreviewNav(sec); }
   clearDirty();
   document.getElementById('admin-main').innerHTML = '<div style="padding:2rem;color:#aaa;display:flex;align-items:center;gap:.8rem;"><div class="spin"></div>Chargement...</div>';
   if (sec==='dashboard') {
@@ -2046,6 +2120,91 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   })();
 });
+
+/* ══════════════════════════════════════════════════════
+   PREVIEW LIVE
+══════════════════════════════════════════════════════ */
+const SECTION_TO_PAGE = {
+  accueil:'accueil', offres:'offres', cas:'offres', qsn:'qsn',
+  formation:'formation', recrutement:'recrutement', rse:'rse',
+  theme:'accueil', global:'accueil', resultats:'accueil', principes:'qsn',
+};
+let previewOpen = false;
+let previewDevice = 'desktop';
+let previewReady = false;
+let pendingPreviewMsg = null;
+
+function togglePreview() {
+  previewOpen = !previewOpen;
+  var panel  = document.getElementById('preview-panel');
+  var layout = document.querySelector('.admin-layout');
+  var btn    = document.getElementById('preview-toggle-btn');
+  panel.classList.toggle('open', previewOpen);
+  layout.classList.toggle('preview-open', previewOpen);
+  btn.classList.toggle('active', previewOpen);
+  if (previewOpen) {
+    // Naviguer vers la page correspondante + envoyer les données
+    sendPreviewNav(state.section);
+    sendPreviewData(state.section, state.data);
+  }
+}
+
+function setPreviewDevice(device) {
+  previewDevice = device;
+  var iframe = document.getElementById('preview-iframe');
+  var wrap   = document.getElementById('preview-frame-wrap');
+  document.getElementById('btn-desktop').classList.toggle('active', device === 'desktop');
+  document.getElementById('btn-mobile').classList.toggle('active', device === 'mobile');
+  iframe.classList.toggle('mobile', device === 'mobile');
+  wrap.classList.toggle('mobile', device === 'mobile');
+}
+
+function sendPreviewNav(sec) {
+  var page = SECTION_TO_PAGE[sec] || 'accueil';
+  document.getElementById('preview-page-label').textContent = sec.charAt(0).toUpperCase() + sec.slice(1);
+  postPreview({ type:'zv-preview-nav', page: page });
+}
+
+function sendPreviewData(sec, data) {
+  if (!data || Object.keys(data).length === 0) return;
+  postPreview({ type:'zv-preview-data', section: sec, data: data });
+}
+
+function postPreview(msg) {
+  if (!previewOpen) return;
+  var iframe = document.getElementById('preview-iframe');
+  if (!iframe) return;
+  try {
+    iframe.contentWindow.postMessage(msg, '*');
+  } catch(e) {}
+}
+
+// Quand l'iframe est prete
+window.addEventListener('message', function(e) {
+  if (e.data && e.data.type === 'zv-preview-ready') {
+    previewReady = true;
+    sendPreviewNav(state.section);
+    sendPreviewData(state.section, state.data);
+  }
+});
+
+// Envoyer les données live a chaque frappe dans un champ
+document.addEventListener('input', function(e) {
+  if (!previewOpen) return;
+  if (!e.target.closest('#admin-main')) return;
+  // Debounce 300ms
+  clearTimeout(window._previewDebounce);
+  window._previewDebounce = setTimeout(function() {
+    try {
+      var data = collect();
+      sendPreviewData(state.section, data);
+    } catch(ex) {}
+  }, 300);
+});
+
+// Envoyer la nav quand on change de section
+var _origLoadSection = null;
+
 </script>
 </body>
 </html>
