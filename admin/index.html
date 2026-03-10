@@ -2426,7 +2426,7 @@ async function populateMediaPicker() {
         var files = await r.json();
         var exts = ['jpg','jpeg','png','webp','svg','avif','gif'];
         files.filter(function(f){ return exts.includes(f.name.split('.').pop().toLowerCase()); })
-          .forEach(function(f){ all.push({name:f.name, path:f.path, url:'/' + f.path}); });
+          .forEach(function(f){ all.push({name:f.name, path:f.path, url:SITE_URL+'/'+f.path}); });
       } catch(e) {}
     }
     _mediaCache = all;
