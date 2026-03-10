@@ -54,6 +54,21 @@ async function loadAccueil() {
    'rse_tag','rse_h2','rse_lead','rse_cta',
    'cta_tag','cta_h2','cta_desc','cta_btn'
   ].forEach(function(k){ inject('accueil.'+k, d[k]); });
+
+  // Image hero : injection dans hero-img-wrap
+  var wrap = document.getElementById('hero-img-wrap');
+  if (wrap) {
+    if (d.hero_image) {
+      wrap.classList.add('has-image');
+      var img = document.createElement('img');
+      img.src = d.hero_image;
+      img.alt = 'Zen Value';
+      img.className = 'hero-photo';
+      wrap.insertBefore(img, wrap.firstChild);
+    } else {
+      wrap.classList.remove('has-image');
+    }
+  }
 }
 
 /* == QSN == */
@@ -84,6 +99,13 @@ async function loadOffres() {
   if (!d.items) return;
   var c = document.getElementById('offres-container'); if (!c) return;
   window._offresData = d.items;
+    return '<div class="offre-card reveal">'
+      +'<div class="offre-num">0'+(i+1)+' -- '+(o.categorie||'')+'</div>'
+      +'<h3>'+(o.titre||'')+'</h3>'
+      +'<p>'+(o.description||'')+'</p>'
+      +'<a href="#" class="offre-link" data-offre-id="'+(o.id||i)+'">'+(o.cta_label||'En savoir plus')+' -></a>'
+    +'</div>';
+    window._offresData = d.items;
   c.innerHTML = d.items.map(function(o,i){
     return '<div class="offre-card reveal">'
       +'<div class="offre-num">0'+(i+1)+' -- '+(o.categorie||'')+'</div>'
