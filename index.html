@@ -69,6 +69,22 @@
   <link rel="stylesheet" href="assets/css/forms.css" />
 
 
+<style id="hero-image-styles">
+/* ── HERO IMAGE ── */
+.hero-img-wrap { position: relative; width: 100%; height: 100%; }
+.hero-img-wrap.has-image .hero-circle,
+.hero-img-wrap.has-image .hero-right-inner { display: none; }
+.hero-photo {
+  width: 100%; height: 100%; min-height: 420px;
+  object-fit: cover; border-radius: 16px;
+  box-shadow: 0 24px 64px rgba(0,0,0,.18);
+  display: block;
+}
+@media (max-width: 768px) {
+  .hero-photo { min-height: 260px; border-radius: 10px; }
+}
+</style>
+
 <style id="cas-detail-styles">
 /* ── CAS DETAIL PAGE ── */
 .cas-detail-hero {
@@ -344,13 +360,16 @@
       </div>
     </div>
     <div class="hero-right">
-      <div class="hero-circle"></div>
-      <div class="hero-right-inner">
-        <div class="hero-badge" data-cms="accueil.badge">Lean · Agile · TLS · DevOps</div>
-        <div class="hero-quote-area">
-          <div class="hero-quote-line"></div>
-          <p class="hero-quote" data-cms="accueil.quote">"Être performant et générer de la valeur n'a jamais été aussi <strong>Zen.</strong>"</p>
-          <div class="hero-quote-author">La philosophie Zen Value</div>
+      <div class="hero-img-wrap" id="hero-img-wrap">
+        <!-- Image injectée par cms-loader si hero_image défini, sinon fallback décoratif -->
+        <div class="hero-circle"></div>
+        <div class="hero-right-inner">
+          <div class="hero-badge" data-cms="accueil.badge">Lean · Agile · TLS · DevOps</div>
+          <div class="hero-quote-area">
+            <div class="hero-quote-line"></div>
+            <p class="hero-quote" data-cms="accueil.quote">"Être performant et générer de la valeur n'a jamais été aussi <strong>Zen.</strong>"</p>
+            <div class="hero-quote-author">La philosophie Zen Value</div>
+          </div>
         </div>
       </div>
     </div>
