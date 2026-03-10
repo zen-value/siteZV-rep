@@ -11,7 +11,7 @@ window.ZV_CONFIG = {
   GH_REPO : 'siteZV-rep',
 
   /* ── Site URL ── */
-  SITE_URL : 'https://zenvalue.fr',
+  SITE_URL : 'https://zen-value.github.io/',
 
   /* ── Web3Forms ── */
   // 1. Créer un compte sur https://web3forms.com avec contact@zenvalue.fr
