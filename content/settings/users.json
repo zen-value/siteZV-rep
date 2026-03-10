@@ -38,6 +38,16 @@
       "inviteTokenHash": "cb55f53820e618cf70657406ae70a68348fab41c6560f98a9db4202dafa75e1d",
       "inviteExpiry": "2026-03-12T16:27:41.252Z",
       "createdAt": "2026-03-10T16:27:41.252Z"
+    },
+    {
+      "email": "nfoullon@zenvalue.fr",
+      "name": "Nathalie Foullon",
+      "role": "redacteur",
+      "passwordHash": null,
+      "firstLogin": true,
+      "inviteTokenHash": "8458f7643835ec4c63e996f8af283bcd645216f0efff02cb1d0f3aa28a5d6162",
+      "inviteExpiry": "2026-03-12T16:28:24.216Z",
+      "createdAt": "2026-03-10T16:28:24.216Z"
     }
   ]
 }
