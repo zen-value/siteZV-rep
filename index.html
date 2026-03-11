@@ -22,7 +22,7 @@
 
     /* ── Tokens ── */
     :root {
-      --ink:      #14191e;
+      --ink:      #404041;
       --dark:     #404041;
       --gray:     #9ca3af;
       --light:    #f3f3f1;
@@ -116,13 +116,14 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      padding-top: 7rem;
+      justify-content: center;
+      padding-top: 5rem;
     }
 
     .hero-body {
       flex: 1;
       display: flex;
-      align-items: flex-end;
+      align-items: center;
       padding: 3rem var(--gutter) 4.5rem;
     }
     .hero-content {
@@ -205,14 +206,14 @@
     }
     .meta-item { display: flex; flex-direction: column; gap: 0.4rem; }
     .meta-num {
-      font-size: 1.4rem;
+      font-size: 1.7rem;
       font-weight: 300;
       color: #ffffff;
       letter-spacing: -0.02em;
       line-height: 1;
     }
     .meta-label {
-      font-size: 0.65rem;
+      font-size: 0.85rem;
       font-weight: 400;
       color: rgba(255,255,255,0.28);
       letter-spacing: 0.05em;
@@ -272,7 +273,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.8rem;
-      font-size: 0.65rem;
+      font-size: 0.85rem;
       font-weight: 600;
       letter-spacing: 0.18em;
       text-transform: uppercase;
@@ -300,7 +301,7 @@
     .pilier-row:last-child { border-bottom: 1px solid rgba(255,255,255,0.065); }
 
     .pilier-num {
-      font-size: 0.65rem;
+      font-size: 0.85rem;
       font-weight: 700;
       letter-spacing: 0.14em;
       color: var(--green);
@@ -314,7 +315,7 @@
       letter-spacing: -0.015em;
     }
     .pilier-texte {
-      font-size: 0.9rem;
+      font-size: 1.0rem;
       font-weight: 400;
       color: rgba(255,255,255,0.42);
       line-height: 1.9;
@@ -364,45 +365,34 @@
       margin-bottom: 0.9rem;
     }
     .stat-label {
-      font-size: 0.78rem;
+      font-size: 0.85rem;
       font-weight: 400;
       color: var(--gray);
       line-height: 1.55;
     }
 
     /* ════════════════════════════════════════
+       RSE — fond clair
+    ════════════════════════════════════════ */
+    .rse-section { background: var(--light); padding: var(--sv) var(--gutter); }
+    .rse-inner { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: 1fr 2fr; gap: 6rem; align-items: center; }
+    .rse-badge img { max-width: 120px; width: 100%; display: block; }
+    .rse-h2 { font-size: clamp(2rem, 3vw, 3.2rem); font-weight: 300; color: var(--dark); letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 1.5rem; }
+    .rse-h2 .g { color: var(--green); font-style: italic; }
+    .rse-texte { font-size: 0.9rem; color: var(--dark); line-height: 1.65; margin-bottom: 2.5rem; }
+
+    /* ════════════════════════════════════════
        CLIENTS — fond clair
     ════════════════════════════════════════ */
-    .clients {
-      background: var(--light);
-      padding: 6rem var(--gutter);
-    }
+    .clients { padding: 6rem var(--gutter); overflow: hidden; }
     .clients-inner { max-width: var(--max); margin: 0 auto; }
-    .clients-label {
-      font-size: 0.62rem;
-      font-weight: 600;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--gray);
-      opacity: 0.45;
-      text-align: center;
-      margin-bottom: 3.5rem;
-    }
-    .clients-logos {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 2rem 5rem;
-    }
-    .client-logo {
-      height: 24px;
-      width: auto;
-      opacity: 0.28;
-      filter: grayscale(1);
-      transition: opacity 0.25s;
-    }
-    .client-logo:hover { opacity: 0.4; }
+    .clients-label { font-size: 0.85rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gray); opacity: 0.45; text-align: center; margin-bottom: 3.5rem; }
+    .clients-track-wrapper { position: relative; overflow: hidden; mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%); -webkit-mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%); }
+    .clients-track { display: flex; align-items: center; gap: 5rem; width: max-content; animation: marquee 40s linear infinite; }
+    .clients-track-wrapper:hover .clients-track { animation-play-state: paused; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .client-logo { height: 40px; width: auto; filter: grayscale(0); opacity: 0.75; transition: opacity 0.25s; flex-shrink: 0; }
+    .client-logo:hover { opacity: 1; }
 
     /* ════════════════════════════════════════
        CONTACT — fond vert
@@ -543,6 +533,10 @@
       .stat-item:nth-child(2) { padding-left: 2rem; }
       .stat-item:nth-child(4) { padding-left: 2rem; }
       .stat-item { padding-right: 1.5rem; }
+
+      .rse-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .rse-badge { text-align: center; }
+      .rse-badge img { max-width: 100px; margin: 0 auto; }
     }
   </style>
 </head>
@@ -693,15 +687,37 @@
 </section>
 
 
+<!-- ════ RSE — fond clair ════ -->
+<section class="rse-section" aria-label="Engagement RSE">
+  <div class="rse-inner">
+    <div class="rse-badge reveal">
+      <img src="assets/images/Ecovadis/ZV_SARL_EV_Recognition.png" alt="EcoVadis Silver Top 15%" loading="lazy" />
+    </div>
+    <div class="rse-content reveal" data-delay="1">
+      <div class="section-tag">— Engagement RSE</div>
+      <h2 class="rse-h2">Notre engagement <span class="g">RSE</span></h2>
+      <p class="rse-texte">Nous intégrons les enjeux écologiques, éthiques et sociétaux dans chaque mission. Notre score EcoVadis Silver 78/100 (top 15% mondial) reflète cet engagement concret et mesuré.</p>
+      <a href="#contact" class="btn-rose">Nos engagements RSE →</a>
+    </div>
+  </div>
+</section>
+
+
 <!-- ════ CLIENTS — fond clair ════ -->
 <section class="clients" aria-label="Clients">
   <div class="clients-inner">
-    <p class="clients-label reveal" data-cms="accueil.clients_label">Ils nous font confiance</p>
-    <div class="clients-logos reveal" data-delay="1">
-      <img class="client-logo" src="assets/images/logos-clients/logo_BNP-Paribas.png"  alt="BNP Paribas" loading="lazy" />
-      <img class="client-logo" src="assets/images/logos-clients/logo_Groupama.png"     alt="Groupama" loading="lazy" />
-      <img class="client-logo" src="assets/images/logos-clients/logo_Leroy_Merlin.png" alt="Leroy Merlin" loading="lazy" />
-      <img class="client-logo" src="assets/images/logos-clients/logo_generali.png"     alt="Generali" loading="lazy" />
+    <p class="clients-label reveal">Ils nous font confiance</p>
+    <div class="clients-track-wrapper">
+      <div class="clients-track">
+        <img class="client-logo" src="assets/images/logos-clients/logo_BNP-Paribas.png" alt="BNP Paribas" loading="lazy" />
+        <img class="client-logo" src="assets/images/logos-clients/logo_Groupama.png" alt="Groupama" loading="lazy" />
+        <img class="client-logo" src="assets/images/logos-clients/logo_Leroy_Merlin.png" alt="Leroy Merlin" loading="lazy" />
+        <img class="client-logo" src="assets/images/logos-clients/logo_generali.png" alt="Generali" loading="lazy" />
+        <img class="client-logo" src="assets/images/logos-clients/logo_BNP-Paribas.png" alt="" aria-hidden="true" loading="lazy" />
+        <img class="client-logo" src="assets/images/logos-clients/logo_Groupama.png" alt="" aria-hidden="true" loading="lazy" />
+        <img class="client-logo" src="assets/images/logos-clients/logo_Leroy_Merlin.png" alt="" aria-hidden="true" loading="lazy" />
+        <img class="client-logo" src="assets/images/logos-clients/logo_generali.png" alt="" aria-hidden="true" loading="lazy" />
+      </div>
     </div>
   </div>
 </section>
@@ -765,7 +781,7 @@
     const isOpen = links.style.display === 'flex';
     links.style.cssText = isOpen
       ? ''
-      : 'display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(20,25,30,0.97);padding:2rem 6vw;gap:1.5rem;';
+      : 'display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(64,64,65,0.97);padding:2rem 6vw;gap:1.5rem;';
   });
 
   /* ── Scroll reveal (staggeré par data-delay) ── */
