@@ -371,15 +371,53 @@
     }
 
     /* ════════════════════════════════════════
+       RSE — fond clair
+    ════════════════════════════════════════ */
+    .rse-section {
+      background: var(--light);
+      padding: var(--sv) var(--gutter);
+    }
+    .rse-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 6rem;
+      align-items: center;
+    }
+    .rse-badge img {
+      max-width: 120px;
+      width: 100%;
+      display: block;
+    }
+    .rse-h2 {
+      font-size: clamp(2rem, 3vw, 3.2rem);
+      font-weight: 300;
+      color: var(--dark);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+    .rse-h2 .g { color: var(--green); font-style: italic; }
+    .rse-texte {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--dark);
+      line-height: 1.65;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ════════════════════════════════════════
        CLIENTS — fond clair
     ════════════════════════════════════════ */
     .clients {
       background: var(--light);
       padding: 6rem var(--gutter);
+      overflow: hidden;
     }
     .clients-inner { max-width: var(--max); margin: 0 auto; }
     .clients-label {
-      font-size: 0.62rem;
+      font-size: 0.85rem;
       font-weight: 600;
       letter-spacing: 0.22em;
       text-transform: uppercase;
@@ -388,21 +426,52 @@
       text-align: center;
       margin-bottom: 3.5rem;
     }
-    .clients-logos {
+
+    /* Carousel */
+    .clients-track-wrapper {
+      position: relative;
+      overflow: hidden;
+      mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 12%,
+        black 88%,
+        transparent 100%
+      );
+      -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 12%,
+        black 88%,
+        transparent 100%
+      );
+    }
+    .clients-track {
       display: flex;
-      justify-content: center;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 2rem 5rem;
+      gap: 5rem;
+      width: max-content;
+      animation: marquee 40s linear infinite;
+    }
+    .clients-track-wrapper:hover .clients-track {
+      animation-play-state: paused;
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
     }
     .client-logo {
-      height: 24px;
+      height: 40px;
       width: auto;
-      opacity: 0.28;
       filter: grayscale(1);
-      transition: opacity 0.25s;
+      opacity: 0.45;
+      transition: opacity 0.25s, filter 0.25s;
+      flex-shrink: 0;
     }
-    .client-logo:hover { opacity: 0.4; }
+    .client-logo:hover {
+      opacity: 1;
+      filter: grayscale(0);
+    }
 
     /* ════════════════════════════════════════
        CONTACT — fond vert
@@ -543,6 +612,10 @@
       .stat-item:nth-child(2) { padding-left: 2rem; }
       .stat-item:nth-child(4) { padding-left: 2rem; }
       .stat-item { padding-right: 1.5rem; }
+
+      .rse-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .rse-badge { text-align: center; }
+      .rse-badge img { max-width: 100px; margin: 0 auto; }
     }
   </style>
 </head>
@@ -693,15 +766,39 @@
 </section>
 
 
+<!-- ════ RSE — fond clair ════ -->
+<section class="rse-section" aria-label="Engagement RSE">
+  <div class="rse-inner">
+    <div class="rse-badge reveal">
+      <img src="assets/images/ecovadis/ZEN_VALUE_SARL_EV_Recognition.png" alt="EcoVadis Silver Top 15%" loading="lazy" />
+    </div>
+    <div class="rse-content reveal" data-delay="1">
+      <div class="section-tag">— Engagement RSE</div>
+      <h2 class="rse-h2">Notre engagement <span class="g">RSE</span></h2>
+      <p class="rse-texte">Nous intégrons les enjeux écologiques, éthiques et sociétaux dans chaque mission. Notre score EcoVadis Silver 78/100 (top 15% mondial) reflète cet engagement concret et mesuré.</p>
+      <a href="#contact" class="btn-rose">Nos engagements RSE →</a>
+    </div>
+  </div>
+</section>
+
+
 <!-- ════ CLIENTS — fond clair ════ -->
 <section class="clients" aria-label="Clients">
   <div class="clients-inner">
     <p class="clients-label reveal" data-cms="accueil.clients_label">Ils nous font confiance</p>
-    <div class="clients-logos reveal" data-delay="1">
-      <img class="client-logo" src="assets/images/logos-clients/logo_BNP-Paribas.png"  alt="BNP Paribas" loading="lazy" />
-      <img class="client-logo" src="assets/images/logos-clients/logo_Groupama.png"     alt="Groupama" loading="lazy" />
-      <img class="client-logo" src="assets/images/logos-clients/logo_Leroy_Merlin.png" alt="Leroy Merlin" loading="lazy" />
-      <img class="client-logo" src="assets/images/logos-clients/logo_generali.png"     alt="Generali" loading="lazy" />
+    <div class="clients-track-wrapper">
+      <div class="clients-track">
+        <!-- Liste 1 -->
+        <img class="client-logo" src="assets/images/logos-clients/logo_BNP-Paribas.png"  alt="BNP Paribas" loading="lazy" />
+        <img class="client-logo" src="assets/images/logos-clients/logo_Groupama.png"     alt="Groupama" loading="lazy" />
+        <img class="client-logo" src="assets/images/logos-clients/logo_Leroy_Merlin.png" alt="Leroy Merlin" loading="lazy" />
+        <img class="client-logo" src="assets/images/logos-clients/logo_generali.png"     alt="Generali" loading="lazy" />
+        <!-- Liste 2 (dupliquée pour l'effet infini) -->
+        <img class="client-logo" src="assets/images/logos-clients/logo_BNP-Paribas.png"  alt="" aria-hidden="true" loading="lazy" />
+        <img class="client-logo" src="assets/images/logos-clients/logo_Groupama.png"     alt="" aria-hidden="true" loading="lazy" />
+        <img class="client-logo" src="assets/images/logos-clients/logo_Leroy_Merlin.png" alt="" aria-hidden="true" loading="lazy" />
+        <img class="client-logo" src="assets/images/logos-clients/logo_generali.png"     alt="" aria-hidden="true" loading="lazy" />
+      </div>
     </div>
   </div>
 </section>
