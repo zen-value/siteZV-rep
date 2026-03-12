@@ -33,11 +33,12 @@
       "email": "ydumaspilhou@zenvalue.fr",
       "name": "Yohan Dumas Pilhou",
       "role": "redacteur",
-      "passwordHash": null,
-      "firstLogin": true,
-      "inviteTokenHash": "cb55f53820e618cf70657406ae70a68348fab41c6560f98a9db4202dafa75e1d",
-      "inviteExpiry": "2026-03-12T16:27:41.252Z",
-      "createdAt": "2026-03-10T16:27:41.252Z"
+      "passwordHash": "d32856e09900e465e44c31c1a2a39e4d8aecfcc127cfcd760e6d7f32d589cc8f",
+      "firstLogin": false,
+      "inviteTokenHash": null,
+      "inviteExpiry": null,
+      "createdAt": "2026-03-10T16:27:41.252Z",
+      "activatedAt": "2026-03-12T13:12:29.333Z"
     },
     {
       "email": "nfoullon@zenvalue.fr",
