@@ -518,12 +518,11 @@ const GH_REPO   = (window.ZV_CONFIG && window.ZV_CONFIG.GH_REPO)       || 'siteZ
 const SITE_URL  = (window.ZV_CONFIG && window.ZV_CONFIG.SITE_URL)      || 'https://zenvalue.fr';
 const WEB3FORMS = (window.ZV_CONFIG && window.ZV_CONFIG.WEB3FORMS_KEY) || '';
 const FILES = {
-  theme:'content/settings/theme.json', global:'content/settings/global.json',
+  global:'content/settings/global.json',
   resultats:'content/settings/resultats.json', users:'content/settings/users.json',
-  accueil:'content/pages/accueil.json', qsn:'content/pages/qui-sommes-nous.json',
+  accueil:'content/pages/accueil.json',
   offres:'content/pages/offres.json', cas:'content/pages/cas-clients.json',
-  principes:'content/pages/principes.json', formation:'content/pages/formation.json',
-  recrutement:'content/pages/recrutement.json', rse:'content/pages/rse.json',
+  formation:'content/pages/formation.json',
 };
 const ADMIN_PRESETS = {
   zenvalue:{ c1:'#AAC335',c1d:'#6D7D22',c1l:'#F1F6E2', c2:'#404041',c2d:'#14191E',c2l:'#9CA3AF', c3:'#FF467C',c3d:'#9D174D',c3l:'#FFF1F6', typographie:'jakarta',rayon_boutons:4 },
@@ -814,15 +813,13 @@ function startAdmin() {
 function buildSidebar() {
   var isAdmin = session.role === 'admin';
   var icons = {
-    dashboard:'🏠', theme:'🎨', global:'📋', resultats:'📊', medias:'🖼️', users:'👥', log:'📜',
-    accueil:'🏠', qsn:'💡', offres:'🛠️', cas:'📁', principes:'🧭',
-    formation:'🎓', recrutement:'🤝', rse:'🌱'
+    dashboard:'🏠', global:'📋', resultats:'📊', medias:'🖼️', users:'👥', log:'📜',
+    accueil:'🏠', offres:'💼', cas:'📁', formation:'🎓'
   };
   var labels = {
-    dashboard:'Tableau de bord', theme:'Thème graphique', global:'Contact et infos', log:'Journal activité',
+    dashboard:'Tableau de bord', global:'Contact et infos', log:'Journal activité',
     resultats:'Chiffres clés', medias:'Bibliothèque médias', users:'Utilisateurs',
-    accueil:'Accueil', qsn:'Qui sommes-nous', offres:'Offres', cas:'Cas clients',
-    principes:'Principes', formation:'Formation', recrutement:'Recrutement', rse:'RSE'
+    accueil:'Accueil', offres:'Offres', cas:'Cas clients', formation:'Formation'
   };
   function item(sec) {
     return '<div class="sidebar-item" data-sec="'+sec+'">'
@@ -834,7 +831,6 @@ function buildSidebar() {
   var html = item('dashboard');
   // Paramètres visibles selon le rôle
   html += '<div class="sidebar-section" style="margin-top:1.2rem;">Paramètres</div>';
-  if (isAdmin) html += item('theme');
   html += item('global');     // contacts & infos — redacteur + admin
   html += item('resultats');  // chiffres clés — redacteur + admin
   html += '<div class="sidebar-section" style="margin-top:1.2rem;">Médias</div>';
@@ -846,7 +842,7 @@ function buildSidebar() {
     html += item('log');
   }
   html += '<div class="sidebar-section" style="margin-top:1.2rem;">Pages du site</div>';
-  ['accueil','qsn','offres','cas','principes','formation','recrutement','rse'].forEach(function(sec) {
+  ['accueil','offres','cas','formation'].forEach(function(sec) {
     html += item(sec);
   });
   document.getElementById('sidebar').innerHTML = html;
@@ -866,19 +862,15 @@ function navTo(sec) {
 
 function rDashboard() {
   var quickLinks = [
-    {sec:'accueil', icon:'🏠', title:'Accueil', desc:'Hero, tagline, cards piliers'},
-    {sec:'offres',  icon:'🛠️', title:'Offres', desc:'Cartes de service'},
-    {sec:'cas',     icon:'📁', title:'Cas clients', desc:'Études de cas détaillées'},
-    {sec:'qsn',     icon:'💡', title:'Qui sommes-nous', desc:'Mission, vision, histoire'},
-    {sec:'formation',icon:'🎓',title:'Formation', desc:'Catalogue Qualiopi'},
-    {sec:'recrutement',icon:'🤝',title:'Recrutement', desc:'Offres et processus'},
-    {sec:'rse',     icon:'🌱', title:'RSE', desc:'Engagements responsabilité'},
-    {sec:'medias',  icon:'🖼️', title:'Médias', desc:'Logos, photos, illustrations'},
+    {sec:'accueil',   icon:'🏠', title:'Accueil',         desc:'Hero, tagline, piliers'},
+    {sec:'resultats', icon:'📊', title:'Chiffres clés',   desc:'Statistiques et résultats'},
+    {sec:'cas',       icon:'📁', title:'Cas clients',     desc:'Études de cas détaillées'},
+    {sec:'offres',    icon:'💼', title:'Offres',          desc:'Cartes de service'},
+    {sec:'formation', icon:'🎓', title:'Formation',       desc:'Catalogue Qualiopi'},
+    {sec:'global',    icon:'⚙️', title:'Global / Contact',desc:'Coordonnées et footer'},
+    {sec:'medias',    icon:'🖼️', title:'Médias',          desc:'Logos, photos, illustrations'},
   ];
   var isAdmin = session.role === 'admin';
-  if (isAdmin) {
-    quickLinks.unshift({sec:'theme', icon:'🎨', title:'Thème', desc:'Couleurs et typographie'});
-  }
 
   var firstN = session.name ? session.name.split(' ')[0] : 'vous';
   var hour = new Date().getHours();
@@ -1753,7 +1745,7 @@ function fillFields() {
 }
 function render(sec, d) {
   _fv = {};
-  var renderers = {theme:rTheme,global:rGlobal,resultats:rResultats,accueil:rAccueil,qsn:rQSN,offres:rOffres,cas:rCas,principes:rPrincipes,formation:rFormation,recrutement:rRecrutement,rse:rRSE};
+  var renderers = {global:rGlobal,resultats:rResultats,accueil:rAccueil,offres:rOffres,cas:rCas,formation:rFormation};
   document.getElementById('admin-main').innerHTML = renderers[sec] ? renderers[sec](d) : '<p style="padding:2rem">Section inconnue</p>';
   fillFields();
   // Réinitialiser la save bar
@@ -1774,16 +1766,8 @@ function rResultats(d) {
 }
 function rAccueil(d) {
   return '<div class="section-title">Accueil</div>'
-    +card('Hero', f('Image hero','hero_image',d.hero_image,'image')+frow(f('Accroche (eyebrow)','eyebrow',d.eyebrow),f('Tagline 1','tagline1',d.tagline1))+frow(f('Tagline 2 (italique)','tagline2',d.tagline2),f('Sous-titre','soustitre',d.soustitre))+frow(f('Bouton principal','cta1',d.cta1),f('Bouton secondaire','cta2',d.cta2)))
-    +card('Panneau droit',frow(f('Badge','badge',d.badge),f('Auteur citation','quote_author',d.quote_author))+f('Citation','quote',d.quote,'textarea'))
     +card('Statistiques',frow(f('Stat 1 chiffre','stat1_num',d.stat1_num),f('Stat 1 label','stat1_label',d.stat1_label))+frow(f('Stat 2 chiffre','stat2_num',d.stat2_num),f('Stat 2 label','stat2_label',d.stat2_label))+frow(f('Stat 3 chiffre','stat3_num',d.stat3_num),f('Stat 3 label','stat3_label',d.stat3_label)))
-    +card('Manifeste',f('Texte manifeste','manifeste_texte',d.manifeste_texte,'textarea')+f('Texte bouton CTA','manifeste_cta',d.manifeste_cta))
-    +card('Section résultats (titres)',f('Tag','resultats_tag',d.resultats_tag)+frow(f('Titre (HTML accepté)','resultats_h2',d.resultats_h2),f('Label clients wall','clients_label',d.clients_label)))
-    +card('Section promesse',frow(f('Tag','piliers_tag',d.piliers_tag),f('Titre','piliers_h2',d.piliers_h2))+f('Lead','piliers_lead',d.piliers_lead,'textarea')+f('Bouton CTA','piliers_cta',d.piliers_cta))
-    +card('3 piliers',frow(f('Icone 1','card1_icon',d.card1_icon),f('Titre 1','card1_titre',d.card1_titre))+f('Texte 1','card1_texte',d.card1_texte,'textarea')+frow(f('Icone 2','card2_icon',d.card2_icon),f('Titre 2','card2_titre',d.card2_titre))+f('Texte 2','card2_texte',d.card2_texte,'textarea')+frow(f('Icone 3','card3_icon',d.card3_icon),f('Titre 3','card3_titre',d.card3_titre))+f('Texte 3','card3_texte',d.card3_texte,'textarea'))
-    +card('Section co-construction',frow(f('Tag','coco_tag',d.coco_tag),f('CTA bouton','coco_cta',d.coco_cta))+f('Titre','coco_h2',d.coco_h2)+f('Texte','coco_lead',d.coco_lead,'textarea'))
-    +card('Section RSE accueil',frow(f('Tag','rse_tag',d.rse_tag),f('CTA bouton','rse_cta',d.rse_cta))+f('Titre','rse_h2',d.rse_h2)+f('Texte','rse_lead',d.rse_lead,'textarea'))
-    +card('Bande CTA',frow(f('Tag','cta_tag',d.cta_tag),f('Bouton','cta_btn',d.cta_btn))+f('Titre','cta_h2',d.cta_h2)+f('Description','cta_desc',d.cta_desc,'textarea'));
+    +card('Section résultats',f('Tag','resultats_tag',d.resultats_tag)+frow(f('Titre (HTML accepté)','resultats_h2',d.resultats_h2),f('Label clients wall','clients_label',d.clients_label)));
 }
 function rQSN(d) {
   return '<div class="section-title">Qui sommes-nous</div>'
