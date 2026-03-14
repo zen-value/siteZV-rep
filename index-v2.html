@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zen Value — Conseil &amp; Formation en Performance opérationnelle</title>
+  <meta name="description" content="Cabinet de conseil et organisme de formation certifié Qualiopi, spécialisé dans la performance opérationnelle, pérenne &amp; responsable." />
+  <link rel="canonical" href="https://www.zenvalue.fr/" />
+
+  <style>
+    /* ── Raleway auto-hébergée ── */
+    @font-face { font-family: 'Raleway'; src: url('assets/fonts/raleway/raleway-300.woff2') format('woff2'); font-weight: 300; font-display: swap; }
+    @font-face { font-family: 'Raleway'; src: url('assets/fonts/raleway/raleway-400.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+    @font-face { font-family: 'Raleway'; src: url('assets/fonts/raleway/raleway-600.woff2') format('woff2'); font-weight: 600; font-display: swap; }
+    @font-face { font-family: 'Raleway'; src: url('assets/fonts/raleway/raleway-700.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+    @font-face { font-family: 'Raleway'; src: url('assets/fonts/raleway/raleway-800.woff2') format('woff2'); font-weight: 800; font-display: swap; }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Raleway', system-ui, sans-serif;
+      background: #ffffff;
+      color: #404041;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* ── Tokens ── */
+    :root {
+      --green:       #AAC335;
+      --green-dark:  #6D7D22;
+      --green-light: #F1F6E2;
+      --rose:        #FF467C;
+      --rose-dark:   #d63868;
+      --dark:        #404041;
+      --ink:         #1c1c1c;
+      --gray:        #666666;
+      --gray-light:  #999999;
+      --light:       #f7f6f3;
+      --white:       #ffffff;
+      --gutter:      5vw;
+      --max:         1100px;
+      --sv:          7rem;
+    }
+
+    /* ════════════════════════════════════════
+       NAV
+    ════════════════════════════════════════ */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 300;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.6rem var(--gutter);
+      background: var(--light);
+      transition: background 0.3s, box-shadow 0.3s, padding 0.3s;
+    }
+    .nav.scrolled {
+      background: var(--white);
+      box-shadow: 0 1px 16px rgba(0,0,0,0.07);
+      padding: 1rem var(--gutter);
+    }
+    .nav-logo {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+    }
+    .nav-logo .z { color: var(--ink); }
+    .nav-logo .v { color: var(--green-dark); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.4rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .btn-nav {
+      display: inline-flex;
+      align-items: center;
+      background: var(--ink) !important;
+      color: var(--white) !important;
+      font-size: 0.78rem !important;
+      font-weight: 600 !important;
+      letter-spacing: 0.06em;
+      padding: 0.6rem 1.4rem;
+      border-radius: 3px;
+      transition: background 0.2s !important;
+    }
+    .btn-nav:hover { background: #000 !important; color: var(--white) !important; }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--ink);
+    }
+
+    /* ════════════════════════════════════════
+       HERO
+    ════════════════════════════════════════ */
+    .hero {
+      background: var(--light);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 8rem var(--gutter) 5rem;
+    }
+    .hero-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 2rem;
+    }
+    .hero-h1 {
+      font-size: clamp(3.5rem, 7vw, 6.5rem);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+      margin-bottom: 2rem;
+    }
+    .hero-h1 .h-green { color: var(--green); }
+    .hero-h1 .h-rose  { color: var(--rose); }
+    .hero-sub {
+      font-size: clamp(1rem, 1.5vw, 1.2rem);
+      font-weight: 400;
+      color: var(--gray);
+      line-height: 1.7;
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+    }
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* Boutons globaux */
+    .btn-dark {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--ink);
+      color: var(--white);
+      font-family: 'Raleway', system-ui, sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.9rem 2rem;
+      border-radius: 3px;
+      border: 2px solid var(--ink);
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .btn-dark:hover { background: #000; border-color: #000; }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      color: var(--ink);
+      font-family: 'Raleway', system-ui, sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.9rem 2rem;
+      border-radius: 3px;
+      border: 2px solid rgba(28,28,28,0.2);
+      transition: border-color 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--ink); }
+
+    /* Illustration hero */
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .hero-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 8px 48px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+      width: 100%;
+      max-width: 380px;
+    }
+    .hero-card-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 1.2rem;
+    }
+    .hero-mini-cards { display: flex; flex-direction: column; gap: 0.75rem; }
+    .hero-mini-card {
+      border-radius: 8px;
+      padding: 0.9rem 1.1rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+    }
+    .hero-mini-card.c-green { background: var(--green-light); }
+    .hero-mini-card.c-rose  { background: #fff0f4; }
+    .hero-mini-card.c-ink   { background: #f0f0f0; }
+    .hero-mini-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .hero-mini-title { font-size: 0.8rem; font-weight: 700; color: var(--ink); line-height: 1.3; }
+    .hero-mini-sub { font-size: 0.68rem; color: var(--gray); margin-top: 0.15rem; line-height: 1.4; }
+
+    /* ════════════════════════════════════════
+       BANDE STATS
+    ════════════════════════════════════════ */
+    .stats-band {
+      background: var(--white);
+      border-top: 1px solid rgba(64,64,65,0.08);
+      border-bottom: 1px solid rgba(64,64,65,0.08);
+      padding: 3.2rem var(--gutter);
+    }
+    .stats-band-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .stat-band-item { text-align: center; }
+    .stat-band-num {
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.45rem;
+    }
+    .stat-band-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+
+    /* ════════════════════════════════════════
+       MANIFESTE
+    ════════════════════════════════════════ */
+    .manifeste {
+      background: var(--white);
+      padding: var(--sv) var(--gutter);
+    }
+    .manifeste-inner { max-width: var(--max); margin: 0 auto; }
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green-dark);
+      margin-bottom: 1.8rem;
+    }
+    .manifeste-text {
+      font-size: clamp(1.3rem, 2.2vw, 1.85rem);
+      font-weight: 300;
+      line-height: 1.55;
+      letter-spacing: -0.01em;
+      color: var(--dark);
+      max-width: 820px;
+      margin-bottom: 3rem;
+    }
+    .manifeste-text strong { color: var(--green-dark); font-weight: 600; }
+
+    /* ════════════════════════════════════════
+       PILIERS
+    ════════════════════════════════════════ */
+    .piliers {
+      background: var(--light);
+      padding: var(--sv) var(--gutter);
+    }
+    .piliers-inner { max-width: var(--max); margin: 0 auto; }
+    .piliers-header { margin-bottom: 3.5rem; }
+    .piliers-h2 {
+      font-size: clamp(1.8rem, 3vw, 3rem);
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-top: 0.7rem;
+    }
+    .piliers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .pilier-card {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 2rem 1.8rem;
+      border-top: 3px solid transparent;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .pilier-card:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.07);
+      transform: translateY(-2px);
+    }
+    .pilier-card.accent-green { border-top-color: var(--green); }
+    .pilier-card.accent-rose  { border-top-color: var(--rose); }
+    .pilier-card.accent-ink   { border-top-color: var(--ink); }
+    .pilier-num {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--gray-light);
+      letter-spacing: 0.1em;
+      margin-bottom: 1.2rem;
+    }
+    .pilier-titre {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1.25;
+      margin-bottom: 0.9rem;
+    }
+    .pilier-texte {
+      font-size: 0.88rem;
+      font-weight: 400;
+      color: var(--gray);
+      line-height: 1.75;
+    }
+
+    /* ════════════════════════════════════════
+       RÉSULTATS
+    ════════════════════════════════════════ */
+    .resultats {
+      background: var(--ink);
+      padding: var(--sv) var(--gutter);
+    }
+    .resultats-inner { max-width: var(--max); margin: 0 auto; }
+    .resultats .section-tag { color: var(--green); }
+    .resultats-h2 {
+      font-size: clamp(1.8rem, 3vw, 3rem);
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-top: 0.7rem;
+      margin-bottom: 4.5rem;
+    }
+    .resultats-h2 em { color: var(--green); font-style: italic; font-weight: 300; }
+    .resultats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .resultat-item { padding: 0 2.5rem 0 0; }
+    .resultat-item + .resultat-item {
+      padding-left: 2.5rem;
+      border-left: 1px solid rgba(255,255,255,0.08);
+    }
+    .resultat-bar {
+      width: 20px;
+      height: 2px;
+      background: var(--green);
+      margin-bottom: 1.5rem;
+    }
+    .resultat-num {
+      font-size: clamp(2rem, 3.5vw, 3.5rem);
+      font-weight: 800;
+      color: var(--green);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.7rem;
+    }
+    .resultat-label {
+      font-size: 0.82rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.5;
+    }
+
+    /* ════════════════════════════════════════
+       ECOVADIS
+    ════════════════════════════════════════ */
+    .ecovadis {
+      background: var(--green-light);
+      padding: var(--sv) var(--gutter);
+    }
+    .ecovadis-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 6rem;
+      align-items: center;
+    }
+    .ecovadis-badge { text-align: center; }
+    .ecovadis-badge img { max-width: 140px; width: 100%; display: block; margin: 0 auto; }
+    .ecovadis-link {
+      display: block;
+      font-size: 0.72rem;
+      color: var(--gray);
+      text-decoration: none;
+      margin-top: 0.8rem;
+      text-align: center;
+      transition: color 0.2s;
+    }
+    .ecovadis-link:hover { color: var(--green-dark); }
+    .ecovadis .section-tag { color: var(--green-dark); }
+    .ecovadis-h2 {
+      font-size: clamp(1.8rem, 3vw, 3rem);
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-top: 0.7rem;
+      margin-bottom: 1.2rem;
+    }
+    .ecovadis-h2 .g { color: var(--green); font-style: italic; font-weight: 300; }
+    .ecovadis-texte {
+      font-size: 0.95rem;
+      color: var(--dark);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    /* ════════════════════════════════════════
+       CAROUSEL CLIENTS
+    ════════════════════════════════════════ */
+    .clients {
+      background: var(--light);
+      padding: 5rem var(--gutter);
+      overflow: hidden;
+    }
+    .clients-inner { max-width: var(--max); margin: 0 auto; }
+    .clients-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray);
+      text-align: center;
+      margin-bottom: 3rem;
+      opacity: 0.7;
+    }
+    .clients-track-wrapper {
+      position: relative;
+      overflow: hidden;
+      mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    }
+    .clients-track {
+      display: flex;
+      align-items: center;
+      gap: 5rem;
+      width: max-content;
+      animation: marquee 40s linear infinite;
+    }
+    .clients-track-wrapper:hover .clients-track { animation-play-state: paused; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .client-logo {
+      height: 36px;
+      width: auto;
+      filter: grayscale(1);
+      opacity: 0.45;
+      transition: opacity 0.25s, filter 0.25s;
+      flex-shrink: 0;
+    }
+    .client-logo:hover { opacity: 1; filter: grayscale(0); }
+
+    /* ════════════════════════════════════════
+       CONTACT
+    ════════════════════════════════════════ */
+    .contact {
+      background: var(--ink);
+      padding: var(--sv) var(--gutter);
+    }
+    .contact-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 4rem;
+      align-items: center;
+    }
+    .contact-h2 {
+      font-size: clamp(1.8rem, 3.5vw, 3.8rem);
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 0.8rem;
+    }
+    .contact-sub {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.6);
+    }
+    .contact-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--green);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+    .contact-email:hover { opacity: 0.8; }
+
+    /* ════════════════════════════════════════
+       FOOTER
+    ════════════════════════════════════════ */
+    footer {
+      background: var(--dark);
+      padding: 2rem var(--gutter);
+    }
+    .footer-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-logo {
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+    }
+    .footer-logo .z { color: rgba(255,255,255,0.55); }
+    .footer-logo .v { color: var(--green); }
+    .footer-links { display: flex; gap: 2rem; list-style: none; }
+    .footer-links a {
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: rgba(255,255,255,0.55); }
+    .footer-copy { font-size: 0.62rem; color: rgba(255,255,255,0.3); }
+
+    /* ════════════════════════════════════════
+       REVEAL
+    ════════════════════════════════════════ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.85s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.85s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal[data-delay="1"] { transition-delay: 0.1s; }
+    .reveal[data-delay="2"] { transition-delay: 0.2s; }
+    .reveal[data-delay="3"] { transition-delay: 0.3s; }
+
+    /* ════════════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════════════ */
+    @media (max-width: 960px) {
+      :root { --sv: 5.5rem; }
+      .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .hero-visual { display: none; }
+      .piliers-grid { grid-template-columns: 1fr 1fr; }
+      .resultats-grid { grid-template-columns: 1fr 1fr; gap: 3rem 0; }
+      .resultat-item + .resultat-item { border-left: none; padding-left: 0; }
+      .resultat-item:nth-child(2),
+      .resultat-item:nth-child(4) { padding-left: 2.5rem; border-left: 1px solid rgba(255,255,255,0.08); }
+      .ecovadis-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .ecovadis-badge { order: -1; }
+      .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
+    }
+    @media (max-width: 640px) {
+      :root { --sv: 4rem; --gutter: 6vw; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .piliers-grid { grid-template-columns: 1fr; }
+      .stats-band-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+      .stat-band-item { text-align: left; }
+      .resultats-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════ NAV ════ -->
+<nav class="nav" id="navbar" aria-label="Navigation principale">
+  <a href="#" class="nav-logo" aria-label="Zen Value — Accueil">
+    <span class="z">Zen </span><span class="v">Value</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#piliers">Nos offres</a></li>
+    <li><a href="#resultats">Résultats</a></li>
+    <li><a href="#contact" class="btn-nav">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+
+<!-- ════ HERO ════ -->
+<section class="hero" aria-label="Accueil">
+  <div class="hero-inner">
+
+    <div class="hero-content">
+      <p class="hero-eyebrow reveal">Cabinet de conseil &amp; organisme de formation certifié Qualiopi — Paris</p>
+      <h1 class="hero-h1 reveal" data-delay="1">
+        Let's find a<br>
+        <span class="h-green">Zen</span> Way<br>
+        to <span class="h-rose">Value.</span>
+      </h1>
+      <p class="hero-sub reveal" data-delay="2">
+        Performance opérationnelle,<br>pérenne et responsable.
+      </p>
+      <div class="hero-btns reveal" data-delay="3">
+        <a href="#contact" class="btn-dark">Parler de vos enjeux →</a>
+        <a href="#piliers" class="btn-outline">Notre approche</a>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal" data-delay="2" aria-hidden="true">
+      <div class="hero-card">
+        <div class="hero-card-label">Notre approche en 3 piliers</div>
+        <div class="hero-mini-cards">
+          <div class="hero-mini-card c-green">
+            <span class="hero-mini-icon">⚡</span>
+            <div>
+              <div class="hero-mini-title">Excellence Opérationnelle</div>
+              <div class="hero-mini-sub">Résultats mesurables dès les premières semaines</div>
+            </div>
+          </div>
+          <div class="hero-mini-card c-rose">
+            <span class="hero-mini-icon">♾️</span>
+            <div>
+              <div class="hero-mini-title">Pérennisation de la valeur</div>
+              <div class="hero-mini-sub">Organisations autonomes sur le long terme</div>
+            </div>
+          </div>
+          <div class="hero-mini-card c-ink">
+            <span class="hero-mini-icon">🌱</span>
+            <div>
+              <div class="hero-mini-title">Responsabilité</div>
+              <div class="hero-mini-sub">Performance écologique, éthique &amp; sociétale</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════ BANDE STATS ════ -->
+<section class="stats-band" aria-label="Chiffres clés">
+  <div class="stats-band-inner">
+    <div class="stat-band-item reveal">
+      <div class="stat-band-num" data-cms="accueil.stat1_num">+15</div>
+      <div class="stat-band-label" data-cms="accueil.stat1_label">Ans d'expertise</div>
+    </div>
+    <div class="stat-band-item reveal" data-delay="1">
+      <div class="stat-band-num" data-cms="accueil.stat2_num">50+</div>
+      <div class="stat-band-label" data-cms="accueil.stat2_label">Organisations accompagnées</div>
+    </div>
+    <div class="stat-band-item reveal" data-delay="2">
+      <div class="stat-band-num" data-cms="accueil.stat3_num">Qualiopi</div>
+      <div class="stat-band-label" data-cms="accueil.stat3_label">Certifié formation</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════ MANIFESTE ════ -->
+<section class="manifeste" id="manifeste" aria-label="Notre conviction">
+  <div class="manifeste-inner">
+    <div class="section-tag reveal">— Notre conviction</div>
+    <p class="manifeste-text reveal" data-delay="1" data-cms="accueil.manifeste_texte">
+      La <strong>performance</strong> ne se décrète pas. Elle se construit avec les équipes qui la font vivre,
+      se mesure avec des métriques concrètes, et se pérennise dans des organisations <strong>autonomes</strong>.
+      Lean, Agile, Théorie des Contraintes... nous mobilisons l'état de l'art sans dogmatisme,
+      au service d'un seul objectif&nbsp;: créer de la valeur <strong>mesurable, pérenne et responsable.</strong>
+    </p>
+    <div class="reveal" data-delay="2">
+      <a href="#contact" class="btn-dark">Parler de vos enjeux →</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════ PILIERS ════ -->
+<section class="piliers" id="piliers" aria-label="Notre approche">
+  <div class="piliers-inner">
+    <div class="piliers-header reveal">
+      <div class="section-tag">— Notre approche</div>
+      <h2 class="piliers-h2">Ce que nous faisons</h2>
+    </div>
+    <div class="piliers-grid">
+      <div class="pilier-card accent-green reveal" data-delay="1">
+        <div class="pilier-num">01</div>
+        <div class="pilier-titre">Excellence Opérationnelle</div>
+        <p class="pilier-texte">Nous agissons concrètement sur le delivery — fiabilisation des engagements, accélération des cycles, amélioration de la qualité. Chaque intervention produit des résultats mesurables dès les premières semaines.</p>
+      </div>
+      <div class="pilier-card accent-rose reveal" data-delay="2">
+        <div class="pilier-num">02</div>
+        <div class="pilier-titre">Pérennisation de la valeur</div>
+        <p class="pilier-texte">Nous accompagnons le changement continu pour rendre les organisations autonomes dans leur création de valeur sur le long terme. L'objectif n'est pas la dépendance au consultant, mais l'indépendance de vos équipes.</p>
+      </div>
+      <div class="pilier-card accent-ink reveal" data-delay="3">
+        <div class="pilier-num">03</div>
+        <div class="pilier-titre">Responsabilité</div>
+        <p class="pilier-texte">Parce que la performance ne peut pas être uniquement économique — nous intégrons les enjeux écologiques, éthiques et sociétaux dans chaque mission. La RSE n'est pas un supplément, c'est une exigence.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════ RÉSULTATS ════ -->
+<section class="resultats" id="resultats" aria-label="Résultats">
+  <div class="resultats-inner">
+    <div class="section-tag reveal" data-cms="accueil.resultats_tag">Résultats mesurés chez nos clients</div>
+    <h2 class="resultats-h2 reveal" data-delay="1" data-cms="accueil.resultats_h2">Des chiffres qui <em>parlent d'eux-mêmes</em></h2>
+    <div class="resultats-grid">
+      <div class="resultat-item reveal" data-delay="1">
+        <div class="resultat-bar"></div>
+        <div class="resultat-num" data-cms="resultats.r1_chiffre">−60%</div>
+        <div class="resultat-label" data-cms="resultats.r1_label">Time to market produit &amp; service</div>
+      </div>
+      <div class="resultat-item reveal" data-delay="2">
+        <div class="resultat-bar"></div>
+        <div class="resultat-num" data-cms="resultats.r2_chiffre">+40%</div>
+        <div class="resultat-label" data-cms="resultats.r2_label">Vélocité des équipes Scrum</div>
+      </div>
+      <div class="resultat-item reveal" data-delay="3">
+        <div class="resultat-bar"></div>
+        <div class="resultat-num" data-cms="resultats.r3_chiffre">+50%</div>
+        <div class="resultat-label" data-cms="resultats.r3_label">Efficacité opérationnelle</div>
+      </div>
+      <div class="resultat-item reveal" data-delay="3">
+        <div class="resultat-bar"></div>
+        <div class="resultat-num" data-cms="resultats.r4_chiffre">+56</div>
+        <div class="resultat-label" data-cms="resultats.r4_label">NPS client (progression)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════ ECOVADIS ════ -->
+<section class="ecovadis" id="rse" aria-label="Engagement RSE">
+  <div class="ecovadis-inner">
+    <div class="ecovadis-badge reveal">
+      <img src="assets/images/Ecovadis/ZV_SARL_EV_Recognition.png" alt="EcoVadis Silver — Top 15% mondial" loading="lazy" />
+      <a href="https://recognition.ecovadis.com/embed/w90R7EDQ5Uy1MPcVnRGi_A" target="_blank" rel="noopener" class="ecovadis-link">
+        Voir la reconnaissance officielle →
+      </a>
+    </div>
+    <div class="reveal" data-delay="1">
+      <div class="section-tag">— Engagement RSE</div>
+      <h2 class="ecovadis-h2">Notre engagement <span class="g">RSE</span></h2>
+      <p class="ecovadis-texte">Nous intégrons les enjeux écologiques, éthiques et sociétaux dans chaque mission. Notre score EcoVadis Silver 78/100 (top 15% mondial) reflète cet engagement concret et mesuré.</p>
+      <a href="#contact" class="btn-dark">Nos engagements RSE →</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════ CAROUSEL CLIENTS ════ -->
+<section class="clients" id="clients" aria-label="Clients">
+  <div class="clients-inner">
+    <p class="clients-label reveal" data-cms="accueil.clients_label">Ils nous font confiance</p>
+    <div class="clients-track-wrapper">
+      <div class="clients-track">
+        <img src="assets/images/logos-clients/logo_BNP-Paribas.png"  alt="BNP Paribas"  class="client-logo" />
+        <img src="assets/images/logos-clients/logo_Groupama.png"     alt="Groupama"     class="client-logo" />
+        <img src="assets/images/logos-clients/logo_Leroy_Merlin.png" alt="Leroy Merlin" class="client-logo" />
+        <img src="assets/images/logos-clients/logo_generali.png"     alt="Generali"     class="client-logo" />
+        <!-- Doublon pour boucle continue -->
+        <img src="assets/images/logos-clients/logo_BNP-Paribas.png"  alt="" class="client-logo" aria-hidden="true" />
+        <img src="assets/images/logos-clients/logo_Groupama.png"     alt="" class="client-logo" aria-hidden="true" />
+        <img src="assets/images/logos-clients/logo_Leroy_Merlin.png" alt="" class="client-logo" aria-hidden="true" />
+        <img src="assets/images/logos-clients/logo_generali.png"     alt="" class="client-logo" aria-hidden="true" />
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════ CONTACT ════ -->
+<section class="contact" id="contact" aria-label="Contact">
+  <div class="contact-inner">
+    <div class="reveal">
+      <h2 class="contact-h2">On construit quelque chose ensemble&nbsp;?</h2>
+      <p class="contact-sub">Premier échange sans engagement.</p>
+    </div>
+    <a href="mailto:contact@zenvalue.fr" class="contact-email reveal" data-delay="1">
+      contact@zenvalue.fr →
+    </a>
+  </div>
+</section>
+
+
+<!-- ════ FOOTER ════ -->
+<footer>
+  <div class="footer-inner">
+    <a href="#" class="footer-logo" aria-label="Zen Value">
+      <span class="z">Zen </span><span class="v">Value</span>
+    </a>
+    <ul class="footer-links">
+      <li><a href="#">Mentions légales</a></li>
+      <li><a href="#">Politique de confidentialité</a></li>
+      <li><a href="#">CGV</a></li>
+    </ul>
+    <span class="footer-copy">© Zen Value 2025</span>
+  </div>
+</footer>
+
+
+<script>
+/* ══════════════════════════════════════════════════════
+   NAV SCROLL
+══════════════════════════════════════════════════════ */
+(function () {
+  var nav = document.getElementById('navbar');
+  window.addEventListener('scroll', function () {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+}());
+
+/* ══════════════════════════════════════════════════════
+   REVEAL — IntersectionObserver
+══════════════════════════════════════════════════════ */
+(function () {
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(function (el) {
+    observer.observe(el);
+  });
+}());
+
+/* ══════════════════════════════════════════════════════
+   CMS — injection données dynamiques
+══════════════════════════════════════════════════════ */
+(function () {
+  function inject(key, val) {
+    if (val === undefined || val === null) return;
+    document.querySelectorAll('[data-cms="' + key + '"]').forEach(function (el) {
+      el.innerHTML = val;
+    });
+  }
+
+  var ts = '?t=' + Date.now();
+
+  fetch('content/pages/accueil.json' + ts)
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      inject('accueil.stat1_num',       d.stat1_num);
+      inject('accueil.stat1_label',     d.stat1_label);
+      inject('accueil.stat2_num',       d.stat2_num);
+      inject('accueil.stat2_label',     d.stat2_label);
+      inject('accueil.stat3_num',       d.stat3_num);
+      inject('accueil.stat3_label',     d.stat3_label);
+      inject('accueil.manifeste_texte', d.manifeste_texte);
+      inject('accueil.resultats_tag',   d.resultats_tag);
+      inject('accueil.resultats_h2',    d.resultats_h2);
+      inject('accueil.clients_label',   d.clients_label);
+    })
+    .catch(function () {});
+
+  fetch('content/settings/resultats.json' + ts)
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      inject('resultats.r1_chiffre', d.r1_chiffre);
+      inject('resultats.r1_label',   d.r1_label);
+      inject('resultats.r2_chiffre', d.r2_chiffre);
+      inject('resultats.r2_label',   d.r2_label);
+      inject('resultats.r3_chiffre', d.r3_chiffre);
+      inject('resultats.r3_label',   d.r3_label);
+      inject('resultats.r4_chiffre', d.r4_chiffre);
+      inject('resultats.r4_label',   d.r4_label);
+    })
+    .catch(function () {});
+}());
+</script>
+
+</body>
+</html>
