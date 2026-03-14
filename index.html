@@ -9,11 +9,18 @@
   <link rel="canonical" href="https://www.zenvalue.fr/" />
 
   <style>
+    /* ── Raleway auto-hébergée ── */
+    @font-face { font-family: 'Raleway'; src: url('assets/fonts/raleway/raleway-300.woff2') format('woff2'); font-weight: 300; font-display: swap; }
+    @font-face { font-family: 'Raleway'; src: url('assets/fonts/raleway/raleway-400.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+    @font-face { font-family: 'Raleway'; src: url('assets/fonts/raleway/raleway-600.woff2') format('woff2'); font-weight: 600; font-display: swap; }
+    @font-face { font-family: 'Raleway'; src: url('assets/fonts/raleway/raleway-700.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+    @font-face { font-family: 'Raleway'; src: url('assets/fonts/raleway/raleway-800.woff2') format('woff2'); font-weight: 800; font-display: swap; }
+
     /* ── Reset ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; font-size: 16px; }
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: 'Raleway', system-ui, -apple-system, sans-serif;
       background: #ffffff;
       color: #404041;
       line-height: 1.65;
@@ -22,17 +29,19 @@
 
     /* ── Tokens ── */
     :root {
-      --ink:      #404041;
-      --dark:     #404041;
-      --gray:     #9ca3af;
-      --light:    #f3f3f1;
-      --white:    #ffffff;
-      --green:    #AAC335;
-      --rose:     #FF467C;
-      --rose-dk:  #c0325d;
-      --gutter:   5vw;
-      --max:      1120px;
-      --sv:       9rem;   /* section vertical padding */
+      --ink:        #404041;
+      --dark:       #404041;
+      --gray:       #666666;
+      --light:      #f3f3f1;
+      --white:      #ffffff;
+      --green:      #AAC335;
+      --green-dark: #6D7D22;
+      --rose:       #FF467C;
+      --rose-dark:  #d63868;
+      --rose-dk:    #c0325d;
+      --gutter:     5vw;
+      --max:        1120px;
+      --sv:         9rem;   /* section vertical padding */
     }
 
     /* ════════════════════════════════════════
@@ -84,8 +93,8 @@
     .nav-links a:hover { color: #ffffff; }
     .nav.solid .nav-links a { color: rgba(64,64,65,0.5); }
     .nav.solid .nav-links a:hover { color: #404041; }
-    .nav-links .nav-cta,
-    .nav.solid .nav-links .nav-cta { color: var(--rose); }
+    .nav-links .nav-cta { color: var(--rose); }
+    .nav.solid .nav-links .nav-cta { color: var(--rose-dark); }
     .nav-links .nav-cta:hover,
     .nav.solid .nav-links .nav-cta:hover { color: var(--rose-dk); }
 
@@ -238,14 +247,14 @@
       max-width: 860px;
       margin-bottom: 4rem;
     }
-    .manifeste-text .g { color: var(--green); font-style: italic; }
+    .manifeste-text .g { color: var(--green-dark); font-style: italic; font-weight: 700;}
 
     /* ── CTA rose (unique) ── */
     .btn-rose {
       display: inline-flex;
       align-items: center;
       gap: 0.7rem;
-      background: var(--rose);
+      background: var(--rose-dark);
       color: #ffffff;
       font-size: 0.73rem;
       font-weight: 600;
@@ -280,6 +289,7 @@
       color: var(--green);
       margin-bottom: 1.5rem;
     }
+    .resultats .section-tag {color: var(--green-dark);}
 
     .piliers-h2 {
       font-size: clamp(2rem, 3.5vw, 3.8rem);
@@ -337,7 +347,7 @@
       line-height: 1.15;
       margin-bottom: 5rem;
     }
-    .resultats-h2 .g { color: var(--green); font-style: italic; }
+    .resultats-h2 .g { color: var(--green-dark); font-style: italic; }
 
     .stats-grid {
       display: grid;
@@ -353,7 +363,7 @@
     .stat-bar {
       width: 24px;
       height: 2px;
-      background: var(--green);
+      background: var(--green-dark);
       margin-bottom: 1.8rem;
     }
     .stat-num {
