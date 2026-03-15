@@ -1,10 +1,10 @@
 {
   "r1_chiffre": "-60%",
-  "r1_label": "Time to market\nproduit & service",
+  "r1_label": "Time to market<br>produit & service",
   "r2_chiffre": "+40%",
-  "r2_label": "Vélocité des\néquipes Scrum",
+  "r2_label": "Vélocité des<br>équipes Scrum",
   "r3_chiffre": "+50%",
-  "r3_label": "Efficacité\nopérationnelle",
+  "r3_label": "Efficacité<br>opérationnelle",
   "r4_chiffre": "+56",
-  "r4_label": "NPS client\n(progression)"
+  "r4_label": "NPS client<br>(progression)"
 }

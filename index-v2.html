@@ -457,44 +457,15 @@
     /* ════════════════════════════════════════
        FOOTER — fond sombre
     ════════════════════════════════════════ */
-    footer {
-      background: var(--ink);
-      padding: 2.2rem var(--gutter);
-    }
-    .footer-inner {
-      max-width: var(--max);
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-    .footer-logo img {
-      height: 20px;
-      width: auto;
-      filter: brightness(0) invert(1);
-      opacity: 0.35;
-    }
-    .footer-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-    .footer-links a {
-      font-size: 0.62rem;
-      font-weight: 500;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.22);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .footer-links a:hover { color: rgba(255,255,255,0.55); }
-    .footer-copy {
-      font-size: 0.62rem;
-      color: rgba(255,255,255,0.18);
-    }
+    footer { background: var(--dark); padding: 2rem var(--gutter); }
+    .footer-inner { max-width: var(--max); margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
+    .footer-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-logo { text-decoration: none; }
+    .footer-logo-img { height: 48px; width: auto; display: block; }
+    .footer-links { display: flex; gap: 2rem; list-style: none; flex-wrap: wrap; }
+    .footer-links a { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy { font-size: 0.65rem; color: rgba(255,255,255,0.25); text-align: center; padding-top: 0.5rem; border-top: 1px solid rgba(255,255,255,0.06); }
 
     /* ════════════════════════════════════════
        REVEAL
@@ -812,15 +783,18 @@
 <!-- ════ FOOTER ════ -->
 <footer>
   <div class="footer-inner">
-    <a href="#" class="footer-logo" aria-label="Zen Value">
-      <img src="assets/images/logo/logo_zen-value_H.avif" alt="Zen Value" />
-    </a>
-    <ul class="footer-links">
-      <li><a href="#">Mentions légales</a></li>
-      <li><a href="#">Politique de confidentialité</a></li>
-      <li><a href="#">CGV</a></li>
-    </ul>
-    <span class="footer-copy">© Zen Value 2025</span>
+    <div class="footer-top">
+      <a href="index.html" class="footer-logo" aria-label="Zen Value">
+        <img class="footer-logo-img" src="assets/images/logo/zen-value_logo_2019_blanc-72.png" alt="Zen Value">
+      </a>
+      <ul class="footer-links">
+        <li><a href="mentions-legales.html">Mentions légales</a></li>
+        <li><a href="politique-confidentialite.html">Politique de confidentialité</a></li>
+        <li><a href="cgv.html">CGV</a></li>
+        <li><a href="#" id="reopen-cookies">Gérer mes cookies</a></li>
+      </ul>
+    </div>
+    <div class="footer-copy">© Zen Value 2026</div>
   </div>
 </footer>
 

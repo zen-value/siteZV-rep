@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nos offres — Zen Value</title>
+  <meta name="description" content="Conseil, formation et accompagnement RSE pour maximiser la performance de vos équipes. Découvrez nos offres Zen Value." />
+  <link rel="canonical" href="https://www.zenvalue.fr/offres.html" />
+  <link rel="stylesheet" href="assets/css/tokens.css" />
+  <link rel="stylesheet" href="assets/css/layout.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+  <link rel="stylesheet" href="assets/css/navigation.css" />
+  <link rel="stylesheet" href="assets/css/animations.css" />
+
+  <style>
+    /* ── Raleway auto-hébergée ── */
+    @font-face { font-family: 'Raleway'; src: url('assets/fonts/raleway/raleway-300.woff2') format('woff2'); font-weight: 300; font-display: swap; }
+    @font-face { font-family: 'Raleway'; src: url('assets/fonts/raleway/raleway-400.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+    @font-face { font-family: 'Raleway'; src: url('assets/fonts/raleway/raleway-600.woff2') format('woff2'); font-weight: 600; font-display: swap; }
+    @font-face { font-family: 'Raleway'; src: url('assets/fonts/raleway/raleway-700.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+    @font-face { font-family: 'Raleway'; src: url('assets/fonts/raleway/raleway-800.woff2') format('woff2'); font-weight: 800; font-display: swap; }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Raleway', system-ui, sans-serif;
+      background: #ffffff;
+      color: #404041;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* ── Tokens ── */
+    :root {
+      --green:       #AAC335;
+      --green-dark:  #6D7D22;
+      --green-light: #F1F6E2;
+      --rose:        #FF467C;
+      --rose-dark:   #d63868;
+      --dark:        #404041;
+      --ink:         #1c1c1c;
+      --gray:        #666666;
+      --gray-light:  #999999;
+      --light:       #f7f6f3;
+      --white:       #ffffff;
+      --gutter:      5vw;
+      --max:         1100px;
+      --sv:          7rem;
+    }
+
+    /* ════════════════════════════════════════
+       NAV
+    ════════════════════════════════════════ */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 300;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.6rem var(--gutter);
+      background: var(--light);
+      transition: background 0.3s, box-shadow 0.3s, padding 0.3s;
+    }
+    .nav.scrolled {
+      background: var(--white);
+      box-shadow: 0 1px 16px rgba(0,0,0,0.07);
+      padding: 1rem var(--gutter);
+    }
+    .nav-logo {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+    }
+    .nav-logo .z { color: var(--ink); }
+    .nav-logo .v { color: var(--green-dark); }
+    .nav-logo-img { height: 32px; width: auto; display: block; }
+    .footer-logo-img { height: 28px; width: auto; display: block; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.4rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links a.active { color: var(--ink); font-weight: 700; }
+    .btn-nav {
+      display: inline-flex;
+      align-items: center;
+      background: var(--ink) !important;
+      color: var(--white) !important;
+      font-size: 0.78rem !important;
+      font-weight: 600 !important;
+      letter-spacing: 0.06em;
+      padding: 0.6rem 1.4rem;
+      border-radius: 3px;
+      transition: background 0.2s !important;
+    }
+    .btn-nav:hover { background: #000 !important; color: var(--white) !important; }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--ink);
+    }
+
+    /* ════════════════════════════════════════
+       HERO OFFRES
+    ════════════════════════════════════════ */
+    .hero-offres {
+      background: var(--light);
+      padding: 10rem var(--gutter) 6rem;
+    }
+    .hero-offres-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 2rem;
+    }
+    .hero-offres-h1 {
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+      margin-bottom: 2rem;
+    }
+    .hero-offres-h1 .g { color: var(--green); }
+    .hero-offres-sub {
+      font-size: clamp(1rem, 1.5vw, 1.2rem);
+      font-weight: 400;
+      color: var(--gray);
+      line-height: 1.7;
+      max-width: 600px;
+      margin-bottom: 3rem;
+    }
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* Boutons globaux */
+    .btn-dark {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--ink);
+      color: var(--white);
+      font-family: 'Raleway', system-ui, sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.9rem 2rem;
+      border-radius: 3px;
+      border: 2px solid var(--ink);
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .btn-dark:hover { background: #000; border-color: #000; }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      color: var(--ink);
+      font-family: 'Raleway', system-ui, sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.9rem 2rem;
+      border-radius: 3px;
+      border: 2px solid rgba(28,28,28,0.2);
+      transition: border-color 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--ink); }
+
+    /* ════════════════════════════════════════
+       SECTION TAG
+    ════════════════════════════════════════ */
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green-dark);
+      margin-bottom: 1.8rem;
+    }
+
+    /* ════════════════════════════════════════
+       OFFRES GRID
+    ════════════════════════════════════════ */
+    .offres {
+      background: var(--white);
+      padding: var(--sv) var(--gutter);
+    }
+    .offres-inner { max-width: var(--max); margin: 0 auto; }
+    .offres-header { margin-bottom: 3.5rem; }
+    .offres-h2 {
+      font-size: clamp(1.8rem, 3vw, 3rem);
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-top: 0.7rem;
+    }
+    .offres-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .offre-card {
+      background: var(--light);
+      border-radius: 10px;
+      padding: 2.2rem 2rem;
+      border-top: 3px solid transparent;
+      transition: box-shadow 0.2s, transform 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+    .offre-card:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.07);
+      transform: translateY(-2px);
+    }
+    .offre-card.accent-green { border-top-color: var(--green); }
+    .offre-card.accent-rose  { border-top-color: var(--rose); }
+    .offre-card.accent-ink   { border-top-color: var(--ink); }
+    .offre-card.accent-green-dark { border-top-color: var(--green-dark); }
+    .offre-card.accent-gray  { border-top-color: var(--gray-light); }
+    .offre-icon {
+      font-size: 1.6rem;
+      margin-bottom: 1.2rem;
+    }
+    .offre-titre {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1.25;
+      margin-bottom: 0.9rem;
+    }
+    .offre-texte {
+      font-size: 0.88rem;
+      font-weight: 400;
+      color: var(--gray);
+      line-height: 1.75;
+      flex: 1;
+    }
+    .offre-tag {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green-dark);
+      background: var(--green-light);
+      padding: 0.25rem 0.7rem;
+      border-radius: 2px;
+      margin-top: 1.5rem;
+      align-self: flex-start;
+    }
+    .offre-tag.tag-rose {
+      color: var(--rose-dark);
+      background: #fff0f4;
+    }
+    .offre-tag.tag-ink {
+      color: var(--white);
+      background: var(--ink);
+    }
+    /* Dernières cartes centrées sur la 2e ligne */
+    .offres-grid-bottom {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+      max-width: calc(66.6% + 0.5rem);
+    }
+
+    /* ════════════════════════════════════════
+       RÉSULTATS
+    ════════════════════════════════════════ */
+    .resultats {
+      background: var(--ink);
+      padding: var(--sv) var(--gutter);
+    }
+    .resultats-inner { max-width: var(--max); margin: 0 auto; }
+    .resultats .section-tag { color: var(--green); }
+    .resultats-h2 {
+      font-size: clamp(1.8rem, 3vw, 3rem);
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-top: 0.7rem;
+      margin-bottom: 4.5rem;
+    }
+    .resultats-h2 em { color: var(--green); font-style: italic; font-weight: 300; }
+    .resultats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .resultat-item { padding: 0 2.5rem 0 0; }
+    .resultat-item + .resultat-item {
+      padding-left: 2.5rem;
+      border-left: 1px solid rgba(255,255,255,0.08);
+    }
+    .resultat-bar {
+      width: 20px;
+      height: 2px;
+      background: var(--green);
+      margin-bottom: 1.5rem;
+    }
+    .resultat-num {
+      font-size: clamp(2rem, 3.5vw, 3.5rem);
+      font-weight: 800;
+      color: var(--green);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.7rem;
+    }
+    .resultat-label {
+      font-size: 0.82rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.5;
+    }
+
+    /* ════════════════════════════════════════
+       CAS CLIENTS
+    ════════════════════════════════════════ */
+    .cas-clients {
+      background: var(--light);
+      padding: var(--sv) var(--gutter);
+    }
+    .cas-clients-inner { max-width: var(--max); margin: 0 auto; }
+    .cas-clients-header { margin-bottom: 3.5rem; }
+    .cas-clients-h2 {
+      font-size: clamp(1.8rem, 3vw, 3rem);
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-top: 0.7rem;
+    }
+    .cas-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .cas-card {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 2.2rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .cas-card:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.07);
+      transform: translateY(-2px);
+    }
+    .cas-citation {
+      font-size: 0.92rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--gray);
+      line-height: 1.65;
+      border-left: 3px solid var(--green);
+      padding-left: 1rem;
+    }
+    .cas-titre {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1.25;
+    }
+    .cas-resultats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+    }
+    .cas-resultat {
+      background: var(--light);
+      border-radius: 6px;
+      padding: 0.7rem 0.9rem;
+    }
+    .cas-resultat-num {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--green-dark);
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+    .cas-resultat-label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      color: var(--gray);
+      line-height: 1.4;
+    }
+
+    /* ════════════════════════════════════════
+       CONTACT
+    ════════════════════════════════════════ */
+    .contact {
+      background: var(--ink);
+      padding: var(--sv) var(--gutter);
+    }
+    .contact-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 4rem;
+      align-items: center;
+    }
+    .contact-h2 {
+      font-size: clamp(1.8rem, 3.5vw, 3.8rem);
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 0.8rem;
+    }
+    .contact-sub {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.6);
+    }
+    .contact-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--green);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+    .contact-email:hover { opacity: 0.8; }
+
+    /* ════════════════════════════════════════
+       FOOTER
+    ════════════════════════════════════════ */
+    footer { background: var(--dark); padding: 2rem var(--gutter); }
+    .footer-inner { max-width: var(--max); margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
+    .footer-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-logo { text-decoration: none; }
+    .footer-logo-img { height: 48px; width: auto; display: block; }
+    .footer-links { display: flex; gap: 2rem; list-style: none; flex-wrap: wrap; }
+    .footer-links a { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy { font-size: 0.65rem; color: rgba(255,255,255,0.25); text-align: center; padding-top: 0.5rem; border-top: 1px solid rgba(255,255,255,0.06); }
+
+    /* ── COOKIE BANNER ── */
+    .cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; z-index: 999; background: var(--ink); padding: 1.2rem var(--gutter); border-top: 2px solid var(--green); }
+    .cookie-inner { max-width: var(--max); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .cookie-text { font-size: 0.82rem; color: rgba(255,255,255,0.8); line-height: 1.5; flex: 1; }
+    .cookie-text a { color: var(--green); text-decoration: underline; }
+    .cookie-btns { display: flex; gap: 0.8rem; flex-shrink: 0; }
+    .cookie-btn-refuse { background: transparent; color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.3); padding: 0.6rem 1.4rem; font-size: 0.78rem; font-weight: 700; border-radius: 3px; cursor: pointer; font-family: inherit; }
+    .cookie-btn-refuse:hover { border-color: rgba(255,255,255,0.7); color: white; }
+    .cookie-btn-accept { background: var(--green); color: var(--ink); border: none; padding: 0.6rem 1.4rem; font-size: 0.78rem; font-weight: 700; border-radius: 3px; cursor: pointer; font-family: inherit; }
+    .cookie-btn-accept:hover { background: var(--green-dark); color: white; }
+
+    /* ════════════════════════════════════════
+       REVEAL
+    ════════════════════════════════════════ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.85s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.85s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal[data-delay="1"] { transition-delay: 0.1s; }
+    .reveal[data-delay="2"] { transition-delay: 0.2s; }
+    .reveal[data-delay="3"] { transition-delay: 0.3s; }
+
+    /* ════════════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════════════ */
+    @media (max-width: 960px) {
+      :root { --sv: 5.5rem; }
+      .offres-grid { grid-template-columns: 1fr 1fr; }
+      .offres-grid-bottom { grid-template-columns: 1fr 1fr; max-width: 100%; }
+      .resultats-grid { grid-template-columns: 1fr 1fr; gap: 3rem 0; }
+      .resultat-item + .resultat-item { border-left: none; padding-left: 0; }
+      .resultat-item:nth-child(2),
+      .resultat-item:nth-child(4) { padding-left: 2.5rem; border-left: 1px solid rgba(255,255,255,0.08); }
+      .cas-grid { grid-template-columns: 1fr 1fr; }
+      .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
+    }
+    @media (max-width: 640px) {
+      :root { --sv: 4rem; --gutter: 6vw; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .offres-grid { grid-template-columns: 1fr; }
+      .offres-grid-bottom { grid-template-columns: 1fr; max-width: 100%; }
+      .resultats-grid { grid-template-columns: 1fr 1fr; }
+      .cas-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════ NAV ════ -->
+<nav class="nav" id="navbar" aria-label="Navigation principale">
+  <a href="index.html" class="nav-logo" aria-label="Zen Value — Accueil">
+    <img class="nav-logo-img" src="assets/images/logo/ZV_logo_long.png" alt="Zen Value">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#offres" class="active">Nos offres</a></li>
+    <li><a href="#resultats">Résultats</a></li>
+    <li><a href="#contact" class="btn-nav">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+
+<!-- ════ HERO ════ -->
+<section class="hero-offres" aria-label="Nos offres">
+  <div class="hero-offres-inner">
+    <p class="hero-eyebrow reveal">Nos offres</p>
+    <h1 class="hero-offres-h1 reveal" data-delay="1">
+      Conseil, Formation<br>
+      &amp; <span class="g">RSE</span>
+    </h1>
+    <p class="hero-offres-sub reveal" data-delay="2">
+      Nous intervenons concrètement, aux côtés de vos équipes, pour maximiser la valeur délivrée — de la stratégie à l'exécution, en mesurant les résultats à chaque étape.
+    </p>
+    <div class="hero-btns reveal" data-delay="3">
+      <a href="#contact" class="btn-dark">Parler de vos enjeux →</a>
+      <a href="#resultats" class="btn-outline">Voir nos résultats</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════ OFFRES ════ -->
+<section class="offres" id="offres" aria-label="Nos offres">
+  <div class="offres-inner">
+    <div class="offres-header reveal">
+      <div class="section-tag">— Ce que nous faisons</div>
+      <h2 class="offres-h2">Nos domaines d'intervention</h2>
+    </div>
+
+    <div class="offres-grid">
+
+      <div class="offre-card accent-green reveal" data-delay="1">
+        <div class="offre-icon">⚡</div>
+        <div class="offre-titre">Excellence Opérationnelle</div>
+        <p class="offre-texte">Diagnostic de performance, sécurisation de projets qui dérivent, amélioration des processus. Nous mobilisons Lean, Théorie des Contraintes et Agile pour produire des résultats mesurables dès les premières semaines.</p>
+        <span class="offre-tag">Conseil</span>
+      </div>
+
+      <div class="offre-card accent-rose reveal" data-delay="2">
+        <div class="offre-icon">♾️</div>
+        <div class="offre-titre">Transformation Agile</div>
+        <p class="offre-texte">Déploiement pragmatique de l'agilité à l'échelle — Scrum, Kanban, SAFe. Nos experts interviennent en immersion, aux côtés des équipes, pour produire un impact observable et durable, pas des rituels supplémentaires.</p>
+        <span class="offre-tag tag-rose">Conseil</span>
+      </div>
+
+      <div class="offre-card accent-ink reveal" data-delay="3">
+        <div class="offre-icon">🔄</div>
+        <div class="offre-titre">Change Management &amp; Pérennisation</div>
+        <p class="offre-texte">Une transformation réussie, c'est celle qui tient sans nous. Nous accompagnons le changement pour rendre vos équipes autonomes : accompagnement terrain, coaching managérial, transfert de compétences.</p>
+        <span class="offre-tag tag-ink">Conseil</span>
+      </div>
+
+    </div>
+
+    <div class="offres-grid-bottom">
+
+      <div class="offre-card accent-green-dark reveal" data-delay="1">
+        <div class="offre-icon">🎓</div>
+        <div class="offre-titre">Formation certifiante</div>
+        <p class="offre-texte">Organisme de formation certifié Qualiopi. Programmes sur-mesure ou inter-entreprises en Agilité, Lean, Management de la performance et Pilotage par la valeur. Nos formations sont ancrées dans la réalité opérationnelle.</p>
+        <span class="offre-tag">Formation · Qualiopi</span>
+      </div>
+
+      <div class="offre-card accent-gray reveal" data-delay="2">
+        <div class="offre-icon">🌱</div>
+        <div class="offre-titre">Stratégie &amp; Déploiement RSE</div>
+        <p class="offre-texte">Nous intégrons les enjeux écologiques, éthiques et sociétaux dans chaque mission. Diagnostic RSE, définition de la feuille de route, déploiement concret avec vos équipes — au-delà des seuls rapports annuels.</p>
+        <span class="offre-tag">RSE · EcoVadis Silver</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════ RÉSULTATS ════ -->
+<section class="resultats" id="resultats" aria-label="Résultats">
+  <div class="resultats-inner">
+    <div class="section-tag reveal" data-cms="resultats_tag">Résultats mesurés chez nos clients</div>
+    <h2 class="resultats-h2 reveal" data-delay="1" data-cms="resultats_h2">Des chiffres qui <em>parlent d'eux-mêmes</em></h2>
+    <div class="resultats-grid">
+      <div class="resultat-item reveal" data-delay="1">
+        <div class="resultat-bar"></div>
+        <div class="resultat-num" data-cms="r1_chiffre">−60%</div>
+        <div class="resultat-label" data-cms="r1_label">Time to market produit &amp; service</div>
+      </div>
+      <div class="resultat-item reveal" data-delay="2">
+        <div class="resultat-bar"></div>
+        <div class="resultat-num" data-cms="r2_chiffre">+40%</div>
+        <div class="resultat-label" data-cms="r2_label">Vélocité des équipes Scrum</div>
+      </div>
+      <div class="resultat-item reveal" data-delay="3">
+        <div class="resultat-bar"></div>
+        <div class="resultat-num" data-cms="r3_chiffre">+50%</div>
+        <div class="resultat-label" data-cms="r3_label">Efficacité opérationnelle</div>
+      </div>
+      <div class="resultat-item reveal" data-delay="3">
+        <div class="resultat-bar"></div>
+        <div class="resultat-num" data-cms="r4_chiffre">+56</div>
+        <div class="resultat-label" data-cms="r4_label">NPS client (progression)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════ CAS CLIENTS ════ -->
+<section class="cas-clients" id="cas-clients" aria-label="Cas clients">
+  <div class="cas-clients-inner">
+    <div class="cas-clients-header reveal">
+      <div class="section-tag">— Preuves terrain</div>
+      <h2 class="cas-clients-h2">Ce que ça donne <em style="font-style:italic;font-weight:300;color:var(--green-dark)">en pratique</em></h2>
+    </div>
+    <div class="cas-grid" id="cas-grid">
+      <!-- Injecté dynamiquement via JS -->
+    </div>
+  </div>
+</section>
+
+
+<!-- ════ CONTACT ════ -->
+<section class="contact" id="contact" aria-label="Contact">
+  <div class="contact-inner">
+    <div class="reveal">
+      <h2 class="contact-h2">On construit quelque chose ensemble&nbsp;?</h2>
+      <p class="contact-sub">Premier échange sans engagement.</p>
+    </div>
+    <a href="mailto:contact@zenvalue.fr" class="contact-email reveal" data-delay="1">
+      contact@zenvalue.fr →
+    </a>
+  </div>
+</section>
+
+
+<!-- ════ FOOTER ════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="index.html" class="footer-logo" aria-label="Zen Value">
+        <img class="footer-logo-img" src="assets/images/logo/zen-value_logo_2019_blanc-72.png" alt="Zen Value">
+      </a>
+      <ul class="footer-links">
+        <li><a href="mentions-legales.html">Mentions légales</a></li>
+        <li><a href="politique-confidentialite.html">Politique de confidentialité</a></li>
+        <li><a href="cgv.html">CGV</a></li>
+        <li><a href="#" id="reopen-cookies">Gérer mes cookies</a></li>
+      </ul>
+    </div>
+    <div class="footer-copy">© Zen Value 2026</div>
+  </div>
+</footer>
+
+
+<!-- ════ COOKIE BANNER ════ -->
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Gestion des cookies" style="display:none;">
+  <div class="cookie-inner">
+    <p class="cookie-text">
+      Nous utilisons des cookies pour améliorer votre expérience. Vous pouvez accepter ou refuser les cookies non essentiels.
+      <a href="politique-cookies.html">En savoir plus</a>
+    </p>
+    <div class="cookie-btns">
+      <button id="cookie-refuse" class="cookie-btn-refuse">Refuser</button>
+      <button id="cookie-accept" class="cookie-btn-accept">Accepter</button>
+    </div>
+  </div>
+</div>
+
+
+<script>
+/* ══════════════════════════════════════════════════════
+   NAV SCROLL
+══════════════════════════════════════════════════════ */
+(function () {
+  var nav = document.getElementById('navbar');
+  window.addEventListener('scroll', function () {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+}());
+
+/* ══════════════════════════════════════════════════════
+   REVEAL — IntersectionObserver
+══════════════════════════════════════════════════════ */
+(function () {
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(function (el) {
+    observer.observe(el);
+  });
+}());
+
+/* ══════════════════════════════════════════════════════
+   CMS — Résultats
+══════════════════════════════════════════════════════ */
+(function () {
+  function inject(key, val) {
+    if (val === undefined || val === null) return;
+    document.querySelectorAll('[data-cms="' + key + '"]').forEach(function (el) {
+      el.innerHTML = val;
+    });
+  }
+
+  var ts = '?t=' + Date.now();
+
+  fetch('content/settings/resultats.json' + ts)
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      inject('r1_chiffre', d.r1_chiffre);
+      inject('r1_label',   d.r1_label);
+      inject('r2_chiffre', d.r2_chiffre);
+      inject('r2_label',   d.r2_label);
+      inject('r3_chiffre', d.r3_chiffre);
+      inject('r3_label',   d.r3_label);
+      inject('r4_chiffre', d.r4_chiffre);
+      inject('r4_label',   d.r4_label);
+    })
+    .catch(function () {});
+
+  /* ── CAS CLIENTS (3 premiers) ── */
+  fetch('content/pages/cas-clients.json' + ts)
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      var items = data.items.slice(0, 3);
+      var grid  = document.getElementById('cas-grid');
+      if (!grid) return;
+      grid.innerHTML = items.map(function (c) {
+        var resultatsHTML = c.resultats.slice(0, 4).map(function (r) {
+          return '<div class="cas-resultat">'
+               + '<div class="cas-resultat-num">' + r.chiffre + '</div>'
+               + '<div class="cas-resultat-label">' + r.label + '</div>'
+               + '</div>';
+        }).join('');
+        return '<div class="cas-card reveal">'
+             + '<p class="cas-citation">' + c.citation + '</p>'
+             + '<div class="cas-titre">' + c.titre + '</div>'
+             + '<div class="cas-resultats">' + resultatsHTML + '</div>'
+             + '</div>';
+      }).join('');
+
+      /* Activer reveal sur les nouvelles cartes */
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            observer.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      grid.querySelectorAll('.reveal').forEach(function (el) {
+        observer.observe(el);
+      });
+    })
+    .catch(function () {});
+}());
+
+/* ══════════════════════════════════════════════════════
+   COOKIE BANNER
+══════════════════════════════════════════════════════ */
+(function() {
+  var banner = document.getElementById('cookie-banner');
+  var consent = localStorage.getItem('zv_cookies');
+  if (!consent) banner.style.display = 'block';
+  document.getElementById('cookie-accept').addEventListener('click', function() {
+    localStorage.setItem('zv_cookies', 'accepted');
+    banner.style.display = 'none';
+  });
+  document.getElementById('cookie-refuse').addEventListener('click', function() {
+    localStorage.setItem('zv_cookies', 'refused');
+    banner.style.display = 'none';
+  });
+}());
+
+document.getElementById('reopen-cookies').addEventListener('click', function(e) {
+  e.preventDefault();
+  localStorage.removeItem('zv_cookies');
+  document.getElementById('cookie-banner').style.display = 'block';
+});
+</script>
+
+</body>
+</html>

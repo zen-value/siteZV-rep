@@ -23,7 +23,7 @@ h3 { font-size: 1.1rem; font-weight: 700; line-height: 1.3; margin-bottom: .6rem
 
 .section-tag {
   display: inline-flex; align-items: center; gap: .6rem;
-  font-size: .67rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase;
+  font-size: .8rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase;
   color: var(--c2l); margin-bottom: 1rem;
 }
 .section-tag::before { content: ''; display: block; width: 20px; height: 2px; background: var(--c1); }
@@ -157,7 +157,7 @@ h3 { font-size: 1.1rem; font-weight: 700; line-height: 1.3; margin-bottom: .6rem
 
 /* ── Clients ── */
 .clients-band > p { font-size: .67rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--c2l); opacity: .45; margin-bottom: 1.8rem; }
-.client-logo  { height: 28px; width: auto; opacity: .35; filter: grayscale(1); transition: opacity .2s, filter .2s; }
+.client-logo  { height: 28px; width: auto; opacity: .85; filter: grayscale(0); transition: opacity .2s, filter .2s; }
 .client-logo:hover { opacity: .7; filter: grayscale(0); }
 .client-ph    { height: 25px; background: var(--c2); opacity: .09; border-radius: 3px; }
 

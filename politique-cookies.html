@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Politique de cookies — Zen Value</title>
+  <meta name="description" content="Politique de gestion des cookies du site Zen Value : types, durées, et gestion de vos préférences." />
+  <link rel="canonical" href="https://www.zenvalue.fr/politique-cookies.html" />
+  <link rel="stylesheet" href="assets/css/tokens.css" />
+  <link rel="stylesheet" href="assets/css/layout.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+  <link rel="stylesheet" href="assets/css/navigation.css" />
+  <link rel="stylesheet" href="assets/css/animations.css" />
+
+  <style>
+    /* ── Raleway ── */
+    @font-face { font-family: 'Raleway'; src: url('assets/fonts/raleway/raleway-400.woff2') format('woff2'); font-weight: 300 800; font-display: swap; }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: 'Raleway', system-ui, sans-serif; background: var(--white); color: var(--dark); line-height: 1.65; overflow-x: hidden; }
+
+    /* ── Tokens ── */
+    :root {
+      --green:       #AAC335;
+      --green-dark:  #6D7D22;
+      --green-light: #F1F6E2;
+      --rose:        #FF467C;
+      --dark:        #404041;
+      --ink:         #1c1c1c;
+      --gray:        #666666;
+      --gray-light:  #999999;
+      --light:       #f7f6f3;
+      --white:       #ffffff;
+      --gutter:      5vw;
+      --max:         1100px;
+      --sv:          7rem;
+    }
+
+    /* ── NAV ── */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 300; display: flex; align-items: center; justify-content: space-between; padding: 1.6rem var(--gutter); background: var(--light); transition: background 0.3s, box-shadow 0.3s, padding 0.3s; }
+    .nav.scrolled { background: var(--white); box-shadow: 0 1px 16px rgba(0,0,0,0.07); padding: 1rem var(--gutter); }
+    .nav-logo { font-size: 1.25rem; font-weight: 800; letter-spacing: -0.02em; text-decoration: none; }
+    .nav-logo-img { height: 28px; width: auto; display: block; }
+    .nav-links { display: flex; align-items: center; gap: 2.4rem; list-style: none; }
+    .nav-links a { font-size: 0.82rem; font-weight: 500; color: var(--gray); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links .btn-nav { display: inline-flex; align-items: center; background: var(--ink); color: var(--white); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; padding: 0.6rem 1.4rem; border-radius: 3px; transition: background 0.2s; }
+    .nav-links .btn-nav:hover { background: #000; color: var(--white); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--ink); border-radius: 2px; }
+
+    /* ── HERO LÉGAL ── */
+    .legal-hero { padding-top: calc(var(--sv) + 3rem); padding-bottom: 3rem; padding-left: var(--gutter); padding-right: var(--gutter); background: var(--light); border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .legal-hero-inner { max-width: var(--max); margin: 0 auto; }
+    .legal-hero h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; color: var(--ink); letter-spacing: -0.03em; line-height: 1.15; }
+    .legal-hero-sub { font-size: 0.85rem; color: var(--gray); margin-top: 0.6rem; }
+
+    /* ── CONTENU LÉGAL ── */
+    .legal-content { max-width: var(--max); margin: 0 auto; padding: 4rem var(--gutter) 6rem; }
+    .legal-section { margin-bottom: 3rem; }
+    .legal-section h2 { font-size: 1rem; font-weight: 700; color: var(--ink); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.8rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--green); display: inline-block; }
+    .legal-section p { font-size: 0.92rem; color: var(--dark); line-height: 1.75; margin-bottom: 0.6rem; }
+    .legal-section ul { font-size: 0.92rem; color: var(--dark); line-height: 1.75; padding-left: 1.4rem; margin-bottom: 0.6rem; }
+    .legal-section ul li { margin-bottom: 0.3rem; }
+    .legal-section a { color: var(--green-dark); text-decoration: underline; }
+
+    /* ── TABLE COOKIES ── */
+    .cookie-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin-top: 0.8rem; }
+    .cookie-table th { background: var(--ink); color: var(--white); font-weight: 600; text-align: left; padding: 0.7rem 1rem; font-size: 0.78rem; letter-spacing: 0.05em; }
+    .cookie-table td { padding: 0.7rem 1rem; border-bottom: 1px solid rgba(0,0,0,0.07); vertical-align: top; }
+    .cookie-table tr:nth-child(even) td { background: var(--light); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--dark); padding: 2rem var(--gutter); }
+    .footer-inner { max-width: var(--max); margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
+    .footer-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-logo { text-decoration: none; }
+    .footer-logo-img { height: 48px; width: auto; display: block; }
+    .footer-links { display: flex; gap: 2rem; list-style: none; flex-wrap: wrap; }
+    .footer-links a { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy { font-size: 0.65rem; color: rgba(255,255,255,0.25); text-align: center; padding-top: 0.5rem; border-top: 1px solid rgba(255,255,255,0.06); }
+
+    /* ── COOKIE BANNER ── */
+    .cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; z-index: 999; background: var(--ink); padding: 1.2rem var(--gutter); border-top: 2px solid var(--green); }
+    .cookie-inner { max-width: var(--max); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .cookie-text { font-size: 0.82rem; color: rgba(255,255,255,0.8); line-height: 1.5; flex: 1; }
+    .cookie-text a { color: var(--green); text-decoration: underline; }
+    .cookie-btns { display: flex; gap: 0.8rem; flex-shrink: 0; }
+    .cookie-btn-refuse { background: transparent; color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.3); padding: 0.6rem 1.4rem; font-size: 0.78rem; font-weight: 700; border-radius: 3px; cursor: pointer; font-family: inherit; }
+    .cookie-btn-refuse:hover { border-color: rgba(255,255,255,0.7); color: white; }
+    .cookie-btn-accept { background: var(--green); color: var(--ink); border: none; padding: 0.6rem 1.4rem; font-size: 0.78rem; font-weight: 700; border-radius: 3px; cursor: pointer; font-family: inherit; }
+    .cookie-btn-accept:hover { background: var(--green-dark); color: white; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 680px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .cookie-table { font-size: 0.78rem; }
+      .cookie-table th, .cookie-table td { padding: 0.5rem 0.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════ NAV ════ -->
+<nav class="nav" id="navbar" aria-label="Navigation principale">
+  <a href="index.html" class="nav-logo" aria-label="Zen Value — Accueil">
+    <img class="nav-logo-img" src="assets/images/logo/ZV_logo_long.png" alt="Zen Value">
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#piliers">Nos offres</a></li>
+    <li><a href="index.html#resultats">Résultats</a></li>
+    <li><a href="index.html#contact" class="btn-nav">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+
+<!-- ════ HERO ════ -->
+<header class="legal-hero">
+  <div class="legal-hero-inner">
+    <div class="section-tag" style="margin-bottom:1rem;">Transparence &amp; consentement</div>
+    <h1>Politique de cookies</h1>
+    <p class="legal-hero-sub">Mise à jour : 15 mars 2026</p>
+  </div>
+</header>
+
+
+<!-- ════ CONTENU ════ -->
+<main class="legal-content">
+
+  <div class="legal-section">
+    <h2>1. Qu'est-ce qu'un cookie ?</h2>
+    <p>Un cookie est un fichier texte déposé sur votre terminal lors de la consultation de notre site zenvalue.fr. Il permet de mémoriser des informations relatives à votre navigation et de vous reconnaître lors de visites ultérieures.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>2. Cadre et consentement</h2>
+    <p>Les cookies non essentiels ne sont déposés qu'avec votre consentement, recueilli via notre bandeau de gestion des consentements. Vous pouvez accepter, refuser ou modifier vos choix à tout moment via "Gérer mes cookies" en pied de page.</p>
+    <p>Durée de validité du consentement : 6 mois.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>3. Types de cookies utilisés</h2>
+    <ul>
+      <li><strong>Cookies fonctionnels :</strong> amélioration du fonctionnement du site, stockage des préférences.</li>
+      <li><strong>Cookies de mesure d'audience :</strong> statistiques anonymes (visiteurs uniques, pages vues, durée, parcours).</li>
+      <li><strong>Cookies de suivi :</strong> analyse de navigation pour des services personnalisés (avec consentement).</li>
+      <li><strong>Cookies d'amélioration :</strong> tests A/B de pages.</li>
+    </ul>
+  </div>
+
+  <div class="legal-section">
+    <h2>3bis. Liste des cookies</h2>
+    <table class="cookie-table">
+      <thead>
+        <tr>
+          <th>Service</th>
+          <th>Finalité</th>
+          <th>Base légale</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Google Analytics</td>
+          <td>Mesure d'audience</td>
+          <td>Consentement</td>
+        </tr>
+        <tr>
+          <td>Google Tag Manager</td>
+          <td>Gestion des balises</td>
+          <td>Consentement</td>
+        </tr>
+        <tr>
+          <td>Google Adsense</td>
+          <td>Régie publicitaire</td>
+          <td>Consentement</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="legal-section">
+    <h2>4. Gérer vos préférences</h2>
+    <ul>
+      <li>Via notre module "Gérer mes cookies" en pied de page.</li>
+      <li>Via le paramétrage de votre navigateur (suppression ou blocage des cookies).</li>
+    </ul>
+  </div>
+
+  <div class="legal-section">
+    <h2>5. Vos droits</h2>
+    <p>Droits d'accès, rectification, opposition, suppression, limitation et portabilité.</p>
+    <p>Pour exercer vos droits : <a href="https://app.witik.io/fr/form/zen-value/droitsrgpd" target="_blank" rel="noopener">https://app.witik.io/fr/form/zen-value/droitsrgpd</a> ou <a href="mailto:privacy@zenvalue.fr">privacy@zenvalue.fr</a></p>
+    <p>CNIL : <a href="https://www.cnil.fr" target="_blank" rel="noopener">cnil.fr</a></p>
+  </div>
+
+  <div class="legal-section">
+    <h2>6. Cookies tiers</h2>
+    <p>Des contenus hébergés par des tiers peuvent déposer leurs propres cookies. Consultez la politique du tiers concerné pour en savoir plus.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>7. Évolutions</h2>
+    <p>Nous pouvons mettre à jour cette politique à tout moment pour refléter les évolutions légales ou techniques.</p>
+    <p>Date de mise à jour : 15 mars 2026.</p>
+  </div>
+
+</main>
+
+
+<!-- ════ FOOTER ════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="index.html" class="footer-logo" aria-label="Zen Value">
+        <img class="footer-logo-img" src="assets/images/logo/zen-value_logo_2019_blanc-72.png" alt="Zen Value">
+      </a>
+      <ul class="footer-links">
+        <li><a href="mentions-legales.html">Mentions légales</a></li>
+        <li><a href="politique-confidentialite.html">Politique de confidentialité</a></li>
+        <li><a href="cgv.html">CGV</a></li>
+        <li><a href="#" id="reopen-cookies">Gérer mes cookies</a></li>
+      </ul>
+    </div>
+    <div class="footer-copy">© Zen Value 2026</div>
+  </div>
+</footer>
+
+
+<!-- ════ COOKIE BANNER ════ -->
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Gestion des cookies" style="display:none;">
+  <div class="cookie-inner">
+    <p class="cookie-text">
+      Nous utilisons des cookies pour améliorer votre expérience. Vous pouvez accepter ou refuser les cookies non essentiels.
+      <a href="politique-cookies.html">En savoir plus</a>
+    </p>
+    <div class="cookie-btns">
+      <button id="cookie-refuse" class="cookie-btn-refuse">Refuser</button>
+      <button id="cookie-accept" class="cookie-btn-accept">Accepter</button>
+    </div>
+  </div>
+</div>
+
+
+<script>
+/* ── Nav scroll ── */
+(function () {
+  var nav = document.getElementById('navbar');
+  window.addEventListener('scroll', function () {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+}());
+
+/* ── Cookie banner ── */
+(function() {
+  var banner = document.getElementById('cookie-banner');
+  var consent = localStorage.getItem('zv_cookies');
+  if (!consent) banner.style.display = 'block';
+  document.getElementById('cookie-accept').addEventListener('click', function() {
+    localStorage.setItem('zv_cookies', 'accepted');
+    banner.style.display = 'none';
+  });
+  document.getElementById('cookie-refuse').addEventListener('click', function() {
+    localStorage.setItem('zv_cookies', 'refused');
+    banner.style.display = 'none';
+  });
+}());
+
+document.getElementById('reopen-cookies').addEventListener('click', function(e) {
+  e.preventDefault();
+  localStorage.removeItem('zv_cookies');
+  document.getElementById('cookie-banner').style.display = 'block';
+});
+</script>
+
+</body>
+</html>

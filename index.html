@@ -14,19 +14,15 @@
 
   <style>
     /* ── Raleway auto-hébergée ── */
-    @font-face { font-family: 'Raleway'; src: url('assets/fonts/raleway/raleway-300.woff2') format('woff2'); font-weight: 300; font-display: swap; }
-    @font-face { font-family: 'Raleway'; src: url('assets/fonts/raleway/raleway-400.woff2') format('woff2'); font-weight: 400; font-display: swap; }
-    @font-face { font-family: 'Raleway'; src: url('assets/fonts/raleway/raleway-600.woff2') format('woff2'); font-weight: 600; font-display: swap; }
-    @font-face { font-family: 'Raleway'; src: url('assets/fonts/raleway/raleway-700.woff2') format('woff2'); font-weight: 700; font-display: swap; }
-    @font-face { font-family: 'Raleway'; src: url('assets/fonts/raleway/raleway-800.woff2') format('woff2'); font-weight: 800; font-display: swap; }
+    @font-face { font-family: 'Raleway'; src: url('assets/fonts/raleway/raleway-400.woff2') format('woff2'); font-weight: 300 800; font-display: swap; }
 
     /* ── Reset ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; font-size: 16px; }
     body {
       font-family: 'Raleway', system-ui, sans-serif;
-      background: #ffffff;
-      color: #404041;
+      background: var(--white);
+      color: var(--dark);
       line-height: 1.65;
       overflow-x: hidden;
     }
@@ -74,8 +70,7 @@
       letter-spacing: -0.02em;
       text-decoration: none;
     }
-    .nav-logo .z { color: var(--ink); }
-    .nav-logo .v { color: var(--green-dark); }
+    .nav-logo-img { height: 28px; width: auto; display: block; }
     .nav-links {
       display: flex;
       align-items: center;
@@ -90,19 +85,19 @@
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--ink); }
-    .btn-nav {
+    .nav-links .btn-nav {
       display: inline-flex;
       align-items: center;
-      background: var(--ink) !important;
-      color: var(--white) !important;
-      font-size: 0.78rem !important;
-      font-weight: 600 !important;
+      background: var(--ink);
+      color: var(--white);
+      font-size: 0.78rem;
+      font-weight: 600;
       letter-spacing: 0.06em;
       padding: 0.6rem 1.4rem;
       border-radius: 3px;
-      transition: background 0.2s !important;
+      transition: background 0.2s;
     }
-    .btn-nav:hover { background: #000 !important; color: var(--white) !important; }
+    .nav-links .btn-nav:hover { background: var(--ink); color: var(--white); }
     .hamburger {
       display: none;
       flex-direction: column;
@@ -139,7 +134,7 @@
       align-items: center;
     }
     .hero-eyebrow {
-      font-size: 0.72rem;
+      font-size: 0.9rem;
       font-weight: 500;
       letter-spacing: 0.15em;
       text-transform: uppercase;
@@ -188,7 +183,7 @@
       border: 2px solid var(--ink);
       transition: background 0.2s, border-color 0.2s;
     }
-    .btn-dark:hover { background: #000; border-color: #000; }
+    .btn-dark:hover { background: var(--ink); border-color: var(--ink); }
     .btn-outline {
       display: inline-flex;
       align-items: center;
@@ -205,6 +200,23 @@
       border-radius: 3px;
       border: 2px solid rgba(28,28,28,0.2);
       transition: border-color 0.2s;
+    }
+    .btn-rose {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--rose);
+      color: var(--white);
+      font-family: 'Raleway', system-ui, sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.9rem 2rem;
+      border-radius: 3px;
+      border: 2px solid var(--rose);
+      transition: background 0.2s, border-color 0.2s;
     }
     .btn-outline:hover { border-color: var(--ink); }
 
@@ -223,7 +235,7 @@
       max-width: 380px;
     }
     .hero-card-label {
-      font-size: 0.65rem;
+      font-size: 0.75rem;
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -242,8 +254,8 @@
     .hero-mini-card.c-rose  { background: #fff0f4; }
     .hero-mini-card.c-ink   { background: #f0f0f0; }
     .hero-mini-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 0.1rem; }
-    .hero-mini-title { font-size: 0.8rem; font-weight: 700; color: var(--ink); line-height: 1.3; }
-    .hero-mini-sub { font-size: 0.68rem; color: var(--gray); margin-top: 0.15rem; line-height: 1.4; }
+    .hero-mini-title { font-size: 0.9rem; font-weight: 700; color: var(--ink); line-height: 1.3; }
+    .hero-mini-sub { font-size: 0.72rem; color: var(--gray); margin-top: 0.15rem; line-height: 1.4; }
 
     /* ════════════════════════════════════════
        BANDE STATS
@@ -289,13 +301,14 @@
     .section-tag {
       display: inline-flex;
       align-items: center;
-      font-size: 0.72rem;
+      font-size: 0.95rem;
       font-weight: 700;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--green-dark);
       margin-bottom: 1.8rem;
     }
+    .manifeste .section-tag::before { background: var(--green-dark); content: ''; display: block; width: 20px; height: 2px; }
     .manifeste-text {
       font-size: clamp(1.3rem, 2.2vw, 1.85rem);
       font-weight: 300;
@@ -314,6 +327,7 @@
       background: var(--light);
       padding: var(--sv) var(--gutter);
     }
+    .piliers .section-tag::before { background: var(--green-dark); content: ''; display: block; width: 20px; height: 2px; }
     .piliers-inner { max-width: var(--max); margin: 0 auto; }
     .piliers-header { margin-bottom: 3.5rem; }
     .piliers-h2 {
@@ -420,6 +434,7 @@
       background: var(--green-light);
       padding: var(--sv) var(--gutter);
     }
+    .ecovadis .section-tag::before { background: var(--green-dark); content: ''; display: block; width: 20px; height: 2px; }
     .ecovadis-inner {
       max-width: var(--max);
       margin: 0 auto;
@@ -450,7 +465,7 @@
       margin-top: 0.7rem;
       margin-bottom: 1.2rem;
     }
-    .ecovadis-h2 .g { color: var(--green); font-style: italic; font-weight: 300; }
+    .ecovadis-h2 .g { color: var(--green); font-style: italic; font-weight: 800; }
     .ecovadis-texte {
       font-size: 0.95rem;
       color: var(--dark);
@@ -496,7 +511,6 @@
       height: 36px;
       max-width: 120px;
       width: auto;
-      filter: grayscale(0);
       opacity: 0.85;
       transition: opacity 0.25s, filter 0.25s;
       flex-shrink: 0;
@@ -546,39 +560,26 @@
     /* ════════════════════════════════════════
        FOOTER
     ════════════════════════════════════════ */
-    footer {
-      background: var(--dark);
-      padding: 2rem var(--gutter);
-    }
-    .footer-inner {
-      max-width: var(--max);
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-    .footer-logo {
-      font-size: 1rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      text-decoration: none;
-    }
-    .footer-logo .z { color: rgba(255,255,255,0.55); }
-    .footer-logo .v { color: var(--green); }
-    .footer-links { display: flex; gap: 2rem; list-style: none; }
-    .footer-links a {
-      font-size: 0.62rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.25);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .footer-links a:hover { color: rgba(255,255,255,0.55); }
-    .footer-copy { font-size: 0.62rem; color: rgba(255,255,255,0.3); }
+    footer { background: var(--dark); padding: 2rem var(--gutter); }
+    .footer-inner { max-width: var(--max); margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
+    .footer-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-logo { text-decoration: none; }
+    .footer-logo-img { height: 48px; width: auto; display: block; }
+    .footer-links { display: flex; gap: 2rem; list-style: none; flex-wrap: wrap; }
+    .footer-links a { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy { font-size: 0.65rem; color: rgba(255,255,255,0.25); text-align: center; padding-top: 0.5rem; border-top: 1px solid rgba(255,255,255,0.06); }
+
+    /* ── COOKIE BANNER ── */
+    .cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; z-index: 999; background: var(--ink); padding: 1.2rem var(--gutter); border-top: 2px solid var(--green); }
+    .cookie-inner { max-width: var(--max); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .cookie-text { font-size: 0.82rem; color: rgba(255,255,255,0.8); line-height: 1.5; flex: 1; }
+    .cookie-text a { color: var(--green); text-decoration: underline; }
+    .cookie-btns { display: flex; gap: 0.8rem; flex-shrink: 0; }
+    .cookie-btn-refuse { background: transparent; color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.3); padding: 0.6rem 1.4rem; font-size: 0.78rem; font-weight: 700; border-radius: 3px; cursor: pointer; font-family: inherit; }
+    .cookie-btn-refuse:hover { border-color: rgba(255,255,255,0.7); color: white; }
+    .cookie-btn-accept { background: var(--green); color: var(--ink); border: none; padding: 0.6rem 1.4rem; font-size: 0.78rem; font-weight: 700; border-radius: 3px; cursor: pointer; font-family: inherit; }
+    .cookie-btn-accept:hover { background: var(--green-dark); color: white; }
 
     /* ════════════════════════════════════════
        REVEAL
@@ -614,7 +615,7 @@
       :root { --sv: 4rem; --gutter: 6vw; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
-      .hero-illustration {display: none;}
+      .hero-visual { display: none; }
       .hero-content {grid-column: 1 / -1;}
       .piliers-grid { grid-template-columns: 1fr; }
       .stats-band-inner { grid-template-columns: 1fr; gap: 1.5rem; }
@@ -716,15 +717,12 @@
 <!-- ════ MANIFESTE ════ -->
 <section class="manifeste" id="manifeste" aria-label="Notre conviction">
   <div class="manifeste-inner">
-    <div class="section-tag reveal">— Notre conviction</div>
+    <div class="section-tag reveal">Notre conviction</div>
     <p class="manifeste-text reveal" data-delay="1" data-cms="accueil.manifeste_texte">
-      La <strong>performance</strong> ne se décrète pas. Elle se construit avec les équipes qui la font vivre,
-      se mesure avec des métriques concrètes, et se pérennise dans des organisations <strong>autonomes</strong>.
-      Lean, Agile, Théorie des Contraintes... nous mobilisons l'état de l'art sans dogmatisme,
-      au service d'un seul objectif&nbsp;: créer de la valeur <strong>mesurable, pérenne et responsable.</strong>
+      On n'améliore pas ce qu'on ne mesure pas. On ne change pas ce qu'on ne comprend pas. On ne pérennise pas ce qu'on ne construit pas avec les équipes.<br><br>Pourtant la plupart des transformations produisent des rapports. Rarement des résultats.<br><br>Nous sommes des faiseurs. Engagés à vos côtés pour maximiser la valeur délivrée par vos équipes. Notre objectif n'est pas votre dépendance. C'est votre autonomie.
     </p>
     <div class="reveal" data-delay="2">
-      <a href="#contact" class="btn-dark">Parler de vos enjeux →</a>
+      <a href="#contact" class="btn-rose">Parler de vos enjeux →</a>
     </div>
   </div>
 </section>
@@ -734,7 +732,7 @@
 <section class="piliers" id="piliers" aria-label="Notre approche">
   <div class="piliers-inner">
     <div class="piliers-header reveal">
-      <div class="section-tag">— Notre approche</div>
+      <div class="section-tag">Notre approche</div>
       <h2 class="piliers-h2">Ce que nous faisons</h2>
     </div>
     <div class="piliers-grid">
@@ -793,13 +791,13 @@
 <section class="ecovadis" id="rse" aria-label="Engagement RSE">
   <div class="ecovadis-inner">
     <div class="ecovadis-badge reveal">
-      <img src="assets/images/Ecovadis/ZV_SARL_EV_Recognition.png" alt="EcoVadis Silver — Top 15% mondial" loading="lazy" />
+      <img src="assets/images/Ecovadis/ZV_SARL_EV_Recognition.png" alt="EcoVadis Silver — Top 15% mondial" width="140" height="140" loading="lazy" />
       <a href="https://recognition.ecovadis.com/embed/w90R7EDQ5Uy1MPcVnRGi_A" target="_blank" rel="noopener" class="ecovadis-link">
         Voir la reconnaissance officielle →
       </a>
     </div>
     <div class="reveal" data-delay="1">
-      <div class="section-tag">— Engagement RSE</div>
+      <div class="section-tag">Engagement RSE</div>
       <h2 class="ecovadis-h2">Notre engagement <span class="g">RSE</span></h2>
       <p class="ecovadis-texte">Nous intégrons les enjeux écologiques, éthiques et sociétaux dans chaque mission. Notre score EcoVadis Silver 78/100 (top 15% mondial) reflète cet engagement concret et mesuré.</p>
       <a href="#contact" class="btn-dark">Nos engagements RSE →</a>
@@ -900,17 +898,35 @@
 <!-- ════ FOOTER ════ -->
 <footer>
   <div class="footer-inner">
-    <a href="#" class="footer-logo" aria-label="Zen Value">
-  <img class="footer-logo-img" src="assets/images/logo/zen-value_logo_2019_blanc-72.png" alt="Zen Value">
-</a>
-    <ul class="footer-links">
-      <li><a href="#">Mentions légales</a></li>
-      <li><a href="#">Politique de confidentialité</a></li>
-      <li><a href="#">CGV</a></li>
-    </ul>
-    <span class="footer-copy">© Zen Value 2025</span>
+    <div class="footer-top">
+      <a href="index.html" class="footer-logo" aria-label="Zen Value">
+        <img class="footer-logo-img" src="assets/images/logo/zen-value_logo_2019_blanc-72.png" alt="Zen Value">
+      </a>
+      <ul class="footer-links">
+        <li><a href="mentions-legales.html">Mentions légales</a></li>
+        <li><a href="politique-confidentialite.html">Politique de confidentialité</a></li>
+        <li><a href="cgv.html">CGV</a></li>
+        <li><a href="#" id="reopen-cookies">Gérer mes cookies</a></li>
+      </ul>
+    </div>
+    <div class="footer-copy">© Zen Value 2026</div>
   </div>
 </footer>
+
+
+<!-- ════ COOKIE BANNER ════ -->
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Gestion des cookies" style="display:none;">
+  <div class="cookie-inner">
+    <p class="cookie-text">
+      Nous utilisons des cookies pour améliorer votre expérience. Vous pouvez accepter ou refuser les cookies non essentiels.
+      <a href="politique-cookies.html">En savoir plus</a>
+    </p>
+    <div class="cookie-btns">
+      <button id="cookie-refuse" class="cookie-btn-refuse">Refuser</button>
+      <button id="cookie-accept" class="cookie-btn-accept">Accepter</button>
+    </div>
+  </div>
+</div>
 
 
 <script>
@@ -984,6 +1000,29 @@
     })
     .catch(function () {});
 }());
+
+/* ══════════════════════════════════════════════════════
+   COOKIE BANNER
+══════════════════════════════════════════════════════ */
+(function() {
+  var banner = document.getElementById('cookie-banner');
+  var consent = localStorage.getItem('zv_cookies');
+  if (!consent) banner.style.display = 'block';
+  document.getElementById('cookie-accept').addEventListener('click', function() {
+    localStorage.setItem('zv_cookies', 'accepted');
+    banner.style.display = 'none';
+  });
+  document.getElementById('cookie-refuse').addEventListener('click', function() {
+    localStorage.setItem('zv_cookies', 'refused');
+    banner.style.display = 'none';
+  });
+}());
+
+document.getElementById('reopen-cookies').addEventListener('click', function(e) {
+  e.preventDefault();
+  localStorage.removeItem('zv_cookies');
+  document.getElementById('cookie-banner').style.display = 'block';
+});
 </script>
 
 </body>
