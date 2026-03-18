@@ -1,10 +1,10 @@
 {
-  "r1_chiffre": "-60%",
-  "r1_label": "Time to market<br>produit & service",
-  "r2_chiffre": "+40%",
-  "r2_label": "Vélocité des<br>équipes Scrum",
-  "r3_chiffre": "+50%",
-  "r3_label": "Efficacité<br>opérationnelle",
-  "r4_chiffre": "+56",
-  "r4_label": "NPS client<br>(progression)"
+  "r1_chiffre": "Maximum 30 jours",
+  "r1_label": "Premiers résultats<br>Mesurables",
+  "r2_chiffre": "Jusqu'à -60%",
+  "r2_label": "Réduction<br>du Time to Market",
+  "r3_chiffre": "Jusqu'à +50%",
+  "r3_label": "D'amélioration<br>de efficacité opérationnelle",
+  "r4_chiffre": "8,7<br>/10",
+  "r4_label": "Satisfaction<br>de nos Formation"
 }

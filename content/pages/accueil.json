@@ -7,5 +7,10 @@
   "stat3_label": "NPS Client mission Conseil",
   "resultats_tag": "Résultats mesurés chez nos clients",
   "resultats_h2": "Des chiffres qui<br><span class=\"g\">parlent d'eux-mêmes</span>",
-  "clients_label": "Ils nous font confiance"
+  "stat1_num": "+15",
+  "stat1_label": "Ans d'expertise",
+  "stat2_num": "+50",
+  "stat2_label": "Organisations accompagnées",
+  "stat3_num": "+87",
+  "stat3_label": "NPS Client Missions Conseil"
 }
