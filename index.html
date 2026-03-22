@@ -526,14 +526,7 @@
       background: var(--ink);
       padding: var(--sv) var(--gutter);
     }
-    .contact-inner {
-      max-width: var(--max);
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 4rem;
-      align-items: center;
-    }
+
     .contact-h2 {
       font-size: clamp(1.8rem, 3.5vw, 3.8rem);
       font-weight: 800;
@@ -544,7 +537,7 @@
     }
     .contact-sub {
       font-size: 0.95rem;
-      color: rgba(255,255,255,0.6);
+      color: var(--green);
     }
     .contact-email {
       display: inline-flex;
@@ -558,6 +551,107 @@
       transition: opacity 0.2s;
     }
     .contact-email:hover { opacity: 0.8; }
+    .contact-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .contact-left { padding-top: 1rem; }
+    .contact-right { }
+
+    .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-field { display: flex; flex-direction: column; gap: 0.4rem; }
+
+    .form-field label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  font-family: 'Raleway', system-ui, sans-serif;
+  font-size: 0.88rem;
+  color: white;
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: rgba(255,255,255,0.25);
+}
+
+.form-field select option {
+  background: var(--ink);
+  color: white;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  border-color: var(--green);
+}
+
+.form-field textarea { resize: vertical; min-height: 120px; }
+
+.btn-submit {
+  background: var(--green);
+  color: var(--ink);
+  border: none;
+  padding: 0.9rem 2rem;
+  font-family: 'Raleway', system-ui, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background 0.2s;
+  align-self: flex-start;
+}
+.btn-submit:hover { background: var(--green-dark); color: white; }
+.btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.form-success {
+  background: rgba(170,195,53,0.12);
+  border: 1px solid var(--green);
+  color: var(--green);
+  padding: 1rem 1.2rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.form-error {
+  background: rgba(255,70,124,0.1);
+  border: 1px solid var(--rose);
+  color: var(--rose);
+  padding: 1rem 1.2rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
 
     /* ════════════════════════════════════════
        FOOTER
@@ -621,7 +715,9 @@
       .hero-visual { display: none; }
       .hero-content {grid-column: 1 / -1;}
       .piliers-grid { grid-template-columns: 1fr; }
-      .stats-band-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+      .stats-band-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .form-row-2 { grid-template-columns: 1fr; }
+      .btn-submit { width: 100%; text-align: center; }
       .stat-band-item { text-align: left; }
       .resultats-grid { grid-template-columns: 1fr 1fr; }
     }
@@ -888,13 +984,66 @@
 <!-- ════ CONTACT ════ -->
 <section class="contact" id="contact" aria-label="Contact">
   <div class="contact-inner">
-    <div class="reveal">
-      <h2 class="contact-h2">On construit quelque chose ensemble&nbsp;?</h2>
-      <p class="contact-sub">Premier échange sans engagement.</p>
+    <div class="contact-left reveal">
+      <h2 class="contact-h2">On construit quelque<br>chose ensemble ?</h2>
+      <p class="contact-sub">Premier échange sans engagement.<br>Nous vous répondons dans les plus brefs délais.</p>
     </div>
-    <a href="mailto:contact@zenvalue.fr" class="contact-email reveal" data-delay="1">
-      contact@zenvalue.fr →
-    </a>
+    <div class="contact-right reveal" data-delay="1">
+      <form id="contact-form" class="contact-form">
+        <input type="hidden" name="access_key" value="a6c6cb75-f56c-4d4e-a835-1c7e49b6c27c">
+        <input type="hidden" name="subject" value="Nouveau message — zenvalue.fr">
+        <input type="hidden" name="from_name" value="Site Zen Value">
+        <input type="checkbox" name="botcheck" style="display:none;">
+        
+        <div class="form-row-2">
+          <div class="form-field">
+            <label for="prenom">Prénom</label>
+            <input type="text" id="prenom" name="prenom" 
+                   placeholder="Votre prénom" required>
+          </div>
+          <div class="form-field">
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" name="nom" 
+                   placeholder="Votre nom" required>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" 
+                 placeholder="votre@email.fr" required>
+        </div>
+
+        <div class="form-field">
+          <label for="objet">Objet</label>
+          <select id="objet" name="objet" required>
+            <option value="" disabled selected>Sélectionnez un objet</option>
+            <option value="Demande de renseignements">Demande de renseignements</option>
+            <option value="Demande de devis">Demande de devis</option>
+            <option value="Candidature">Candidature</option>
+            <option value="Autre">Autre</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" 
+                    placeholder="Votre message..." 
+                    rows="5" required></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit" id="submit-btn">
+          Envoyer →
+        </button>
+
+        <div id="form-success" class="form-success" style="display:none;">
+          Merci pour votre message, nous vous répondons dans les plus brefs délais.
+        </div>
+        <div id="form-error" class="form-error" style="display:none;">
+          Une erreur est survenue. Merci de réessayer ou de nous contacter directement à contact@zenvalue.fr
+        </div>
+      </form>
+    </div>
   </div>
 </section>
 
@@ -1031,7 +1180,52 @@ document.getElementById('reopen-cookies').addEventListener('click', function(e) 
   localStorage.removeItem('zv_cookies');
   document.getElementById('cookie-banner').style.display = 'block';
 });
+
+/* ══════════════════════════════════════════════════════
+   CONTACT FORMS
+══════════════════════════════════════════════════════ */
+
+(function() {
+  var form = document.getElementById('contact-form');
+  var btn = document.getElementById('submit-btn');
+  var success = document.getElementById('form-success');
+  var error = document.getElementById('form-error');
+  
+  if (!form) return;
+  
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    btn.disabled = true;
+    btn.textContent = 'Envoi en cours...';
+    success.style.display = 'none';
+    error.style.display = 'none';
+    
+    var data = new FormData(form);
+    
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: data
+    })
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      if (data.success) {
+        success.style.display = 'block';
+        form.reset();
+      } else {
+        error.style.display = 'block';
+      }
+    })
+    .catch(function() {
+      error.style.display = 'block';
+    })
+    .finally(function() {
+      btn.disabled = false;
+      btn.textContent = 'Envoyer →';
+    });
+  });
+}());
 </script>
+
 
 </body>
 </html>
