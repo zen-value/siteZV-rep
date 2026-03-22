@@ -46,75 +46,6 @@
     }
 
     /* ════════════════════════════════════════
-       NAV
-    ════════════════════════════════════════ */
-    .nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 300;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1.6rem var(--gutter);
-      background: var(--light);
-      transition: background 0.3s, box-shadow 0.3s, padding 0.3s;
-    }
-    .nav.scrolled {
-      background: var(--white);
-      box-shadow: 0 1px 16px rgba(0,0,0,0.07);
-      padding: 1rem var(--gutter);
-    }
-    .nav-logo {
-      font-size: 1.25rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      text-decoration: none;
-    }
-    .nav-logo-img { height: 28px; width: auto; display: block; }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 2.4rem;
-      list-style: none;
-    }
-    .nav-links a {
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: var(--dark);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--ink); }
-    .nav-links .btn-nav {
-      display: inline-flex;
-      align-items: center;
-      background: var(--ink);
-      color: var(--white);
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      padding: 0.6rem 1.4rem;
-      border-radius: 3px;
-      transition: background 0.2s;
-    }
-    .nav-links .btn-nav:hover { background: var(--ink); color: var(--white); }
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      padding: 4px;
-      background: none;
-      border: none;
-    }
-    .hamburger span {
-      display: block;
-      width: 22px;
-      height: 1.5px;
-      background: var(--ink);
-    }
-
-    /* ════════════════════════════════════════
        HERO
     ════════════════════════════════════════ */
     .hero {
@@ -653,19 +584,6 @@
 }
 
 
-    /* ════════════════════════════════════════
-       FOOTER
-    ════════════════════════════════════════ */
-    footer { background: var(--dark); padding: 2rem var(--gutter); }
-    .footer-inner { max-width: var(--max); margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
-    .footer-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
-    .footer-logo { text-decoration: none; }
-    .footer-logo-img { height: 48px; width: auto; display: block; }
-    .footer-links { display: flex; gap: 2rem; list-style: none; flex-wrap: wrap; }
-    .footer-links a { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--white); }
-    .footer-copy { font-size: 0.65rem; color: rgba(255,255,255,0.25); text-align: center; padding-top: 0.5rem; border-top: 1px solid rgba(255,255,255,0.06); }
-
     /* ── COOKIE BANNER ── */
     .cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; z-index: 999; background: var(--ink); padding: 1.2rem var(--gutter); border-top: 2px solid var(--green); }
     .cookie-inner { max-width: var(--max); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
@@ -758,7 +676,7 @@
       </p>
       <div class="hero-btns reveal" data-delay="3">
         <a href="#contact" class="btn-dark">Parler de vos enjeux →</a>
-        <a href="#resultats" class="btn-outline">Voir nos résultats</a>
+        <a href="https://zenvalue.catalogueformpro.com/" class="btn-outline" data-delay="1" target="_blank" rel="noopener">Nos formations →</a>
       </div>
     </div>
 
@@ -784,7 +702,7 @@
             <span class="hero-mini-icon">🌱</span>
             <div>
               <div class="hero-mini-title">Responsabilité</div>
-              <div class="hero-mini-sub">Performance écologique, éthique &amp; sociétale</div>
+              <div class="hero-mini-sub">Performance environnementale, éthique &amp; sociétale</div>
             </div>
           </div>
         </div>
