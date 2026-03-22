@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep \"innerHTML\" /c/Users/REDSTATION/siteZV-rep/assets/js/*.js)",
+      "Bash(ls -lah /c/Users/REDSTATION/siteZV-rep/*.html /c/Users/REDSTATION/siteZV-rep/*.xml /c/Users/REDSTATION/siteZV-rep/*.txt 2>/dev/null)"
+    ]
+  }
+}

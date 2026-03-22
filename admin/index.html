@@ -520,7 +520,6 @@ const WEB3FORMS = (window.ZV_CONFIG && window.ZV_CONFIG.WEB3FORMS_KEY) || '';
 const FILES = {
   global:'content/settings/global.json',
   resultats:'content/settings/resultats.json', users:'content/settings/users.json',
-  accueil:'content/pages/accueil.json',
   offres:'content/pages/offres.json', cas:'content/pages/cas-clients.json',
   formation:'content/pages/formation.json',
 };
@@ -560,7 +559,7 @@ function logActivity(action, section, detail) {
 }
 
 let session = null;
-let state = { section:'accueil', data:{}, sha:'' };
+let state = { section:'dashboard', data:{}, sha:'' };
 let mediaTab = 'illustrations';
 let mediaFiles = {};
 const MEDIA_FOLDERS = [
@@ -814,12 +813,12 @@ function buildSidebar() {
   var isAdmin = session.role === 'admin';
   var icons = {
     dashboard:'🏠', global:'📋', resultats:'📊', medias:'🖼️', users:'👥', log:'📜',
-    accueil:'🏠', offres:'💼', cas:'📁', formation:'🎓'
+    offres:'💼', cas:'📁', formation:'🎓'
   };
   var labels = {
     dashboard:'Tableau de bord', global:'Contact et infos', log:'Journal activité',
     resultats:'Chiffres clés', medias:'Bibliothèque médias', users:'Utilisateurs',
-    accueil:'Accueil', offres:'Offres', cas:'Cas clients', formation:'Formation'
+    offres:'Offres', cas:'Cas clients', formation:'Formation'
   };
   function item(sec) {
     return '<div class="sidebar-item" data-sec="'+sec+'">'
@@ -842,7 +841,7 @@ function buildSidebar() {
     html += item('log');
   }
   html += '<div class="sidebar-section" style="margin-top:1.2rem;">Pages du site</div>';
-  ['accueil','offres','cas','formation'].forEach(function(sec) {
+  ['offres','cas','formation'].forEach(function(sec) {
     html += item(sec);
   });
   document.getElementById('sidebar').innerHTML = html;
@@ -862,7 +861,6 @@ function navTo(sec) {
 
 function rDashboard() {
   var quickLinks = [
-    {sec:'accueil',   icon:'🏠', title:'Accueil',         desc:'Hero, tagline, piliers'},
     {sec:'resultats', icon:'📊', title:'Chiffres clés',   desc:'Statistiques et résultats'},
     {sec:'cas',       icon:'📁', title:'Cas clients',     desc:'Études de cas détaillées'},
     {sec:'offres',    icon:'💼', title:'Offres',          desc:'Cartes de service'},
@@ -1745,7 +1743,7 @@ function fillFields() {
 }
 function render(sec, d) {
   _fv = {};
-  var renderers = {global:rGlobal,resultats:rResultats,accueil:rAccueil,offres:rOffres,cas:rCas,formation:rFormation};
+  var renderers = {global:rGlobal,resultats:rResultats,offres:rOffres,cas:rCas,formation:rFormation};
   document.getElementById('admin-main').innerHTML = renderers[sec] ? renderers[sec](d) : '<p style="padding:2rem">Section inconnue</p>';
   fillFields();
   // Réinitialiser la save bar
@@ -1763,11 +1761,6 @@ function rGlobal(d) {
 function rResultats(d) {
   return '<div class="section-title">Chiffres cles</div>'
     +[1,2,3,4].map(function(n){ return card('Resultat '+n, frow(f('Chiffre','r'+n+'_chiffre',d['r'+n+'_chiffre']),f('Label','r'+n+'_label',d['r'+n+'_label']))); }).join('');
-}
-function rAccueil(d) {
-  return '<div class="section-title">Accueil</div>'
-    +card('Statistiques',frow(f('Stat 1 chiffre','stat1_num',d.stat1_num),f('Stat 1 label','stat1_label',d.stat1_label))+frow(f('Stat 2 chiffre','stat2_num',d.stat2_num),f('Stat 2 label','stat2_label',d.stat2_label))+frow(f('Stat 3 chiffre','stat3_num',d.stat3_num),f('Stat 3 label','stat3_label',d.stat3_label)))
-    +card('Section résultats',f('Tag','resultats_tag',d.resultats_tag)+frow(f('Titre (HTML accepté)','resultats_h2',d.resultats_h2),f('Label clients wall','clients_label',d.clients_label)));
 }
 function rQSN(d) {
   return '<div class="section-title">Qui sommes-nous</div>'
@@ -2304,7 +2297,7 @@ document.addEventListener('DOMContentLoaded', function() {
    PREVIEW LIVE
 ══════════════════════════════════════════════════════ */
 const SECTION_TO_PAGE = {
-  accueil:'accueil', offres:'offres', cas:'offres', qsn:'qsn',
+  offres:'offres', cas:'offres', qsn:'qsn',
   formation:'formation', recrutement:'recrutement', rse:'rse',
   theme:'accueil', global:'accueil', resultats:'accueil', principes:'qsn',
 };

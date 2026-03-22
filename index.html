@@ -703,16 +703,16 @@
 <section class="stats-band" aria-label="Chiffres clés">
   <div class="stats-band-inner">
     <div class="stat-band-item reveal">
-      <div class="stat-band-num" data-cms="accueil.stat1_num">+15</div>
-      <div class="stat-band-label" data-cms="accueil.stat1_label">Ans d'expertise</div>
+      <div class="stat-band-num">+15</div>
+      <div class="stat-band-label">Ans d'expertise</div>
     </div>
     <div class="stat-band-item reveal" data-delay="1">
-      <div class="stat-band-num" data-cms="accueil.stat2_num">+50</div>
-      <div class="stat-band-label" data-cms="accueil.stat2_label">Organisations accompagnées</div>
+      <div class="stat-band-num">+50</div>
+      <div class="stat-band-label">Organisations accompagnées</div>
     </div>
     <div class="stat-band-item reveal" data-delay="2">
-      <div class="stat-band-num" data-cms="accueil.stat3_num">+87</div>
-      <div class="stat-band-label" data-cms="accueil.stat3_label">NPS Client missions conseil</div>
+      <div class="stat-band-num">+87</div>
+      <div class="stat-band-label">NPS Client missions conseil</div>
     </div>
   </div>
 </section>
@@ -763,8 +763,8 @@
 <!-- ════ RÉSULTATS ════ -->
 <section class="resultats" id="resultats" aria-label="Résultats">
   <div class="resultats-inner">
-    <div class="section-tag reveal" data-cms="accueil.resultats_tag">Résultats mesurés chez nos clients</div>
-    <h2 class="resultats-h2 reveal" data-delay="1" data-cms="accueil.resultats_h2">Des chiffres qui <em>parlent d'eux-mêmes</em></h2>
+    <div class="section-tag reveal">Résultats mesurés chez nos clients</div>
+    <h2 class="resultats-h2 reveal" data-delay="1">Des chiffres qui <em>parlent d'eux-mêmes</em></h2>
     <div class="resultats-grid">
       <div class="resultat-item reveal" data-delay="1">
         <div class="resultat-bar"></div>
@@ -813,7 +813,7 @@
 <!-- ════ CAROUSEL CLIENTS ════ -->
 <section class="clients" id="clients" aria-label="Clients">
   <div class="clients-inner">
-    <p class="clients-label reveal" data-cms="accueil.clients_label">Ils nous font confiance</p>
+    <p class="clients-label reveal">Ils nous font confiance</p>
     <div class="clients-track-wrapper">
       <div class="clients-track">
         <img class="client-logo" src="assets/images/logos-clients/AXA.png" alt="AXA" loading="lazy" />
@@ -990,16 +990,7 @@ if (hamburger && navLinks) {
   fetch('content/pages/accueil.json' + ts)
     .then(function (r) { return r.json(); })
     .then(function (d) {
-      inject('accueil.stat1_num',       d.stat1_num);
-      inject('accueil.stat1_label',     d.stat1_label);
-      inject('accueil.stat2_num',       d.stat2_num);
-      inject('accueil.stat2_label',     d.stat2_label);
-      inject('accueil.stat3_num',       d.stat3_num);
-      inject('accueil.stat3_label',     d.stat3_label);
       inject('accueil.manifeste_texte', d.manifeste_texte);
-      inject('accueil.resultats_tag',   d.resultats_tag);
-      inject('accueil.resultats_h2',    d.resultats_h2);
-      inject('accueil.clients_label',   d.clients_label);
     })
     .catch(function () {});
 
