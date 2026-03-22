@@ -5,7 +5,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.6rem var(--green-dark);
+  padding: 1.6rem var(--gutter);
   background: var(--light);
   transition: background 0.3s, box-shadow 0.3s, padding 0.3s;
 }
