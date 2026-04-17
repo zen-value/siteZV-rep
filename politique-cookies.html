@@ -145,15 +145,13 @@
     <p>Durée de validité du consentement : 6 mois.</p>
   </div>
 
-  <div class="legal-section">
-    <h2>3. Types de cookies utilisés</h2>
-    <ul>
-      <li><strong>Cookies fonctionnels :</strong> amélioration du fonctionnement du site, stockage des préférences.</li>
-      <li><strong>Cookies de mesure d'audience :</strong> statistiques anonymes (visiteurs uniques, pages vues, durée, parcours).</li>
-      <li><strong>Cookies de suivi :</strong> analyse de navigation pour des services personnalisés (avec consentement).</li>
-      <li><strong>Cookies d'amélioration :</strong> tests A/B de pages.</li>
-    </ul>
-  </div>
+ <div class="legal-section">
+  <h2>3. Types de cookies utilisés</h2>
+  <ul>
+    <li><strong>Cookies fonctionnels :</strong> amélioration du fonctionnement du site, stockage des préférences de consentement.</li>
+    <li><strong>Mesure d'audience :</strong> nous utilisons Cloudflare Web Analytics qui ne dépose aucun cookie et ne trace pas les visiteurs individuellement. Les données sont anonymes et agrégées.</li>
+  </ul>
+</div>
 
   <div class="legal-section">
     <h2>3bis. Liste des cookies</h2>
@@ -167,19 +165,9 @@
       </thead>
       <tbody>
         <tr>
-          <td>Google Analytics</td>
-          <td>Mesure d'audience</td>
-          <td>Consentement</td>
-        </tr>
-        <tr>
-          <td>Google Tag Manager</td>
-          <td>Gestion des balises</td>
-          <td>Consentement</td>
-        </tr>
-        <tr>
-          <td>Google Adsense</td>
-          <td>Régie publicitaire</td>
-          <td>Consentement</td>
+          <td>Cloudflare Web Analytics</td>
+          <td>Mesure d'audience anonyme, sans cookies, sans tracking individuel</td>
+          <td>Intérêt légitime (exempté de consentement)</td>
         </tr>
       </tbody>
     </table>
@@ -278,6 +266,12 @@ document.getElementById('reopen-cookies').addEventListener('click', function(e) 
   document.getElementById('cookie-banner').style.display = 'block';
 });
 </script>
+
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+  data-cf-beacon='{"token": "ff0b0bdbba5f4fcabd27bbb0f6724240"}'>
+</script>
+<!-- End Cloudflare Web Analytics -->
 
 </body>
 </html>

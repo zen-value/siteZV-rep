@@ -149,7 +149,7 @@
       <li>Prospection B2B : intérêt légitime / consentement si requis</li>
       <li>Newsletters : consentement</li>
       <li>Sécurité du site : intérêt légitime</li>
-      <li>Mesure d'audience : consentement</li>
+      <li>Mesure d'audience : intérêt légitime (Cloudflare Web Analytics, sans cookies, données anonymes)</li>
       <li>Gestion des candidatures : intérêt légitime</li>
       <li>Obligations légales : obligation légale</li>
     </ul>
@@ -157,7 +157,7 @@
 
   <div class="legal-section">
     <h2>3. Destinataires et sous-traitants</h2>
-    <p>Accès limité aux équipes habilitées de Zen Value et à nos sous-traitants : Witik, Boondmanager, Google Analytics / Tag Manager. Tous agissent selon nos instructions et offrent des garanties conformes au RGPD.</p>
+    <p>Accès limité aux équipes habilitées de Zen Value et à nos sous-traitants : Witik, Boondmanager, Cloudflare Web Analytics. Tous agissent selon nos instructions et offrent des garanties conformes au RGPD.</p>
   </div>
 
   <div class="legal-section">
@@ -172,7 +172,6 @@
       <li>Clients et dossiers de formation : durée du contrat + 5 ans.</li>
       <li>Candidatures : 2 ans après le dernier contact.</li>
       <li>Logs techniques : jusqu'à 12 mois.</li>
-      <li>Cookies : 13 mois max.</li>
     </ul>
   </div>
 
@@ -270,6 +269,12 @@ document.getElementById('reopen-cookies').addEventListener('click', function(e) 
   document.getElementById('cookie-banner').style.display = 'block';
 });
 </script>
+
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+  data-cf-beacon='{"token": "ff0b0bdbba5f4fcabd27bbb0f6724240"}'>
+</script>
+<!-- End Cloudflare Web Analytics -->
 
 </body>
 </html>
