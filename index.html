@@ -625,6 +625,63 @@
       .ecovadis-badge { order: -1; }
       .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
     }
+    /* ── Formation ── */
+    .formation-band {
+      background: var(--green-light);
+      padding: var(--sv) var(--gutter);
+    }
+    .formation-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .formation-h2 {
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .formation-texte {
+      font-size: 0.92rem;
+      color: var(--dark);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+    .formation-btn {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    .formation-qualiopi {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      text-align: center;
+    }
+    .qualiopi-text {
+      font-size: 0.82rem;
+      color: var(--dark);
+      font-weight: 600;
+      line-height: 1.6;
+      max-width: 320px;
+    }
+    .qualiopi-link {
+      display: block;
+      transition: opacity 0.2s;
+    }
+    .qualiopi-link:hover { opacity: 0.8; }
+    .qualiopi-logo {
+      height: 120px;
+      width: auto;
+      display: block;
+    }
+
     @media (max-width: 640px) {
       :root { --sv: 4rem; --gutter: 6vw; }
       .nav-links { display: none; }
@@ -638,6 +695,8 @@
       .btn-submit { width: 100%; text-align: center; }
       .stat-band-item { text-align: left; }
       .resultats-grid { grid-template-columns: 1fr 1fr; }
+      .formation-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .formation-qualiopi { align-items: flex-start; text-align: left; }
     }
   </style>
 </head>
@@ -766,6 +825,37 @@
         <div class="pilier-titre">Responsabilité</div>
         <p class="pilier-texte">Nous intégrons les enjeux RSE dans chaque mission et nous aidons à déployer votre stratégie RSE concrètement, pas seulement à la définir.</p>
       </div>
+    </div>
+  </div>
+</section><!-- piliers -->
+
+<!-- ════ FORMATION ════ -->
+<section class="formation-band" id="formation">
+  <div class="formation-inner">
+    <div class="formation-content reveal">
+      <div class="section-tag">Formation</div>
+      <h2 class="formation-h2">Développez les compétences<br>de vos équipes</h2>
+      <p class="formation-texte">Nous vous accompagnons dans la conception et l'animation de formations sur mesure, ancrées dans votre réalité opérationnelle.</p>
+      <a href="https://zenvalue.catalogueformpro.com/"
+         target="_blank" rel="noopener"
+         class="btn-dark formation-btn">
+        Découvrir nos formations →
+      </a>
+    </div>
+    <div class="formation-qualiopi reveal" data-delay="1">
+      <p class="qualiopi-text">
+        Zen Value a obtenu la certification Qualiopi au titre
+        de la catégorie ACTIONS DE FORMATION.
+      </p>
+      <a href="assets/pdf/certificat-qualiopi-ZV.pdf"
+         target="_blank" rel="noopener"
+         class="qualiopi-link"
+         aria-label="Voir le certificat Qualiopi">
+        <img src="assets/images/qualopi/LogoQualiopi-300dpi-Avec_Marianne.png"
+             alt="Certification Qualiopi — Actions de formation"
+             class="qualiopi-logo"
+             loading="lazy">
+      </a>
     </div>
   </div>
 </section>
