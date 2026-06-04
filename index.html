@@ -627,7 +627,7 @@
     }
     /* ── Formation ── */
     .formation-band {
-      background: var(--green-light);
+      background: var(--white);
       padding: var(--sv) var(--gutter);
     }
     .formation-inner {
@@ -660,24 +660,38 @@
     .formation-qualiopi {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      gap: 1.5rem;
-      text-align: center;
+      align-items: flex-start;
+      gap: 0.5rem;
+      text-align: left;
     }
+    .qualiopi-logo {
+      height: 120px;
+      width: auto;
+      display: block;
+    }
+
     .qualiopi-text {
       font-size: 0.82rem;
       color: var(--dark);
       font-weight: 600;
       line-height: 1.6;
-      max-width: 320px;
+      width: 100%;
+      text-align: left;
+      padding-left: 3rem;
+    }
+    .qualiopi-text strong {
+      color: #CC0000;
+      font-weight: 700;
+      text-transform: uppercase;
     }
     .qualiopi-link {
       display: block;
       transition: opacity 0.2s;
+      padding-left: 1rem;
     }
     .qualiopi-link:hover { opacity: 0.8; }
     .qualiopi-logo {
-      height: 120px;
+      height: 160px;
       width: auto;
       display: block;
     }
@@ -843,10 +857,6 @@
       </a>
     </div>
     <div class="formation-qualiopi reveal" data-delay="1">
-      <p class="qualiopi-text">
-        Zen Value a obtenu la certification Qualiopi au titre
-        de la catégorie ACTIONS DE FORMATION.
-      </p>
       <a href="assets/pdf/certificat-qualiopi-ZV.pdf"
          target="_blank" rel="noopener"
          class="qualiopi-link"
@@ -856,6 +866,10 @@
              class="qualiopi-logo"
              loading="lazy">
       </a>
+      <p class="qualiopi-text">
+          La certification qualité a été délivrée au titre 
+          de la catégorie d'action suivante : <strong>Actions de formation</strong>
+      </p>
     </div>
   </div>
 </section>
